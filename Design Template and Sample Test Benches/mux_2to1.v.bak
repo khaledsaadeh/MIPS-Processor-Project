@@ -1,0 +1,14 @@
+module mux_2to1(a,b,c,control);
+	input [31:0]a;
+	input [31:0]b;
+	input [0]control;
+	output [31:0]c;
+	
+always@(*)begin
+	if(conrtol==0)
+		c=a;
+	else 
+		c=b;
+end
+
+endmodule
