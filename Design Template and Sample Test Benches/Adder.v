@@ -5,3 +5,17 @@ module Adder(c,a,b);
 	
 endmodule
 
+module testbench2();
+	reg [31:0]a,b;
+	wire [31:0]c;
+	
+	Adder myadder(c,a,b);
+	
+initial begin
+	$monitor("%h",c);
+	a= 32'h 10;
+	b= 32'h 2;
+	
+end
+	
+endmodule
