@@ -11,4 +11,3 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 
 
 endmodule 
-	
