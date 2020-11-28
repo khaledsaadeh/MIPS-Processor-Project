@@ -1,5 +1,5 @@
 # Reading C:/altera/13.0/modelsim_ase/tcl/vsim/pref.tcl 
-# do mux_2to1_run_msim_rtl_verilog.do 
+# do Top_run_msim_rtl_verilog.do 
 # if {[file exists rtl_work]} {
 # 	vdel -lib rtl_work -all
 # }
@@ -10,22 +10,32 @@
 # ** Warning: Copied C:\altera\13.0\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
 #          Updated modelsim.ini.
 # 
-# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v}
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module mux_2to1
-# -- Compiling module testbench
+# -- Compiling module Top
 # 
 # Top level modules:
-# 	testbench
+# 	Top
 # 
-vsim work.testbench
-# vsim work.testbench 
-# Loading work.testbench
-# Loading work.mux_2to1
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_3to1.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module mux_3to1
+# -- Compiling module testbench3
+# 
+# Top level modules:
+# 	testbench3
+vsim work.testbench3
+# vsim work.testbench3 
+# Loading work.testbench3
+# Loading work.mux_3to1
 add wave -position insertpoint  \
-sim:/testbench/x \
-sim:/testbench/y \
-sim:/testbench/sel \
-sim:/testbench/z
+sim:/testbench3/x \
+sim:/testbench3/y \
+sim:/testbench3/w \
+sim:/testbench3/sel \
+sim:/testbench3/z
 run -all
-# z= 00000000000000000000000000000001
+# z is00000000000000000000000000000001
+# z is00000000000000000000000000010000
+# z is00000000000000000000000100000000
+# z isxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx

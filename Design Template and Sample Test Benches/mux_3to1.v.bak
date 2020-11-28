@@ -1,0 +1,27 @@
+module mux_2to1(c,a,b,d,sel);
+	input [31:0]a;
+	input [31:0]b;
+	input [31:0]d;
+	input sel;
+	output [31:0]c;
+	assign c = (sel==00)?a:(sel==01)?b:(sel==10)?d;
+endmodule
+
+module testbench();
+	reg [31:0]x,y,d;
+	reg sel;
+	wire [31:0]z;
+
+	mux_2to1 myMux(z,x,y,d,sel);
+	
+	
+initial begin
+	$monitor("z= %b",z);
+	x= 32'h 1;
+	y=0;
+	d= 32'h FFFF;
+	sel=0;
+	
+end
+
+endmodule

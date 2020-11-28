@@ -7,7 +7,7 @@ stage5 : writeback stage (WB)
 */
 
 module Top(PC_VALUE);// testbench holds the PC Value.
-
+input PC_VALUE;
 
 
 endmodule 
