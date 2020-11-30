@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Top
-Mon Nov 30 14:06:26 2020
+Mon Nov 30 16:20:59 2020
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -42,7 +42,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Nov 30 14:06:26 2020      ;
+; Analysis & Synthesis Status        ; Successful - Mon Nov 30 16:20:59 2020      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; Top                                        ;
 ; Top-level Entity Name              ; Top                                        ;
@@ -223,7 +223,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Mon Nov 30 14:06:25 2020
+    Info: Processing started: Mon Nov 30 16:20:58 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Top -c Top
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file top.v
@@ -248,6 +248,8 @@ Info (12021): Found 2 design units, including 2 entities, in source file zero_ex
     Info (12023): Found entity 1: zero_extend
     Info (12023): Found entity 2: testbench_zero_extend
 Warning (12019): Can't analyze file -- file test.v is missing
+Info (12021): Found 1 design units, including 1 entities, in source file control_unit.v
+    Info (12023): Found entity 1: control_unit
 Info (12127): Elaborating entity "Top" for the top level hierarchy
 Info (144001): Generated suppressed messages file D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/output_files/Top.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
@@ -259,7 +261,7 @@ Info (21057): Implemented 1 device resources after synthesis - the final resourc
     Info (21059): Implemented 0 output pins
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 5 warnings
     Info: Peak virtual memory: 4652 megabytes
-    Info: Processing ended: Mon Nov 30 14:06:26 2020
+    Info: Processing ended: Mon Nov 30 16:20:59 2020
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
