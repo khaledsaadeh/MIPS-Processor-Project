@@ -17,25 +17,20 @@
 # Top level modules:
 # 	Top
 # 
-vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_3to1.v}
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/zero_extend.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module mux_3to1
-# -- Compiling module testbench3
+# -- Compiling module zero_extend
+# -- Compiling module testbench_zero_extend
 # 
 # Top level modules:
-# 	testbench3
-vsim work.testbench3
-# vsim work.testbench3 
-# Loading work.testbench3
-# Loading work.mux_3to1
+# 	testbench_zero_extend
+vsim work.testbench_zero_extend
+# vsim work.testbench_zero_extend 
+# Loading work.testbench_zero_extend
+# Loading work.zero_extend
 add wave -position insertpoint  \
-sim:/testbench3/x \
-sim:/testbench3/y \
-sim:/testbench3/w \
-sim:/testbench3/sel \
-sim:/testbench3/z
+sim:/testbench_zero_extend/x \
+sim:/testbench_zero_extend/y
 run -all
-# z is00000000000000000000000000000001
-# z is00000000000000000000000000010000
-# z is00000000000000000000000100000000
-# z isxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# 0000ffff
+# 00000005

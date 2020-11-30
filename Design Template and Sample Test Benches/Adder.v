@@ -4,8 +4,8 @@ module Adder(c,a,b);
 	assign c=a+b;
 	
 endmodule
-
-module testbench2();
+/*--------------------------------------------------------------*/
+module testbench_Adder();
 	reg [31:0]a,b;
 	wire [31:0]c;
 	

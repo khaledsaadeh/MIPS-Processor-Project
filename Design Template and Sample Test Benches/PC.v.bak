@@ -1,0 +1,15 @@
+module PC(input [31:0]PC_IN
+			 input control
+			 input clk
+			 output reg[31:0]PC_out);
+
+	always@(clk)begin
+		if(control==0)	//fetch new instruction
+			PC_out=PC_IN;
+		else
+			PC_out=PC_out;
+	end
+endmodule
+
+
+				
