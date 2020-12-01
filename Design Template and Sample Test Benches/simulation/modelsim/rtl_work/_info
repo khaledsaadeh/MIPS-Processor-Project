@@ -3,36 +3,35 @@ K3
 13
 cModel Technology
 Z0 dD:\University\Computer Architicture 2\Project\Computer-Org-2-Project\Design Template and Sample Test Benches\simulation\modelsim
-vAdder
+vcontrol_unit
 !i10b 1
-!s100 ;ME]z:OIO4L^9oP_03>hP2
-Ia7WI;Hcn_`E92YN6:>35H1
-VoW1]SfU28@ojGV`M5JIEK3
+!s100 Y3Cd?O_>0kl^PY?lT<81U0
+IdI6N1XJlLm9iKkfn;lT`21
+V0dF6o^c>PW6]ce[c@Vbg`0
 Z1 dD:\University\Computer Architicture 2\Project\Computer-Org-2-Project\Design Template and Sample Test Benches\simulation\modelsim
-Z2 w1606729230
-Z3 8D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Adder.v
-Z4 FD:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Adder.v
-L0 1
+Z2 w1606830318
+Z3 8D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/control_unit.v
+Z4 FD:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/control_unit.v
+L0 12
 Z5 OV;L;10.1d;51
 r1
 !s85 0
 31
-Z6 !s108 1606738006.675000
-Z7 !s107 D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Adder.v|
-Z8 !s90 -reportprogress|300|-work|work|D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Adder.v|
+Z6 !s108 1606830344.196000
+Z7 !s107 D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/control_unit.v|
+Z8 !s90 -reportprogress|300|-work|work|D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/control_unit.v|
 !s101 -O0
 Z9 o-work work -O0
-n@adder
-vtestbench_Adder
+vtestbench_control_unit
 !i10b 1
-!s100 ;]2^YZ?5fM>?D[JaCdmlh3
-INZ6J9K5B@mzckBBSGlIja0
-V:=MbZG:UTd;CXOPhf4CYD2
+!s100 j0Iaf?OV:UEG[S:Gfz9@h1
+InQ;`348XKN6=^k`D4EY[`3
+VYYh6nJhbTSAh1J9aZm4hz2
 R1
 R2
 R3
 R4
-L0 8
+L0 478
 R5
 r1
 !s85 0
@@ -42,7 +41,6 @@ R7
 R8
 !s101 -O0
 R9
-ntestbench_@adder
 vTop
 ITOhKfkk?_`M=b;7IoOk_O2
 V4e2jMfSVblY]hLJf0^0CN1
@@ -59,7 +57,7 @@ n@top
 !i10b 1
 !s100 =cVgEW2nmJKlJQCDIC0CD3
 !s85 0
-!s108 1606737995.854000
+!s108 1606830332.223000
 !s107 D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches|D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v|
 !s101 -O0

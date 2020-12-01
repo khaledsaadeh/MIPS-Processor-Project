@@ -17,20 +17,42 @@
 # Top level modules:
 # 	Top
 # 
-vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Adder.v}
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/control_unit.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module Adder
-# -- Compiling module testbench_Adder
+# -- Compiling module control_unit
+# -- Compiling module testbench_control_unit
 # 
 # Top level modules:
-# 	testbench_Adder
-vsim work.testbench_Adder
-# vsim work.testbench_Adder 
-# Loading work.testbench_Adder
-# Loading work.Adder
+# 	testbench_control_unit
+vsim work.testbench_control_unit
+# vsim work.testbench_control_unit 
+# Loading work.testbench_control_unit
+# Loading work.control_unit
 add wave -position insertpoint  \
-sim:/testbench_Adder/a \
-sim:/testbench_Adder/b \
-sim:/testbench_Adder/c
+sim:/testbench_control_unit/Jal_control \
+sim:/testbench_control_unit/ID_Flush \
+sim:/testbench_control_unit/IF_Flush \
+sim:/testbench_control_unit/Store_Byte_control \
+sim:/testbench_control_unit/Load_Byte_control \
+sim:/testbench_control_unit/control_signal \
+sim:/testbench_control_unit/Op_code \
+sim:/testbench_control_unit/Funct_ID
 run -all
-# 00000012
+# Jump and link control isx
+# ID Flush control isx
+# IF Flush control isx
+# Store byte control isx
+# Load Byte control isx
+# control signal isxxxxxxxxxxxxxxxxxxxxxxxx
+# Jump and link control is1
+# ID Flush control is0
+# IF Flush control is1
+# Store byte control is0
+# Load Byte control is0
+# control signal is000100000000011100000000
+# Jump and link control is1
+# ID Flush control is0
+# IF Flush control is1
+# Store byte control is0
+# Load Byte control is0
+# control signal is000100000000011100000000
