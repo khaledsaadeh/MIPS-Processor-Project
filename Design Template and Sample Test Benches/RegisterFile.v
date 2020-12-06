@@ -246,12 +246,61 @@ registerFile my_RegisterFile(Rs_data_ID,Rt_data_ID,Rs_ID,Rt_ID,RegWr_ID,Write_da
 
 initial begin
 	#1
-	//case I want to write to $t0 the value 32'h A12
+	//case1: I want to write to $t0 the value 32'h A12
 	RegWr_ID=5'h8;
 	Write_data=32'h0A12;
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=1;
+	#1
+	$display("t0 is %b",my_RegisterFile.registers_i[8]);
+	
+	#1
+	//case2: I want to write to $s1 the value 32'h 0FF
+	RegWr_ID=5'h13;
+	Write_data=32'h0FF;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=1;
+	#1
+	$display("s1 is %b",my_RegisterFile.registers_i[19]); //19 is 13 in decimal
+	
+	#1
+	//case3: I want to read from $t0
+	Rt_ID=5'h8;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=0;
+	#1
+	$display("saved t0 is %b",my_RegisterFile.registers_i[8]);
+	
+	//case4: I want to read from $s1
+	Rs_ID=5'h13;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=0;
+	#1
+	$display("saved s1 is %b",my_RegisterFile.registers_i[19]);
+	
+	//case5: I want to load byte to $t0 e.eg 8'h0F
+	Write_data=32'h0FFFFF;
+	RegWr_ID=5'h8;
+	Load_Byte_control=1;
+	Store_Byte_control=0;
+	RegWrite=1;
+	#1
+	$display("byte that will be loaded from memory is %b",my_RegisterFile.registers_i[8]);
+	
+	//case6: I want to store byte from $s1
+	Rt_ID=5'h13;
+	Load_Byte_control=0;
+	Store_Byte_control=1;
+	RegWrite=0;
+	#1
+	$display("byte that will be stored in memory is %b",Rt_data_ID);
+	
+	
+	
 	
 end
 endmodule
