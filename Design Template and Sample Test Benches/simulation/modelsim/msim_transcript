@@ -17,42 +17,18 @@
 # Top level modules:
 # 	Top
 # 
-vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/control_unit.v}
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile_testbench.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module control_unit
-# -- Compiling module testbench_control_unit
+# -- Compiling module testbench_RegisterFile
 # 
 # Top level modules:
-# 	testbench_control_unit
-vsim work.testbench_control_unit
-# vsim work.testbench_control_unit 
-# Loading work.testbench_control_unit
-# Loading work.control_unit
-add wave -position insertpoint  \
-sim:/testbench_control_unit/Jal_control \
-sim:/testbench_control_unit/ID_Flush \
-sim:/testbench_control_unit/IF_Flush \
-sim:/testbench_control_unit/Store_Byte_control \
-sim:/testbench_control_unit/Load_Byte_control \
-sim:/testbench_control_unit/control_signal \
-sim:/testbench_control_unit/Op_code \
-sim:/testbench_control_unit/Funct_ID
-run -all
-# Jump and link control isx
-# ID Flush control isx
-# IF Flush control isx
-# Store byte control isx
-# Load Byte control isx
-# control signal isxxxxxxxxxxxxxxxxxxxxxxxx
-# Jump and link control is1
-# ID Flush control is0
-# IF Flush control is1
-# Store byte control is0
-# Load Byte control is0
-# control signal is000100000000011100000000
-# Jump and link control is1
-# ID Flush control is0
-# IF Flush control is1
-# Store byte control is0
-# Load Byte control is0
-# control signal is000100000000011100000000
+# 	testbench_RegisterFile
+vsim work.testbench_RegisterFile
+# vsim work.testbench_RegisterFile 
+# Loading work.testbench_RegisterFile
+# ** Error: (vsim-3033) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile_testbench.v(12): Instantiation of 'registerFile' failed. The design unit was not found.
+# 
+#         Region: /testbench_RegisterFile
+#         Searched libraries:
+#             D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/simulation/modelsim/rtl_work
+# Error loading design
