@@ -4,6 +4,7 @@ entity registerFile is
     port(
         Rs_data_ID      : out    vl_logic_vector(31 downto 0);
         Rt_data_ID      : out    vl_logic_vector(31 downto 0);
+        Clk             : in     vl_logic;
         Rs_ID           : in     vl_logic_vector(4 downto 0);
         Rt_ID           : in     vl_logic_vector(4 downto 0);
         RegWr_ID        : in     vl_logic_vector(4 downto 0);

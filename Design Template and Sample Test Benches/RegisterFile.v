@@ -1,6 +1,7 @@
 //declares a 32x32 register file.
 module registerFile( output reg [31:0]Rs_data_ID,
 							output reg [31:0]Rt_data_ID,
+							input Clk,
 							input [4:0]Rs_ID,
 							input [4:0]Rt_ID,
 							input [4:0]RegWr_ID,
@@ -48,7 +49,7 @@ initial begin
 	registers_i[31]=32'h0;	//11111	ra
 	end
 		
-always@(*)begin
+always@(negedge Clk)begin
 	case(Rs_ID)
 		5'b00000: Rs_data_ID = registers_i[0] ;//	zero
 		5'b00001: Rs_data_ID = registers_i[1] ;//	at
@@ -155,7 +156,8 @@ always@(*)begin
 		5'b11110: Rt_data_ID=registers_i[30];//	fp
 		5'b11111: Rt_data_ID=registers_i[31];//	ra
 		endcase
-		
+end
+always@(posedge Clk)begin		
 	if(RegWrite)begin
 		if(Load_Byte_control)begin
 			case(RegWr_ID)
@@ -241,20 +243,28 @@ module testbench_RegisterFile();
 		reg Load_Byte_control;
 		reg Store_Byte_control;
 		reg RegWrite;
+		
 
-registerFile my_RegisterFile(Rs_data_ID,Rt_data_ID,Rs_ID,Rt_ID,RegWr_ID,Write_data,Load_Byte_control,Store_Byte_control,RegWrite);
+		reg clk;
+	
+registerFile my_RegisterFile(Rs_data_ID,Rt_data_ID,clk ,Rs_ID,Rt_ID,RegWr_ID,Write_data,Load_Byte_control,Store_Byte_control,RegWrite);
 
 initial begin
+	clk <= 0;
+	#1 
+	clk <= ~clk;		
 	#1
 	//case1: I want to write to $t0 the value 32'h A12
+	clk <= ~clk;
 	RegWr_ID=5'h8;
 	Write_data=32'h0A12;
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=1;
+	clk <= ~clk;
 	#1
 	$display("t0 is %b",my_RegisterFile.registers_i[8]);
-	
+	clk <= ~clk;
 	#1
 	//case2: I want to write to $s1 the value 32'h 0FF
 	RegWr_ID=5'h13;
@@ -262,15 +272,17 @@ initial begin
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=1;
+	clk <= ~clk;
 	#1
 	$display("s1 is %b",my_RegisterFile.registers_i[19]); //19 is 13 in decimal
-	
+	clk <= ~clk;
 	#1
 	//case3: I want to read from $t0
 	Rt_ID=5'h8;
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=0;
+	clk <= ~clk;
 	#1
 	$display("saved t0 is %b",my_RegisterFile.registers_i[8]);
 	
@@ -279,6 +291,7 @@ initial begin
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=0;
+	clk <= ~clk;
 	#1
 	$display("saved s1 is %b",my_RegisterFile.registers_i[19]);
 	
@@ -288,6 +301,7 @@ initial begin
 	Load_Byte_control=1;
 	Store_Byte_control=0;
 	RegWrite=1;
+	clk <= ~clk;
 	#1
 	$display("byte that will be loaded from memory is %b",my_RegisterFile.registers_i[8]);
 	
@@ -296,10 +310,11 @@ initial begin
 	Load_Byte_control=0;
 	Store_Byte_control=1;
 	RegWrite=0;
+	clk <= ~clk;
 	#1
 	$display("byte that will be stored in memory is %b",Rt_data_ID);
 	
-	
+	clk <= ~clk;
 	
 	
 end

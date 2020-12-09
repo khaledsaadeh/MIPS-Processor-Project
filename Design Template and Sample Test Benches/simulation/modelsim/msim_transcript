@@ -37,11 +37,12 @@ sim:/testbench_RegisterFile/RegWr_ID \
 sim:/testbench_RegisterFile/Write_data \
 sim:/testbench_RegisterFile/Load_Byte_control \
 sim:/testbench_RegisterFile/Store_Byte_control \
-sim:/testbench_RegisterFile/RegWrite
+sim:/testbench_RegisterFile/RegWrite \
+sim:/testbench_RegisterFile/clk
 run -all
-# t0 is 00000000000000000000101000010010
-# s1 is 00000000000000000000000011111111
+# t0 is 00000000000000000000000000000000
+# s1 is 00000000000000000000000000000000
 # saved t0 is 00000000000000000000101000010010
 # saved s1 is 00000000000000000000000011111111
-# byte that will be loaded from memory is 00000000000000000000000011111111
-# byte that will be stored in memory is 00000000000000000000000011111111
+# byte that will be loaded from memory is 00000000000000000000101000010010
+# byte that will be stored in memory is 00000000000000000000101000010010
