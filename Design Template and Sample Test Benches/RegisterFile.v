@@ -246,7 +246,7 @@ module testbench_RegisterFile();
 		
 
 		reg clk;
-	
+
 registerFile my_RegisterFile(Rs_data_ID,Rt_data_ID,clk ,Rs_ID,Rt_ID,RegWr_ID,Write_data,Load_Byte_control,Store_Byte_control,RegWrite);
 
 initial begin
