@@ -14,6 +14,8 @@ reg [31:0] registers_i[31:0];
 	
 reg [31:0] registers_f[31:0];
 
+//reg hi,lo
+
 initial begin
 	registers_i[0] =32'h0;	//00000	zero
 	registers_i[1] =32'h0;	//00001	at
