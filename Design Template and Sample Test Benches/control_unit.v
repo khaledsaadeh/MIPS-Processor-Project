@@ -29,7 +29,7 @@ module control_unit(
 
 initial begin 
 	float_control=0;
-	HILO_read_control=2b'00;
+	HILO_read_control = 2'b00;
 	HILO_write_control=0;
 	MemToReg64=0;
 	MemWrite64=0;
@@ -63,7 +63,7 @@ always@(*)begin
 						Load_Byte_control=0;
 						Store_Byte_control=0;
 						float_control=0;
-						HILO_read_control=2b'01;
+						HILO_read_control=2'b01;
 						HILO_write_control=1;
 						control_signal[1:0]=2'b00; //ALUSrc
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -84,7 +84,7 @@ always@(*)begin
 						Load_Byte_control=0;
 						Store_Byte_control=0;
 						float_control=0;
-						HILO_read_control=2b'10;
+						HILO_read_control=2'b10;
 						HILO_write_control=1;
 						control_signal[1:0]=2'b00; //ALUSrc
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -104,7 +104,7 @@ always@(*)begin
 						Load_Byte_control=0;
 						Store_Byte_control=0;
 						float_control=1;
-						HILO_read_control=2b'00;
+						HILO_read_control=2'b00;
 						HILO_write_control=0;
 						control_signal[1:0]=2'b00; //ALUSrc
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -124,7 +124,7 @@ always@(*)begin
 						Load_Byte_control=0;
 						Store_Byte_control=0;
 						float_control=0;
-						HILO_read_control=2b'00;
+						HILO_read_control=2'b00;
 						HILO_write_control=0;
 						control_signal[1:0]=2'b00; //ALUSrc
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -364,7 +364,7 @@ always@(*)begin
 		
 	case(Op_code)//I and J type instructions
 		6'h 11:
-				if(Fmt==8)begin //BRANCH FP true ot false
+				if(Fmt==8)begin //BRANCH FP true or false
 						Jal_control=0;
 						ID_Flush=1;
 						IF_Flush=1;
