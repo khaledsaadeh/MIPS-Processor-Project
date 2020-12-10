@@ -9,7 +9,7 @@ vregisterFile
 IaPEVhnSP0773R[>]US6c81
 Vjma2WQXGPPR5[elo9THe61
 Z1 dD:\University\Computer Architicture 2\Project\Computer-Org-2-Project\Design Template and Sample Test Benches\simulation\modelsim
-Z2 w1607540667
+Z2 w1607606366
 Z3 8D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v
 Z4 FD:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v
 L0 2
@@ -17,7 +17,7 @@ Z5 OV;L;10.1d;51
 r1
 !s85 0
 31
-Z6 !s108 1607540690.989000
+Z6 !s108 1607606382.221000
 Z7 !s107 D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v|
 Z8 !s90 -reportprogress|300|-work|work|D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v|
 !s101 -O0
@@ -25,8 +25,8 @@ Z9 o-work work -O0
 nregister@file
 vtestbench_RegisterFile
 !i10b 1
-!s100 Vd54<GPh>l9`8`WRbgS9O2
-I[_kPO>AU55?kOd_@WKQ283
+!s100 Qdh[=fZe9k>NX=GQI3N=@0
+IYYHUOVg`SC>m]AjU0DgYY1
 VOKaVBa5Wo7A>9>KQ3aD?F2
 R1
 R2
@@ -59,7 +59,7 @@ n@top
 !i10b 1
 !s100 =cVgEW2nmJKlJQCDIC0CD3
 !s85 0
-!s108 1607540676.570000
+!s108 1607606240.203000
 !s107 D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches|D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v|
 !s101 -O0

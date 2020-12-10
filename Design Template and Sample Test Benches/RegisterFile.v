@@ -261,6 +261,7 @@ initial begin
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=1;
+	#1
 	clk <= ~clk;
 	#1
 	$display("t0 is %b",my_RegisterFile.registers_i[8]);
@@ -272,6 +273,7 @@ initial begin
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=1;
+	#1
 	clk <= ~clk;
 	#1
 	$display("s1 is %b",my_RegisterFile.registers_i[19]); //19 is 13 in decimal
@@ -282,6 +284,7 @@ initial begin
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=0;
+	#1
 	clk <= ~clk;
 	#1
 	$display("saved t0 is %b",my_RegisterFile.registers_i[8]);
@@ -291,6 +294,7 @@ initial begin
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=0;
+	#1
 	clk <= ~clk;
 	#1
 	$display("saved s1 is %b",my_RegisterFile.registers_i[19]);
@@ -301,6 +305,7 @@ initial begin
 	Load_Byte_control=1;
 	Store_Byte_control=0;
 	RegWrite=1;
+	#1
 	clk <= ~clk;
 	#1
 	$display("byte that will be loaded from memory is %b",my_RegisterFile.registers_i[8]);
@@ -310,8 +315,10 @@ initial begin
 	Load_Byte_control=0;
 	Store_Byte_control=1;
 	RegWrite=0;
+	#1
 	clk <= ~clk;
 	#1
+	#5
 	$display("byte that will be stored in memory is %b",Rt_data_ID);
 	
 	clk <= ~clk;
