@@ -18,14 +18,19 @@ module control_unit(
 					output reg Store_Byte_control,
 					output reg Load_Byte_control,
 					output reg float_control,
+					output reg MulDiv_control,
+					output reg bc1f_control,
+					output reg bc1t_control,
 					output reg [23:0]control_signal,
 					output reg [1:0]HILO_read_control,
 					output reg [1:0]HILO_write_control,
 					output reg MemToReg64,
 					output reg MemWrite64,
+					output reg FPwrite_control,
 					input [5:0]Op_code,
 					input [5:0]Funct_ID,
-					input [4:0]Fmt);
+					input [4:0]Fmt,
+					input [4:0]Ft);
 
 initial begin 
 	float_control=0;
@@ -33,6 +38,10 @@ initial begin
 	HILO_write_control=0;
 	MemToReg64=0;
 	MemWrite64=0;
+	MulDiv_control=0;
+	bc1f_control=0;
+	bc1t_control=0;
+	FPwrite_control=0;
 end
 				
 always@(*)begin
@@ -55,6 +64,7 @@ always@(*)begin
 						control_signal[20:19]=2'b01;//WB_control_EX   
 						control_signal[22:21]=2'b00;//MEM_control_EX	 
 						control_signal[23]=0;//Rt_Rd_control
+						MulDiv_control=1;
 					end
 				6'h 10:begin //MOVE FROM HI
 						Jal_control=0;
@@ -116,6 +126,8 @@ always@(*)begin
 						control_signal[20:19]=2'b01;//WB_control_EX (MemToReg 1/ RegWrite 1)
 						control_signal[22:21]=2'b00;//MEM_control_EX	(MemWrite 1/ MemRead 1)
 						control_signal[23]=0;//Rt_Rd_control
+						MulDiv_control=1;
+						
 					end
 				6'h 18:begin //SHIFT_RIGHT_ARTH
 						Jal_control=0;
@@ -362,9 +374,10 @@ always@(*)begin
 			endcase	
 		end
 		
-	case(Op_code)//I and J type instructions
-		6'h 11:
-				if(Fmt==8)begin //BRANCH FP true or false
+	case(Op_code)//I, J, FR, and FI type instructions
+		6'h 11: //FR & FI instructions
+				if(Fmt==8)begin  //FI
+					if(Ft==1)begin//Branch FP true
 						Jal_control=0;
 						ID_Flush=1;
 						IF_Flush=1;
@@ -374,13 +387,111 @@ always@(*)begin
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control
 						control_signal[15]=1;//Jmp_control
-						control_signal[16]=1;//Branch_Eq_control
+						control_signal[16]=0;//Branch_Eq_control
 						control_signal[17]=0;//Branch_notEq_control
 						control_signal[18]=0;//REG_dst
 						control_signal[20:19]=2'b00;//WB_control_EX (MemToReg 1/ RegWrite 1)
 						control_signal[22:21]=2'b00;//MEM_control_EX	(MemWrite 1/ MemRead 1)
 						control_signal[23]=0;//Rt_Rd_control
+						bc1t_control=1;
+						end
+					else if(Ft==0)begin//Branch on FP false
+						Jal_control=0;
+						ID_Flush=1;
+						IF_Flush=1;
+						Load_Byte_control=0;
+						Store_Byte_control=0;
+						control_signal[1:0]=2'b00; //ALUSrc
+						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]=1;//JMP_Rgst_control
+						control_signal[15]=1;//Jmp_control
+						control_signal[16]=0;//Branch_Eq_control
+						control_signal[17]=0;//Branch_notEq_control
+						control_signal[18]=0;//REG_dst
+						control_signal[20:19]=2'b00;//WB_control_EX (MemToReg 1/ RegWrite 1)
+						control_signal[22:21]=2'b00;//MEM_control_EX	(MemWrite 1/ MemRead 1)
+						control_signal[23]=0;//Rt_Rd_control
+						bc1f_control=1;
+					end	
 					end
+				else if(Fmt==5'h10)begin //FR
+					if(Funct_ID==6'h0)begin //ADD FP single
+						Jal_control=0;
+						ID_Flush=0;
+						IF_Flush=0;
+						Load_Byte_control=0;
+						Store_Byte_control=0;
+						control_signal[1:0]=2'b00; //ALUSrc
+						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]=1;//JMP_Rgst_control
+						control_signal[15]=1;//Jmp_control
+						control_signal[16]=0;//Branch_Eq_control
+						control_signal[17]=0;//Branch_notEq_control
+						control_signal[18]=0;//REG_dst
+						control_signal[20:19]=2'b11;//WB_control_EX (MemToReg 1/ RegWrite 1)
+						control_signal[22:21]=2'b00;//MEM_control_EX	(MemWrite 1/ MemRead 1)
+						control_signal[23]=0;//Rt_Rd_control
+						float_control=1;
+					end
+					else if(Funct_ID==6'h32 || Funct_ID==6'h3c || Funct_ID==6'h3e)begin //compare FP single 
+						Jal_control=0;
+						ID_Flush=0;
+						IF_Flush=0;
+						Load_Byte_control=0;
+						Store_Byte_control=0;
+						control_signal[1:0]=2'b00; //ALUSrc
+						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]=1;//JMP_Rgst_control
+						control_signal[15]=1;//Jmp_control
+						control_signal[16]=0;//Branch_Eq_control
+						control_signal[17]=0;//Branch_notEq_control
+						control_signal[18]=0;//REG_dst
+						control_signal[20:19]=2'b11;//WB_control_EX (MemToReg 1/ RegWrite 1)
+						control_signal[22:21]=2'b00;//MEM_control_EX	(MemWrite 1/ MemRead 1)
+						control_signal[23]=0;//Rt_Rd_control
+						float_control=1;
+						FPwrite_control=1;
+					end
+				end
+				else if(Fmt==6'h11)begin //FR
+					if(Funct_ID==6'h0)begin //Add double FP
+						Jal_control=0;
+						ID_Flush=0;
+						IF_Flush=0;
+						Load_Byte_control=0;
+						Store_Byte_control=0;
+						control_signal[1:0]=2'b00; //ALUSrc
+						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]=1;//JMP_Rgst_control
+						control_signal[15]=1;//Jmp_control
+						control_signal[16]=0;//Branch_Eq_control
+						control_signal[17]=0;//Branch_notEq_control
+						control_signal[18]=0;//REG_dst
+						control_signal[20:19]=2'b11;//WB_control_EX (MemToReg 1/ RegWrite 1)
+						control_signal[22:21]=2'b00;//MEM_control_EX	(MemWrite 1/ MemRead 1)
+						control_signal[23]=0;//Rt_Rd_control
+						float_control=1;
+					end
+					else if(Funct_ID==6'h32 || Funct_ID==6'h3c || Funct_ID==6'h3e)begin//compare double FP
+						Jal_control=0;
+						ID_Flush=0;
+						IF_Flush=0;
+						Load_Byte_control=0;
+						Store_Byte_control=0;
+						control_signal[1:0]=2'b00; //ALUSrc
+						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]=1;//JMP_Rgst_control
+						control_signal[15]=1;//Jmp_control
+						control_signal[16]=0;//Branch_Eq_control
+						control_signal[17]=0;//Branch_notEq_control
+						control_signal[18]=0;//REG_dst
+						control_signal[20:19]=2'b11;//WB_control_EX (MemToReg 1/ RegWrite 1)
+						control_signal[22:21]=2'b00;//MEM_control_EX	(MemWrite 1/ MemRead 1)
+						control_signal[23]=0;//Rt_Rd_control
+						float_control=1;
+						FPwrite_control=1;
+				end
+				end
 		6'h 31:begin //LOAD FP SINGLE 
 						Jal_control=0;
 						ID_Flush=0;
@@ -397,6 +508,7 @@ always@(*)begin
 						control_signal[20:19]=2'b01;//WB_control_EX (MemToReg 1/ RegWrite 1)
 						control_signal[22:21]=2'b01;//MEM_control_EX	(MemWrite 1/ MemRead 1)
 						control_signal[23]=0;//Rt_Rd_control
+						float_control=1;
 					end
 		6'h 35:begin //LOAD FP DOUBLE 
 						Jal_control=0;
@@ -433,6 +545,7 @@ always@(*)begin
 						control_signal[20:19]=2'b00;//WB_control_EX (MemToReg 1/ RegWrite 1)
 						control_signal[22:21]=2'b10;//MEM_control_EX	(MemWrite 1/ MemRead 1)
 						control_signal[23]=0;//Rt_Rd_control
+						float_control=1;
 					end
 		6'h 3d:begin //STORE FP DOUBLE
 						Jal_control=0;
@@ -451,6 +564,7 @@ always@(*)begin
 						control_signal[22:21]=2'b10;//MEM_control_EX	(MemWrite 1/ MemRead 1)
 						control_signal[23]=0;//Rt_Rd_control
 						MemWrite64=1;
+						float_control=1;
 					end
 		6'h 9:begin //ADDi
 						Jal_control=0;
