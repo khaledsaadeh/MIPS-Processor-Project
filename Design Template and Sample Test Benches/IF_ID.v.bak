@@ -1,0 +1,53 @@
+module IF_ID(
+				input Clk,
+				input [31:0]PC_4,
+				input [31:0]Inst,
+				input IF_Flush,
+				input IF_stall,
+				output reg[5:0]Op_code,		
+				output reg[4:0]Rs_ID,		
+				output reg[4:0]Rt_ID,		
+				output reg[4:0]Rd_ID,		
+				output reg[4:0]Shamt_ID,		
+				output reg[5:0]Funct_ID,		
+				output reg[15:0]Imm16_ID,		
+				output reg[25:0]Jmp_Adrs_ID,
+				output reg[4:0]Fmt,			
+				output reg[4:0]Fs,				
+				output reg[4:0]Fd,					
+				output reg[31:0]PC_ID			
+				);
+
+always@(negedge Clk)begin //read
+if(!IF_Flush && !IF_stall)begin
+	Op_code=[31:26]Inst;
+	Rs_ID=[25:21]Inst;		
+   Rt_ID=[20:16]Inst;
+   Rd_ID=[15:11]Inst;		
+   Shamt_ID=[10:6]Inst;		
+   Funct_ID=[5:0]Inst;		
+   Imm16_ID=[15:0]Inst;		
+   Jmp_Adrs_ID=[25:0]Inst;
+   Fmt=[25:21]Inst;			
+   Fs=[15:11]Inst;				
+   Fd=[10:6]Inst;				
+   PC_ID=PC_4;
+end else if(IF_Flush)begin
+	Op_code=6'b0;
+	Rs_ID=5'b0;		
+   Rt_ID=5'b0;
+   Rd_ID=5'b0;		
+   Shamt_ID=5'b0;		
+   Funct_ID=6'b0;		
+   Imm16_ID=16'b0;		
+   Jmp_Adrs_ID=26'b0;
+   Fmt=5'b0;			
+   Fs=5'b0;				
+   Fd=5'b0;				
+   PC_ID=PC_4;
+end else if(IF_stall)begin
+end
+end
+endmodule
+
+	

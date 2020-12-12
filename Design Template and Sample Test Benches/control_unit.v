@@ -23,7 +23,7 @@ module control_unit(
 					output reg bc1t_control,
 					output reg [23:0]control_signal,
 					output reg [1:0]HILO_read_control,
-					output reg [1:0]HILO_write_control,
+					output reg HILO_write_control,
 					output reg MemToReg64,
 					output reg MemWrite64,
 					output reg FPwrite_control,
