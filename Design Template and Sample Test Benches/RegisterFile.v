@@ -6,6 +6,7 @@ module registerFile( output reg [31:0]Rs_data_ID,
 							output reg [31:0]Rt_MSG,
 							output reg [31:0]HI,
 							output reg [31:0]LO,
+							output reg FP,
 							input Clk,
 							input [4:0]Rs_ID,
 							input [4:0]Rt_ID,
@@ -15,8 +16,12 @@ module registerFile( output reg [31:0]Rs_data_ID,
 							input Load_Byte_control,
 							input Store_Byte_control,
 							input RegWrite,
-							input float_control,
-							input MulDiv_control);												
+							input float_control_read,
+							input float_control_write,
+							input FPwrite_control,
+							input MulDiv_control,
+							input Write32_64,
+							input Jal_control);												
 		
 reg [31:0] registers_i[31:0];
 	
@@ -24,10 +29,17 @@ reg [31:0] registers_f[31:0];
 
 reg [31:0] hi;
 reg [31:0] lo;
-
+//store bytr, load byte
+//use F registers read: compare single/double | store single/double
+//use F registers write: add single/double | load single/double |
+//use write FP: fo compare single/double
+//use HI LO write : mul | div
+//use HI LO read : move HI | move LO
+//write ra: Jal
 initial begin
 	hi=32'h0;
 	lo=32'h0;
+	FP=0;
 	
 	registers_i[0] =32'h0;	//00000	zero
 	registers_i[1] =32'h0;	//00001	at
@@ -96,174 +108,230 @@ initial begin
 	registers_f[31]=32'h0;	//11111	
 	end
 
-if(float_control==1)begin	//use float registers 
+	
 always@(negedge Clk)begin //read on negative edge
+		if(float_control_read==1)begin //use float registers 
 			HI=hi;
 			LO=lo;
+			
 		case(Rs_ID)
-			5'b00000: Rs_MSG = registers_f[0] ;
-						 Rs_data_ID=registers_f[1];
-			5'b00001: ;//can't read odd numbered registers as every pair create a double.
-			5'b00010: Rs_MSG= registers_f[2] ;
-						 Rs_data_ID= registers_f[3];
-			5'b00011: ;
-			5'b00100: Rs_MSG = registers_f[4] ;
-						 Rs_data_ID=registers_f[5];
-			5'b00101: ;
-			5'b00110: Rs_MSG = registers_f[6] ;
-						 Rs_data_ID=registers_f[7];
-			5'b00111: ;
-			5'b01000: Rs_MSG= registers_f[8] ;
-						 Rs_data_ID=registers_f[9];
-			5'b01001: ;
-			5'b01010: Rs_MSG = registers_f[10];
-						 Rs_data_ID=registers_f[11];
-			5'b01011: ;
-			5'b01100: Rs_MSG = registers_f[12];
-						 Rs_data_ID=registers_f[13];
-			5'b01101: ;
-			5'b01110: Rs_MSG = registers_f[14];
-						 Rs_data_ID=registers_f[15];
-			5'b01111: ;
-			5'b10000: Rs_MSG = registers_f[16];
-						 Rs_data_ID=registers_f[17];
-			5'b10001: ;
-			5'b10010: Rs_MSG = registers_f[18];
-						 Rs_data_ID=registers_f[19];
-			5'b10011: ;
-			5'b10100: Rs_MSG = registers_f[20];
-						 Rs_data_ID=registers_f[21];
-			5'b10101: ;
-			5'b10110: Rs_MSG = registers_f[22];
-						 Rs_data_ID=registers_f[23];
-			5'b10111: ;
-			5'b11000: Rs_MSG = registers_f[24];
-						 Rs_data_ID = registers_f[25];
-			5'b11001: ;
-			5'b11010: Rs_MSG = registers_f[26];
-						 Rs_data_ID = registers_f[27];
-			5'b11011: ;
-			5'b11100: Rs_MSG = registers_f[28];
-						 Rs_data_ID = registers_f[29];
-			5'b11101: ;
-			5'b11110: Rs_MSG = registers_f[30];
-						 Rs_data_ID =registers_f[31];
-			5'b11111: ;
+			5'b00000 :begin Rs_MSG = registers_f[0] ;
+						 		Rs_data_ID = registers_f[1];end
+			5'b00001 :	;	//can't read odd numbered registers as every pair create a double.
+			5'b00010 :begin Rs_MSG= registers_f[2] ;
+						 		Rs_data_ID= registers_f[3];end
+			5'b00011 :;
+			5'b00100 :begin Rs_MSG = registers_f[4] ;
+						 		Rs_data_ID=registers_f[5];end
+			5'b00101 :;
+			5'b00110 :begin Rs_MSG = registers_f[6] ;
+						 		Rs_data_ID=registers_f[7];end
+			5'b00111 :;
+			5'b01000 :begin Rs_MSG= registers_f[8] ;
+						 		Rs_data_ID=registers_f[9];end
+			5'b01001 :;
+			5'b01010 :begin Rs_MSG = registers_f[10];
+						 		Rs_data_ID=registers_f[11];end
+			5'b01011 :;
+			5'b01100 :begin Rs_MSG = registers_f[12];
+						 		Rs_data_ID=registers_f[13];end
+			5'b01101 :;
+			5'b01110 :begin Rs_MSG = registers_f[14];
+						 		Rs_data_ID=registers_f[15];end
+			5'b01111 :;
+			5'b10000 :begin Rs_MSG = registers_f[16];
+						 		Rs_data_ID=registers_f[17];end
+			5'b10001 :;
+			5'b10010 :begin Rs_MSG = registers_f[18];
+						 		Rs_data_ID=registers_f[19];end
+			5'b10011 :;
+			5'b10100 :begin Rs_MSG = registers_f[20];
+						 		Rs_data_ID=registers_f[21];end
+			5'b10101 :;
+			5'b10110 :begin Rs_MSG = registers_f[22];
+						 		Rs_data_ID=registers_f[23];end
+			5'b10111 :;
+			5'b11000 :begin Rs_MSG = registers_f[24];
+						 		Rs_data_ID = registers_f[25];end
+			5'b11001 :;
+			5'b11010 :begin Rs_MSG = registers_f[26];
+						 		Rs_data_ID = registers_f[27];end
+			5'b11011 :;
+			5'b11100 :begin Rs_MSG = registers_f[28];
+						 		Rs_data_ID = registers_f[29];end
+			5'b11101 :;
+			5'b11110 :begin Rs_MSG = registers_f[30];
+						 		Rs_data_ID =registers_f[31];end
+			5'b11111 :;
 			endcase
+			
 		case(Rt_ID)
-			5'b00000: Rt_MSG = registers_f[0] ;
-						 Rt_data_ID=registers_f[1];
+			5'b00000:begin Rt_MSG = registers_f[0] ;
+						 Rt_data_ID=registers_f[1];end
 			5'b00001: ;//can't read odd numbered registers as every pair create a double.
-			5'b00010: Rt_MSG = registers_f[2] ;
-						 Rt_data_ID=registers_f[3];
+			5'b00010:begin Rt_MSG = registers_f[2] ;
+						 Rt_data_ID=registers_f[3];end
 			5'b00011: ;
-			5'b00100: Rt_MSG= registers_f[4] ;
-						 Rt_data_ID =registers_f[5];
+			5'b00100:begin Rt_MSG= registers_f[4] ;
+						 Rt_data_ID =registers_f[5];end
 			5'b00101: ;
-			5'b00110: Rt_MSG = registers_f[6] ;
-						 Rt_data_ID=registers_f[7];
+			5'b00110:begin Rt_MSG = registers_f[6] ;
+						 Rt_data_ID=registers_f[7];end
 			5'b00111: ;
-			5'b01000: Rt_MSG = registers_f[8] ;
-						 Rt_data_ID=registers_f[9];
+			5'b01000:begin Rt_MSG = registers_f[8] ;
+						 Rt_data_ID=registers_f[9];end
 			5'b01001: ;
-			5'b01010: Rt_MSG = registers_f[10];
-						 Rt_data_ID=registers_f[11];
+			5'b01010:begin Rt_MSG = registers_f[10];
+						 Rt_data_ID=registers_f[11];end
 			5'b01011: ;
-			5'b01100: Rt_MSG = registers_f[12];
-						 Rt_data_ID=registers_f[13];
+			5'b01100:begin Rt_MSG = registers_f[12];
+						 Rt_data_ID=registers_f[13];end
 			5'b01101: ;
-			5'b01110: Rt_MSG = registers_f[14];
-						 Rt_data_ID=registers_f[15];
+			5'b01110:begin Rt_MSG = registers_f[14];
+						 Rt_data_ID=registers_f[15];end
 			5'b01111: ;
-			5'b10000: Rt_MSG = registers_f[16];
-						 Rt_data_ID=registers_f[17];
+			5'b10000:begin Rt_MSG = registers_f[16];
+						 Rt_data_ID=registers_f[17];end
 			5'b10001: ;
-			5'b10010: Rt_MSG = registers_f[18];
-						 Rt_data_ID=registers_f[19];
+			5'b10010:begin Rt_MSG = registers_f[18];
+						 Rt_data_ID=registers_f[19];end
 			5'b10011: ;
-			5'b10100: Rt_MSG = registers_f[20];
-						 Rt_data_ID=registers_f[21];
+			5'b10100:begin Rt_MSG = registers_f[20];
+						 Rt_data_ID=registers_f[21];end
 			5'b10101: ;
-			5'b10110: Rt_MSG = registers_f[22];
-						 Rt_data_ID=registers_f[23];
+			5'b10110:begin Rt_MSG = registers_f[22];
+						 Rt_data_ID=registers_f[23];end
 			5'b10111: ;
-			5'b11000: Rt_MSG = registers_f[24];
-						 Rt_data_ID=registers_f[25];
+			5'b11000:begin Rt_MSG = registers_f[24];
+						 Rt_data_ID=registers_f[25];end
 			5'b11001: ;
-			5'b11010: Rt_MSG = registers_f[26];
-						 Rt_data_ID=registers_f[27];
+			5'b11010:begin Rt_MSG = registers_f[26];
+						 Rt_data_ID=registers_f[27];end
 			5'b11011: ;
-			5'b11100: Rt_MSG = registers_f[28];
-						 Rt_data_ID =registers_f[29];
+			5'b11100:begin Rt_MSG = registers_f[28];
+						 Rt_data_ID =registers_f[29];end
 			5'b11101: ;
-			5'b11110: Rt_MSG = registers_f[30];
-						 Rt_data_ID=registers_f[31];
+			5'b11110:begin Rt_MSG = registers_f[30];
+						 Rt_data_ID=registers_f[31];end
 			5'b11111: ; 
 		endcase
-end
-	always@(posedge Clk)begin //write on positive edge		
+end end
+always@(posedge Clk)begin //write on positive edge		
 		if(RegWrite)begin
-			if(MulDiv_control)begin
-				HI=Write_data64[63:32];
-				LO=Write_data64[31:0];
-			end
-			else if(!MulDiv_control) begin
-				case(RegWr_ID)
-					5'b00000: registers_f[0] =Write_data64[63:32];//
-								registers_f[1] =Write_data64[31:0];//
-					5'b00001: ;//error can't write on odd numbered registers 
-					5'b00010: registers_f[2] =Write_data64[63:32];//
-								registers_f[3] =Write_data64[31:0];//
-					5'b00011: ;																	
-					5'b00100: registers_f[4] =Write_data64[63:32];//
-								registers_f[5] =Write_data64[31:0];//
-					5'b00101: ;													
-					5'b00110: registers_f[6] =Write_data64[63:32];//
-								registers_f[7] =Write_data64[31:0];//
-					5'b00111: ;													
-					5'b01000: registers_f[8] =Write_data64[63:32];//
-								registers_f[9] =Write_data64[31:0];//
-					5'b01001: ;													
-					5'b01010: registers_f[10] =Write_data64[63:32];//
-								registers_f[11] =Write_data64[31:0];//
-					5'b01011: ;													
-					5'b01100: registers_f[12] =Write_data64[63:32];//
-								registers_f[13] =Write_data64[31:0];//
-					5'b01101: ;													
-					5'b01110: registers_f[14] =Write_data64[63:32];//
-								registers_f[15] =Write_data64[31:0];//
-					5'b01111: ;													
-					5'b10000: registers_f[16] =Write_data64[63:32];//
-								registers_f[17] =Write_data64[31:0];//
-					5'b10001: ;													
-					5'b10010: registers_f[18] =Write_data64[63:32];//
-								registers_f[19] =Write_data64[31:0];//
-					5'b10011: ;													
-					5'b10100:registers_f[20] =Write_data64[63:32];//
-								registers_f[21] =Write_data64[31:0];//
-					5'b10101:;													
-					5'b10110: registers_f[22] =Write_data64[63:32];//
-								registers_f[23] =Write_data64[31:0];//
-					5'b10111: ;													
-					5'b11000: registers_f[24] =Write_data64[63:32];//
-								registers_f[25] =Write_data64[31:0];//
-					5'b11001: ;													
-					5'b11010: registers_f[26] =Write_data64[63:32];//
-								registers_f[27] =Write_data64[31:0];//
-					5'b11011: ;													
-					5'b11100: registers_f[28] =Write_data64[63:32];//
-								registers_f[29] =Write_data64[31:0];//
-					5'b11101: ;													
-					5'b11110: registers_f[30] =Write_data64[63:32];//
-								registers_f[31] =Write_data64[31:0];//
-					5'b11111: ;													
-				endcase end      
-		end
+			if(Write32_64)begin //input value from 64 bit port
+				if(MulDiv_control)begin
+					HI=Write_data64[63:32];
+					LO=Write_data64[31:0];
+				end
+				else if(!MulDiv_control && float_control_write) begin
+					case(RegWr_ID)
+						5'b00000:begin registers_f[0] =Write_data64[63:32];//most significant is saved in the smaller index
+									registers_f[1] =Write_data64[31:0];end
+						5'b00001: ;//error can't write on odd numbered registers 
+						5'b00010:begin  registers_f[2] =Write_data64[63:32];
+									registers_f[3] =Write_data64[31:0];end
+						5'b00011: ;															
+						5'b00100: begin registers_f[4] =Write_data64[63:32];
+									registers_f[5] =Write_data64[31:0];end
+						5'b00101: ;												
+						5'b00110:begin  registers_f[6] =Write_data64[63:32];
+									registers_f[7] =Write_data64[31:0];end
+						5'b00111: ;												
+						5'b01000:begin  registers_f[8] =Write_data64[63:32];
+									registers_f[9] =Write_data64[31:0];end
+						5'b01001: ;												
+						5'b01010:begin  registers_f[10] =Write_data64[63:32];
+									registers_f[11] =Write_data64[31:0];end
+						5'b01011: ;												
+						5'b01100:begin  registers_f[12] =Write_data64[63:32];
+									registers_f[13] =Write_data64[31:0];end
+						5'b01101: ;												
+						5'b01110:begin  registers_f[14] =Write_data64[63:32];
+									registers_f[15] =Write_data64[31:0];end
+						5'b01111: ;												
+						5'b10000:begin  registers_f[16] =Write_data64[63:32];
+									registers_f[17] =Write_data64[31:0];end
+						5'b10001: ;												
+						5'b10010:begin  registers_f[18] =Write_data64[63:32];
+									registers_f[19] =Write_data64[31:0];end
+						5'b10011: ;												
+						5'b10100:begin registers_f[20] =Write_data64[63:32];
+									registers_f[21] =Write_data64[31:0];end
+						5'b10101:;												
+						5'b10110:begin  registers_f[22] =Write_data64[63:32];
+									registers_f[23] =Write_data64[31:0];end
+						5'b10111: ;												
+						5'b11000:begin  registers_f[24] =Write_data64[63:32];
+									registers_f[25] =Write_data64[31:0];end
+						5'b11001: ;												
+						5'b11010:begin  registers_f[26] =Write_data64[63:32];
+									registers_f[27] =Write_data64[31:0];end
+						5'b11011: ;												
+						5'b11100:begin  registers_f[28] =Write_data64[63:32];
+									registers_f[29] =Write_data64[31:0];end
+						5'b11101: ;												
+						5'b11110:begin  registers_f[30] =Write_data64[63:32];
+									registers_f[31] =Write_data64[31:0];end
+						5'b11111: ;													
+					endcase end      
+						end 
+				else if(!Write32_64)begin //read from normal 32 bit port
+					case(RegWr_ID)
+						5'b00000:begin registers_f[0] =32'h0;	//most significant is zero extended
+											registers_f[1] =Write_data[31:0];end
+						5'b00001: ;//error can't write on odd numbered registers 
+						5'b00010:begin registers_f[2] =32'h0;
+											registers_f[3] =Write_data[31:0];end
+						5'b00011: ;								  																
+						5'b00100:begin registers_f[4] =32'h0;      								
+											registers_f[5] =Write_data[31:0];end
+						5'b00101: ;							           																	
+						5'b00110:begin registers_f[6] =32'h0;//        													
+											registers_f[7] =Write_data[31:0];end
+						5'b00111: ;								          																
+						5'b01000:begin registers_f[8] =32'h0;//       					
+											registers_f[9] =Write_data[31:0];end
+						5'b01001: ;							                												
+						5'b01010:begin registers_f[10] =32'h0;         						
+											registers_f[11] =Write_data[31:0];end
+						5'b01011: ;							            										
+						5'b01100:begin registers_f[12] =32'h0;//	       			
+											registers_f[13] =Write_data[31:0];end
+						5'b01101: ;								          									
+						5'b01110:begin registers_f[14] =32'h0;//      
+											registers_f[15] =Write_data[31:0];end
+						5'b01111: ;							        													
+						5'b10000:begin registers_f[16] =32'h0;//	
+											registers_f[17] =Write_data[31:0];end
+						5'b10001: ;							              											
+						5'b10010:begin registers_f[18] =32'h0;//                		
+											registers_f[19] =Write_data[31:0];end
+						5'b10011: ;						                											
+						5'b10100:begin registers_f[20] =32'h0;//       
+											registers_f[21] =Write_data[31:0];end
+						5'b10101:;						                													
+						5'b10110:begin registers_f[22] =32'h0;//      
+											registers_f[23] =Write_data[31:0];end
+						5'b10111: ;						              																				
+						5'b11000:begin registers_f[24] =32'h0;//     
+											registers_f[25] =Write_data[31:0];end
+						5'b11001: ;						                   														
+						5'b11010:begin registers_f[26] =32'h0;//          
+											registers_f[27] =Write_data[31:0];end
+						5'b11011: ;							                  															
+						5'b11100:begin registers_f[28] =32'h0;//        
+											registers_f[29] =Write_data[31:0];end
+						5'b11101: ;						               											
+						5'b11110:begin registers_f[30] =32'h0;//           
+											registers_f[31] =Write_data[31:0];end
+						5'b11111: ;							                 						
+						endcase 
+				end
+			end			
 end	
-end
-else //NORMAL CORE INSTRUCTIONS
-	begin
-	always@(negedge Clk)begin //read on negative edge
+///////NORMAL CORE INSTRUCTIONS///////////
+always@(negedge Clk)begin //read on negative edge
+if(!float_control_read)begin
 		case(Rs_ID)
 			5'b00000: Rs_data_ID = registers_i[0] ;//	zero
 			5'b00001: Rs_data_ID = registers_i[1] ;//	at
@@ -369,8 +437,9 @@ else //NORMAL CORE INSTRUCTIONS
 				5'b11110: Rt_data_ID=registers_i[30];//	fp
 				5'b11111: Rt_data_ID=registers_i[31];//	ra
 		endcase end
-end
-	always@(posedge Clk)begin //write on positive edge		
+end end
+always@(posedge Clk)begin //write on positive edge		
+	if(!float_control_write)begin
 		if(RegWrite)begin
 			if(Load_Byte_control)begin
 				case(RegWr_ID)
@@ -408,6 +477,11 @@ end
 					5'b11111: registers_i[31]={24'b0, Write_data[7:0]};//	ra
 				endcase
 			end 
+		else if(FP)begin
+				registers_i[30]=Write_data; //write in FP 
+		end else if(Jal_control)begin
+				registers_i[31]=Write_data; //write in return address
+		end
 		else case(RegWr_ID)
 				5'b00000: ;//error
 				5'b00001: registers_i[1] =Write_data;//	at
@@ -446,40 +520,50 @@ end
 end
 end	
 endmodule
-/*---------------------------------------------------------------------------------------*/
+/*---------------------------------------------------------------------------------------*//*
 module testbench_RegisterFile();
 		wire [31:0]Rs_data_ID;
+		wire [31:0]Rs_MSG;
 		wire [31:0]Rt_data_ID;
-		reg [4:0]Rs_ID;
-		reg [4:0]Rt_ID;
-		reg [4:0]RegWr_ID;
-		reg [31:0]Write_data;
+		wire [31:0]Rt_MSG;
+		wire [31:0]HI;
+		wire [31:0]LO;
+		wire  FP;
+		reg Clk;
+		reg [4:0] Rs_ID;
+		reg [4:0] Rt_ID;
+		reg [4:0] RegWr_ID;
+		reg [31:0] Write_data;
+		reg [63:0] Write_data64;
 		reg Load_Byte_control;
 		reg Store_Byte_control;
 		reg RegWrite;
-		
+		reg float_control_read;
+		reg float_control_write;
+		reg FPwrite_control;
+		reg MulDiv_control;
+		reg Write32_64;
+		reg Jal_control;
 
-		reg clk;
-
-registerFile my_RegisterFile(Rs_data_ID,Rt_data_ID,clk ,Rs_ID,Rt_ID,RegWr_ID,Write_data,Load_Byte_control,Store_Byte_control,RegWrite);
-
+registerFile my_RegisterFile(Rs_data_ID, Rs_MSG, Rt_data_ID, Rt_MSG,	HI, LO, FP,	Clk, Rs_ID,	Rt_ID, RegWr_ID, Write_data, Write_data64, Load_Byte_control, Store_Byte_control, RegWrite, float_control_read, float_control_write, FPwrite_control, MulDiv_control, Write32_64, Jal_control);
+/*
 initial begin
-	clk <= 0;
+	Clk <= 0;
 	#1 
-	clk <= ~clk;		
+	Clk <= ~Clk;		
 	#1
 	//case1: I want to write to $t0 the value 32'h A12
-	clk <= ~clk;
+	Clk <= ~Clk;
 	RegWr_ID=5'h8;
 	Write_data=32'h0A12;
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=1;
 	#1
-	clk <= ~clk;
+	Clk <= ~Clk;
 	#1
 	$display("t0 is %b",my_RegisterFile.registers_i[8]);
-	clk <= ~clk;
+	Clk <= ~Clk;
 	#1
 	//case2: I want to write to $s1 the value 32'h 0FF
 	RegWr_ID=5'h13;
@@ -488,10 +572,10 @@ initial begin
 	Store_Byte_control=0;
 	RegWrite=1;
 	#1
-	clk <= ~clk;
+	Clk <= ~Clk;
 	#1
 	$display("s1 is %b",my_RegisterFile.registers_i[19]); //19 is 13 in decimal
-	clk <= ~clk;
+	Clk <= ~Clk;
 	#1
 	//case3: I want to read from $t0
 	Rt_ID=5'h8;
@@ -499,7 +583,7 @@ initial begin
 	Store_Byte_control=0;
 	RegWrite=0;
 	#1
-	clk <= ~clk;
+	Clk <= ~Clk;
 	#1
 	$display("saved t0 is %b",my_RegisterFile.registers_i[8]);
 	
@@ -509,7 +593,7 @@ initial begin
 	Store_Byte_control=0;
 	RegWrite=0;
 	#1
-	clk <= ~clk;
+	Clk <= ~Clk;
 	#1
 	$display("saved s1 is %b",my_RegisterFile.registers_i[19]);
 	
@@ -520,7 +604,7 @@ initial begin
 	Store_Byte_control=0;
 	RegWrite=1;
 	#1
-	clk <= ~clk;
+	Clk <= ~Clk;
 	#1
 	$display("byte that will be loaded from memory is %b",my_RegisterFile.registers_i[8]);
 	
@@ -530,18 +614,17 @@ initial begin
 	Store_Byte_control=1;
 	RegWrite=0;
 	#1
-	clk <= ~clk;
+	Clk <= ~Clk;
 	#1
 	#5
 	$display("byte that will be stored in memory is %b",Rt_data_ID);
 	
-	clk <= ~clk;
+	Clk <= ~Clk;
 	
 	
-end
-endmodule
+end*/
+//endmodule
 		
-
 
 
 

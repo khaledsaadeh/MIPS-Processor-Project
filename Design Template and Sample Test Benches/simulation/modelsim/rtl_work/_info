@@ -3,46 +3,26 @@ K3
 13
 cModel Technology
 Z0 dD:\University\Computer Architicture 2\Project\Computer-Org-2-Project\Design Template and Sample Test Benches\simulation\modelsim
-vIF_ID
+vregisterFile
 !i10b 1
-!s100 [K[_TY]<YP7ZU8>>0>z;b1
-IzDIBh0Z_z5GMCdolBV[al1
-V02@ZB@JBUCLC8IRbJYPkf2
+!s100 eIm33M7_68lP;:]3;lN5E3
+I266@^7C@BPT346?^]H?SH2
+VQJVG5AziQ;7DB;4O0lTjM3
 Z1 dD:\University\Computer Architicture 2\Project\Computer-Org-2-Project\Design Template and Sample Test Benches\simulation\modelsim
-Z2 w1607788169
-Z3 8D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/IF_ID.v
-Z4 FD:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/IF_ID.v
-L0 1
-Z5 OV;L;10.1d;51
+w1608125984
+8D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v
+FD:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v
+L0 3
+Z2 OV;L;10.1d;51
 r1
 !s85 0
 31
-Z6 !s108 1607788187.341000
-Z7 !s107 D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/IF_ID.v|
-Z8 !s90 -reportprogress|300|-work|work|D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/IF_ID.v|
+!s108 1608126000.673000
+!s107 D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v|
+!s90 -reportprogress|300|-work|work|D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v|
 !s101 -O0
-Z9 o-work work -O0
-n@i@f_@i@d
-vtestbench_IF_ID
-!i10b 1
-!s100 6A^z1Bza8GTNCDnWHXI?Q1
-IR>Ti>RH4e8c5`fS2=2I^53
-V[<ngR@f^Ta3?JA5<87B1f3
-R1
-R2
-R3
-R4
-L0 53
-R5
-r1
-!s85 0
-31
-R6
-R7
-R8
-!s101 -O0
-R9
-ntestbench_@i@f_@i@d
+o-work work -O0
+nregister@file
 vTop
 ITOhKfkk?_`M=b;7IoOk_O2
 V4e2jMfSVblY]hLJf0^0CN1
@@ -51,7 +31,7 @@ w1606579271
 8D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v
 FD:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v
 L0 9
-R5
+R2
 r1
 31
 o-vlog01compat -work work -O0
@@ -59,7 +39,7 @@ n@top
 !i10b 1
 !s100 =cVgEW2nmJKlJQCDIC0CD3
 !s85 0
-!s108 1607788179.572000
+!s108 1608125994.011000
 !s107 D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches|D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v|
 !s101 -O0

@@ -17,44 +17,9 @@
 # Top level modules:
 # 	Top
 # 
-vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/IF_ID.v}
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module IF_ID
-# -- Compiling module testbench_IF_ID
+# -- Compiling module registerFile
 # 
 # Top level modules:
-# 	testbench_IF_ID
-vsim work.testbench_IF_ID
-# vsim work.testbench_IF_ID 
-# Loading work.testbench_IF_ID
-# Loading work.IF_ID
-add wave -position insertpoint  \
-sim:/testbench_IF_ID/clk \
-sim:/testbench_IF_ID/PC_4 \
-sim:/testbench_IF_ID/Inst \
-sim:/testbench_IF_ID/IF_Flush \
-sim:/testbench_IF_ID/IF_stall \
-sim:/testbench_IF_ID/Op_code \
-sim:/testbench_IF_ID/Rs_ID \
-sim:/testbench_IF_ID/Rt_ID \
-sim:/testbench_IF_ID/Rd_ID \
-sim:/testbench_IF_ID/Shamt_ID \
-sim:/testbench_IF_ID/Funct_ID \
-sim:/testbench_IF_ID/Imm16_ID \
-sim:/testbench_IF_ID/Jmp_Adrs_ID \
-sim:/testbench_IF_ID/Fmt \
-sim:/testbench_IF_ID/Fs \
-sim:/testbench_IF_ID/Fd \
-sim:/testbench_IF_ID/PC_ID
-run -all
-# instruction is xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-# Rs is 00000
-# Rt is 00000
-# Rd is 00000
-# Fs is 00000
-# Fd is 00000
-# Shamt is 00000
-# Funct is 000000
-# immediet is 0000000000000000
-# jump address is 00000000000000000000000000
-# Fmt is 00000
+# 	registerFile
