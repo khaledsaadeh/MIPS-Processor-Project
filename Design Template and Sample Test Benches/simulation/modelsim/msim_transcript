@@ -17,9 +17,35 @@
 # Top level modules:
 # 	Top
 # 
-vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v}
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/memory.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module registerFile
+# -- Compiling module DataMemory
+# -- Compiling module testbench_memory
+# ** Warning: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/memory.v(129): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# 
 # 
 # Top level modules:
-# 	registerFile
+# 	testbench_memory
+vsim work.testbench_memory
+# vsim work.testbench_memory 
+# Loading work.testbench_memory
+# Loading work.DataMemory
+add wave -position insertpoint  \
+sim:/testbench_memory/OUT_data_MEM \
+sim:/testbench_memory/OUT_nextdata_MEM \
+sim:/testbench_memory/Adrs_MEM \
+sim:/testbench_memory/Rt_data_MEM \
+sim:/testbench_memory/Rt_data64_MEM \
+sim:/testbench_memory/MemRead \
+sim:/testbench_memory/MemWrite \
+sim:/testbench_memory/MemWrite64 \
+sim:/testbench_memory/Clk
+run -all
+# data in address 8 is 00001111 
+# 
+# data in address 16 is 00000000fffffffe 
+# 
+# data in address 8 is 00001111 00000010 
+# 
+# data in address 16 is 00000000 fffffffe 
+# 
