@@ -1,0 +1,27 @@
+module Forwarding_unit(
+								output reg[1:0]Forward_MUX1,
+								output reg[1:0]Forward_MUX2,
+								input [4:0]RegWr_MEM,
+								input [4:0]RegWr_WB,
+								input [4:0]Rt_EXE,
+								input [4:0]Rs_EXE,
+								input RegWrite_EXE_MEM,
+								input RegWrite_MEM_WB,
+								);
+								
+always@(*)begin
+	if(RegWrite_EXE_MEM && RegWr_MEM!=0 && (RegWr_MEM==Rs_EXE))//ALU-ALU forwarding 
+		Forward_MUX1=2'b01;
+	if(RegWrite_EXE_MEM && RegWr_MEM!=0 && (RegWr_MEM==Rt_EXE)) 
+		Forward_MUX2=2'b01;
+		
+	if(RegWrite_MEM_WB && RegWr_WB!=0 && RegWr_WB==Rs_EXE
+			&& !(RegWrite_EXE_MEM && RegWr_MEM!=0 && (RegWr_MEM==Rs_EXE))) //MEM-ALU forwarding
+		Forward_MUX1=2'b10;
+	if(RegWrite_MEM_WB && RegWr_WB!=0 && RegWr_WB==Rt_EXE
+			&& !(RegWrite_EXE_MEM && RegWr_MEM!=0 && (RegWr_MEM==Rt_EXE)) )
+		Forward_MUX2=2'b10;
+	
+end
+endmodule
+/*------------------------------------------*/
