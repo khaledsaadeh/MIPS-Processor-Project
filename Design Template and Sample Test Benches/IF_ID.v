@@ -14,7 +14,7 @@ module IF_ID(
 				output reg[25:0]Jmp_Adrs_ID,
 				output reg[4:0]Fmt,			
 				output reg[4:0]Fs,				
-				output reg[4:0]Fd,					
+				output reg[4:0]Fd,				
 				output reg[31:0]PC_ID			
 				);
 
