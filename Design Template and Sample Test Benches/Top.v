@@ -56,7 +56,7 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire [31:0]read_data_ID;
 	wire PC_stall;
 	wire ID_stall_hazard;
-	wire load_control;
+	wire load_control; // 3 or 1?
 	wire ID_stall;
 	wire control_signal_ID;
 	wire [9:0]WB_control_EXE;
