@@ -10,7 +10,8 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire [31:0]Inst;
 	wire [31:0]PC_4;
 	wire IF_Flush;
-	wire IF_stall;                                                           
+	wire IF_stall;  
+	wire Store_FP;
 	wire [5:0]Op_code;	                 
 	wire [4:0]Rs_ID;	                 
 	wire [4:0]Rt_ID;		                 
@@ -100,7 +101,7 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire RegWrite_EXE_MEM;
 	wire RegWrite_MEM_WB;
 	wire bc1f_out;
-	wire bc1t_outl
+	wire bc1t_outl;
 	wire Branch_FP;
 	wire Branch_notEq;
 	wire Branch_Eq;
@@ -139,6 +140,7 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 						
 	//stage2 : instruction decode and register fetch (ID)
 	control_unit Top_control_unit(
+					Store_FP,
 					ID_Flush,
 					IF_Flush,
 					Store_Byte_control,
@@ -182,7 +184,8 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 							FPwrite_control,
 							MulDiv_control,
 							Write32_64,
-							Jal_control);		
+							Jal_control,
+							Store_FP);		
 		
 	mux_3to1 MUX_ID5(read_data_ID, Rs_data_ID, HI, LO, HILO_read_control); //determine Rs/HI/LO in case of move from HI/LO
 	

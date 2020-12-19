@@ -17,19 +17,19 @@ output reg[31:0]HILO_write_MEM,
 output reg [9:0]WB_control_MEM,
 output reg MemWrite64,
 output reg MemWrite,
-output reg MemRead
+output reg MemRead,
 );
 always@(negedge Clk)begin
 WB_control_MEM=WB_control_EX;
-MemRead=MEM_control_EX[2];
-MemWrite=MEM_control_EX[1];
-MemWrite64=MEM_control_EX[0];
+MemRead=Mem_control_EX[2];
+MemWrite=Mem_control_EX[1];
+MemWrite64=Mem_control_EX[0];
 
 
 OUT_ALU64_MEM=OUT_ALU64;
 Adrs_MEM=OUT_ALU32;
 Rt_data_MEM=Rt_data_EXE;
-Rt_data64_MEM=Rt_data64_EXE;
+Rt_data64_MEM=RT_data64_EXE;
 RegWr_MEM=RegWr_EXE;
 HILO_write_MEM=Rs_data_EXE;
 

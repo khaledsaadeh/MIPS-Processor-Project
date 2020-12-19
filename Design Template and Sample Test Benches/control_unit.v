@@ -13,6 +13,7 @@
 //control_signal[34:25]=10'b0110000000;  WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  					 												
 
 module control_unit(
+					output reg Store_FP,
 					output reg ID_Flush,
 					output reg IF_Flush,
 					output reg Store_Byte_control,
@@ -30,6 +31,7 @@ initial begin
 	IF_Flush=0;
 	ID_Flush=0;
 	Store_Byte_control=0;
+	Store_FP=0;
 end
 				
 always@(*)begin
@@ -41,6 +43,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -57,10 +60,11 @@ always@(*)begin
 				end
 				6'h 10:begin //MOVE FROM HI
 						HILO_read_control=2'b01;
-						float_control_read=0;
+						float_control_read=1;
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -79,10 +83,11 @@ always@(*)begin
 					end
 				6'h 12:begin //MOVE FROM LO
 						HILO_read_control=2'b10;
-						float_control_read=0;
+						float_control_read=1;
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -104,6 +109,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -126,6 +132,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -147,6 +154,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -169,6 +177,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -191,6 +200,7 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;		
 						IF_Flush=1;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -212,6 +222,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -233,6 +244,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -254,6 +266,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -275,6 +288,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -290,12 +304,13 @@ always@(*)begin
 						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
 
 					end
-				6'h 2B:begin //SET LESS THAN UNSIGNED (NOT REQUIRED ANYMORE !!)
+				6'h 2B:begin //SET LESS THAN UNSIGNED 
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -317,6 +332,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -338,6 +354,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -359,6 +376,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -380,6 +398,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -401,6 +420,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -427,6 +447,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						ID_Flush=0;
 						IF_Flush=0;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -448,6 +469,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						ID_Flush=0;
 						IF_Flush=0;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -471,6 +493,7 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;
 						float_control_read=1;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -492,6 +515,7 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;
 						float_control_read=1;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -515,6 +539,7 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;
 						float_control_read=1;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -536,6 +561,7 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;
 						float_control_read=1;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -558,6 +584,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -579,6 +606,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -599,7 +627,8 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
-						float_control_read=1;
+						float_control_read=0;
+						Store_FP=1;
 						
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -620,7 +649,8 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
-						float_control_read=1;
+						float_control_read=0;
+						Store_FP=1;
 						
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -642,6 +672,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -663,6 +694,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -684,6 +716,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b10; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -705,6 +738,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -726,6 +760,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -747,6 +782,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -768,6 +804,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b10; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -789,6 +826,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -810,6 +848,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b10; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -831,6 +870,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=1;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -852,6 +892,7 @@ always@(*)begin
 						IF_Flush=0;
 						ID_Flush=0;
 						Store_Byte_control=0;
+						Store_FP=0;
 		
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -873,6 +914,7 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;
 						IF_Flush=1;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
@@ -894,6 +936,7 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;		
 						IF_Flush=1;
+						Store_FP=0;
 						
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
