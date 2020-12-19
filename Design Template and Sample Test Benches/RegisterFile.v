@@ -1,5 +1,4 @@
-//declares a 32x32 register file.
-//MIPS USES BUG ENDIAN ARCHETICTURE SO REGISTERS VALUES OF THE MOST SIGNIFICANT WORDS ARE SAVED IN THE SMALLER REGISTER INDEX.
+//MIPS USES BiG ENDIAN ARCHETICTURE SO VALUES OF THE MOST SIGNIFICANT WORDS ARE SAVED IN THE SMALLER REGISTER INDEX.
 module registerFile( output reg [31:0]Rs_data_ID,
 							output reg [31:0]Rs_MSG,
 							output reg [31:0]Rt_data_ID,
@@ -22,21 +21,15 @@ module registerFile( output reg [31:0]Rs_data_ID,
 							input MulDiv_control,
 							input Write32_64,
 							input Jal_control,
-							input Store_FP);												
-		
-reg [31:0] registers_i[31:0];
-	
-reg [31:0] registers_f[31:0];
+							input Store_FP);	
+							
+//declares 32x32 register file & HI LO registers	
+	reg [31:0] registers_i[31:0];
+	reg [31:0] registers_f[31:0];
 
-reg [31:0] hi;
-reg [31:0] lo;
-//store bytr, load byte
-//use F registers read: compare single/double | store single/double
-//use F registers write: add single/double | load single/double |
-//use write FP: fo compare single/double
-//use HI LO write : mul | div
-//use HI LO read : move HI | move LO
-//write ra: Jal
+	reg [31:0] hi;
+	reg [31:0] lo;
+
 initial begin
 	hi=32'h0;
 	lo=32'h0;
@@ -107,11 +100,13 @@ initial begin
 	registers_f[29]=32'h0;	//11101	
 	registers_f[30]=32'h0;	//11110	
 	registers_f[31]=32'h0;	//11111	
-	end
+end
 
-	
 always@(negedge Clk)begin //read on negative edge
-if(Store_FP)begin //SPECIAL CASE: store FP instructions requires reading from both f & i register files at the same cycle
+
+FP=registers_i[30][0];//FP flag
+
+	if(Store_FP)begin //SPECIAL CASE: store FP instructions requires reading from both f & i register files at the same cycle
 			case(Rs_ID)
 			5'b00000: Rs_data_ID = registers_i[0] ;//	zero
 			5'b00001: Rs_data_ID = registers_i[1] ;//	at
@@ -199,7 +194,7 @@ if(Store_FP)begin //SPECIAL CASE: store FP instructions requires reading from bo
 		endcase	
 		end
 
-		if(float_control_read==1 && !Store_FP)begin //use float registers 
+	if(float_control_read==1 && !Store_FP)begin //use float registers 
 			HI=hi;
 			LO=lo;
 			
@@ -306,8 +301,8 @@ if(Store_FP)begin //SPECIAL CASE: store FP instructions requires reading from bo
 		endcase
 end 
 
-//read on negative edge
-if(!float_control_read && !Store_FP)begin
+//read from normal register file (core instructions)
+	if(!float_control_read && !Store_FP)begin
 		case(Rs_ID)
 			5'b00000: Rs_data_ID = registers_i[0] ;//	zero
 			5'b00001: Rs_data_ID = registers_i[1] ;//	at
@@ -343,41 +338,41 @@ if(!float_control_read && !Store_FP)begin
 			5'b11111: Rs_data_ID = registers_i[31];//	ra
 		endcase
 
-		if(Store_Byte_control)begin
-			case(Rt_ID)
-				5'b00000: Rt_data_ID = 32'h0;
-				5'b00001: Rt_data_ID = {24'b0,registers_i[1] [7:0]};
-				5'b00010: Rt_data_ID = {24'b0,registers_i[2] [7:0]};
-				5'b00011: Rt_data_ID = {24'b0,registers_i[3] [7:0]};
-				5'b00100: Rt_data_ID = {24'b0,registers_i[4] [7:0]};
-				5'b00101: Rt_data_ID = {24'b0,registers_i[5] [7:0]};
-				5'b00110: Rt_data_ID = {24'b0,registers_i[6] [7:0]};
-				5'b00111: Rt_data_ID = {24'b0,registers_i[7] [7:0]};
-				5'b01000: Rt_data_ID = {24'b0,registers_i[8] [7:0]};
-				5'b01001: Rt_data_ID = {24'b0,registers_i[9] [7:0]};
-				5'b01010: Rt_data_ID = {24'b0,registers_i[10][7:0]};
-				5'b01011: Rt_data_ID = {24'b0,registers_i[11][7:0]};
-				5'b01100: Rt_data_ID = {24'b0,registers_i[12][7:0]};
-				5'b01101: Rt_data_ID = {24'b0,registers_i[13][7:0]};
-				5'b01110: Rt_data_ID = {24'b0,registers_i[14][7:0]};
-				5'b01111: Rt_data_ID = {24'b0,registers_i[15][7:0]};
-				5'b10000: Rt_data_ID = {24'b0,registers_i[16][7:0]};
-				5'b10001: Rt_data_ID = {24'b0,registers_i[17][7:0]};
-				5'b10010: Rt_data_ID = {24'b0,registers_i[18][7:0]};
-				5'b10011: Rt_data_ID = {24'b0,registers_i[19][7:0]};
-				5'b10100: Rt_data_ID = {24'b0,registers_i[20][7:0]};
-				5'b10101: Rt_data_ID = {24'b0,registers_i[21][7:0]};
-				5'b10110: Rt_data_ID = {24'b0,registers_i[22][7:0]};
-				5'b10111: Rt_data_ID = {24'b0,registers_i[23][7:0]};
-				5'b11000: Rt_data_ID = {24'b0,registers_i[24][7:0]};
-				5'b11001: Rt_data_ID = {24'b0,registers_i[25][7:0]};
-				5'b11010: Rt_data_ID = {24'b0,registers_i[26][7:0]};
-				5'b11011: Rt_data_ID = {24'b0,registers_i[27][7:0]};
-				5'b11100: Rt_data_ID = {24'b0,registers_i[28][7:0]};
-				5'b11101: Rt_data_ID = {24'b0,registers_i[29][7:0]};
-				5'b11110: Rt_data_ID = {24'b0,registers_i[30][7:0]};
-				5'b11111: Rt_data_ID = {24'b0,registers_i[31][7:0]};
-		endcase
+	if(Store_Byte_control)begin
+		case(Rt_ID)
+			5'b00000: Rt_data_ID = 32'h0;
+			5'b00001: Rt_data_ID = {24'b0,registers_i[1] [7:0]};
+			5'b00010: Rt_data_ID = {24'b0,registers_i[2] [7:0]};
+			5'b00011: Rt_data_ID = {24'b0,registers_i[3] [7:0]};
+			5'b00100: Rt_data_ID = {24'b0,registers_i[4] [7:0]};
+			5'b00101: Rt_data_ID = {24'b0,registers_i[5] [7:0]};
+			5'b00110: Rt_data_ID = {24'b0,registers_i[6] [7:0]};
+			5'b00111: Rt_data_ID = {24'b0,registers_i[7] [7:0]};
+			5'b01000: Rt_data_ID = {24'b0,registers_i[8] [7:0]};
+			5'b01001: Rt_data_ID = {24'b0,registers_i[9] [7:0]};
+			5'b01010: Rt_data_ID = {24'b0,registers_i[10][7:0]};
+			5'b01011: Rt_data_ID = {24'b0,registers_i[11][7:0]};
+			5'b01100: Rt_data_ID = {24'b0,registers_i[12][7:0]};
+			5'b01101: Rt_data_ID = {24'b0,registers_i[13][7:0]};
+			5'b01110: Rt_data_ID = {24'b0,registers_i[14][7:0]};
+			5'b01111: Rt_data_ID = {24'b0,registers_i[15][7:0]};
+			5'b10000: Rt_data_ID = {24'b0,registers_i[16][7:0]};
+			5'b10001: Rt_data_ID = {24'b0,registers_i[17][7:0]};
+			5'b10010: Rt_data_ID = {24'b0,registers_i[18][7:0]};
+			5'b10011: Rt_data_ID = {24'b0,registers_i[19][7:0]};
+			5'b10100: Rt_data_ID = {24'b0,registers_i[20][7:0]};
+			5'b10101: Rt_data_ID = {24'b0,registers_i[21][7:0]};
+			5'b10110: Rt_data_ID = {24'b0,registers_i[22][7:0]};
+			5'b10111: Rt_data_ID = {24'b0,registers_i[23][7:0]};
+			5'b11000: Rt_data_ID = {24'b0,registers_i[24][7:0]};
+			5'b11001: Rt_data_ID = {24'b0,registers_i[25][7:0]};
+			5'b11010: Rt_data_ID = {24'b0,registers_i[26][7:0]};
+			5'b11011: Rt_data_ID = {24'b0,registers_i[27][7:0]};
+			5'b11100: Rt_data_ID = {24'b0,registers_i[28][7:0]};
+			5'b11101: Rt_data_ID = {24'b0,registers_i[29][7:0]};
+			5'b11110: Rt_data_ID = {24'b0,registers_i[30][7:0]};
+			5'b11111: Rt_data_ID = {24'b0,registers_i[31][7:0]};
+	endcase
 	end else if(!Store_Byte_control)begin		
 			case(Rt_ID)
 				5'b00000: Rt_data_ID=registers_i[0] ;//	ze
@@ -424,7 +419,8 @@ always@(posedge Clk)begin //write on positive edge
 					hi=Write_data64[63:32];
 					lo=Write_data64[31:0];
 				end
-				else if(!MulDiv_control && float_control_write) begin
+				else
+				if(!MulDiv_control && float_control_write) begin
 					case(RegWr_ID)
 						5'b00000:begin registers_f[0] =Write_data64[63:32];//most significant is saved in the smaller index
 									registers_f[1] =Write_data64[31:0];end
@@ -476,7 +472,8 @@ always@(posedge Clk)begin //write on positive edge
 						5'b11111: ;													
 					endcase end      
 						end 
-				else if(!Write32_64)begin //read from normal 32 bit port
+			else
+			if(!Write32_64 && !Jal_control && !FPwrite_control && !Load_Byte_control)begin //read from normal 32 bit port
 					case(RegWr_ID)
 						5'b00000:begin registers_f[0] =32'h0;	//most significant is zero extended
 											registers_f[1] =Write_data[31:0];end
@@ -530,7 +527,7 @@ always@(posedge Clk)begin //write on positive edge
 				end
 			end	
 	
-//write on positive edge		
+//read from normal register file (core instructions)		
 	if(!float_control_write)begin
 		if(RegWrite)begin
 			if(Load_Byte_control)begin
@@ -569,9 +566,11 @@ always@(posedge Clk)begin //write on positive edge
 					5'b11111: registers_i[31]={24'b0, Write_data[7:0]};//	ra
 				endcase
 			end 
-		else if(FP)begin
+		else
+		if(FPwrite_control)begin
 				registers_i[30]=Write_data; //write in FP 
-		end else if(Jal_control)begin
+		end else
+		if(Jal_control)begin
 				registers_i[31]=Write_data; //write in return address
 		end
 		else case(RegWr_ID)
@@ -611,12 +610,9 @@ always@(posedge Clk)begin //write on positive edge
 		end
 end		
 end	
-
-//////////////NORMAL CORE INSTRUCTIONS///////////
-
-
 endmodule
-/*---------------------------------------------------------------------------------------*//*
+
+/*---------------------------------------------------------------------------------------*/
 module testbench_RegisterFile();
 		wire [31:0]Rs_data_ID;
 		wire [31:0]Rs_MSG;
@@ -640,86 +636,297 @@ module testbench_RegisterFile();
 		reg MulDiv_control;
 		reg Write32_64;
 		reg Jal_control;
+		reg Store_FP;								
 
-registerFile my_RegisterFile(Rs_data_ID, Rs_MSG, Rt_data_ID, Rt_MSG,	HI, LO, FP,	Clk, Rs_ID,	Rt_ID, RegWr_ID, Write_data, Write_data64, Load_Byte_control, Store_Byte_control, RegWrite, float_control_read, float_control_write, FPwrite_control, MulDiv_control, Write32_64, Jal_control);
-/*
+registerFile my_RegisterFile(Rs_data_ID, Rs_MSG, Rt_data_ID, Rt_MSG,	HI, LO, FP,	Clk, Rs_ID,	Rt_ID, RegWr_ID, Write_data, Write_data64, Load_Byte_control, Store_Byte_control, RegWrite, float_control_read, float_control_write, FPwrite_control, MulDiv_control, Write32_64, Jal_control, Store_FP);
+	
 initial begin
 	Clk <= 0;
-	#1 
-	Clk <= ~Clk;		
-	#1
-	//case1: I want to write to $t0 the value 32'h A12
-	Clk <= ~Clk;
+	#1 Clk <= ~Clk;	
+//-----------------------------------------------------------------------------------------//	
+	//case1: Write to $t0 the value 32'h A12//
+	Rs_ID=5'd0;
+	Rt_ID=5'd0;
+	Write_data64=64'h0;
 	RegWr_ID=5'h8;
 	Write_data=32'h0A12;
 	Load_Byte_control=0;
 	Store_Byte_control=0;
-	RegWrite=1;
-	#1
-	Clk <= ~Clk;
-	#1
-	$display("t0 is %b",my_RegisterFile.registers_i[8]);
-	Clk <= ~Clk;
-	#1
-	//case2: I want to write to $s1 the value 32'h 0FF
-	RegWr_ID=5'h13;
-	Write_data=32'h0FF;
+	RegWrite=1;	
+	float_control_read=0;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("t0 is %h",my_RegisterFile.registers_i[8]);
+//-----------------------------------------------------------------------------------------//
+	//case2: Write to $s1 the value 32'h 0FF//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd0;
+	Rt_ID=5'd0;
+	Write_data64=64'h0;
+	RegWr_ID=5'd19;
+	Write_data=32'h0FFFF;
 	Load_Byte_control=0;
 	Store_Byte_control=0;
-	RegWrite=1;
-	#1
-	Clk <= ~Clk;
-	#1
-	$display("s1 is %b",my_RegisterFile.registers_i[19]); //19 is 13 in decimal
-	Clk <= ~Clk;
-	#1
-	//case3: I want to read from $t0
-	Rt_ID=5'h8;
+	RegWrite=1;	
+	float_control_read=0;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("s1 is %h",my_RegisterFile.registers_i[19]);
+//-----------------------------------------------------------------------------------------//
+	//case3: Read from $t0//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd8;
+	Rt_ID=5'd0;
+	Write_data64=64'h0;
+	RegWr_ID=5'h0;
+	Write_data=32'h00;
 	Load_Byte_control=0;
 	Store_Byte_control=0;
-	RegWrite=0;
-	#1
-	Clk <= ~Clk;
-	#1
-	$display("saved t0 is %b",my_RegisterFile.registers_i[8]);
-	
-	//case4: I want to read from $s1
-	Rs_ID=5'h13;
-	Load_Byte_control=0;
-	Store_Byte_control=0;
-	RegWrite=0;
-	#1
-	Clk <= ~Clk;
-	#1
-	$display("saved s1 is %b",my_RegisterFile.registers_i[19]);
-	
-	//case5: I want to load byte to $t0 e.eg 8'h0F
-	Write_data=32'h0FFFFF;
+	RegWrite=0;	
+	float_control_read=0;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("t0 is %h",Rs_data_ID);
+//-----------------------------------------------------------------------------------------//
+	//case4: Read from $s1//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd0;
+	Rt_ID=5'd19;
+	Write_data64=64'h0;
 	RegWr_ID=5'h8;
+	Write_data=32'h0A12;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=0;	
+	float_control_read=0;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("S1 is %h",Rt_data_ID);
+//-----------------------------------------------------------------------------------------//
+	//case5: Write to F[6] the value 32'h 0EE//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd0;
+	Rt_ID=5'd0;
+	Write_data64=64'h0;
+	RegWr_ID=5'h6;
+	Write_data=32'h0ee;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=1;	
+	float_control_read=0;
+	float_control_write=1;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("f[6] is %h%h",my_RegisterFile.registers_f[6],my_RegisterFile.registers_f[7]);
+//-----------------------------------------------------------------------------------------//
+	//case6: Read from F[6]//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd6;
+	Rt_ID=5'd0;
+	Write_data64=64'h0;
+	RegWr_ID=5'h8;
+	Write_data=32'h0A12;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=0;	
+	float_control_read=1;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("f[6] is %h%h",Rs_MSG,Rs_data_ID);
+//-----------------------------------------------------------------------------------------//
+	//case7:  Write to F[0] the value 32'h0FFFFFFFFFF//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd6;
+	Rt_ID=5'd0;
+	Write_data64=64'h0FFFFFFFFFF;
+	RegWr_ID=5'h0;
+	Write_data=32'h0A12;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=1;	
+	float_control_read=0;
+	float_control_write=1;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=1;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("f[0] is %h%h",my_RegisterFile.registers_f[0],my_RegisterFile.registers_f[1]);
+//-----------------------------------------------------------------------------------------//
+	//case8:  Write to HI & LO//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd6;
+	Rt_ID=5'd0;
+	Write_data64=64'hFFFFFFFF00000000;
+	RegWr_ID=5'h0;
+	Write_data=32'h0A12;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=1;	
+	float_control_read=0;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=1;
+	Write32_64=1;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("HILO is %h%h",my_RegisterFile.hi,my_RegisterFile.lo);
+//-----------------------------------------------------------------------------------------//
+	//case9:  Read from HI & LO//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd6;
+	Rt_ID=5'd0;
+	Write_data64=64'hFFFFFFFF00000000;
+	RegWr_ID=5'h0;
+	Write_data=32'h0A12;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=0;	
+	float_control_read=1;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("HILO is %h%h",my_RegisterFile.hi,my_RegisterFile.lo);
+//-----------------------------------------------------------------------------------------//
+	//case10:  write FP//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd6;
+	Rt_ID=5'd0;
+	Write_data64=64'hFFF0000;
+	RegWr_ID=5'h0;
+	Write_data=32'h1;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=1;	
+	float_control_read=0;
+	float_control_write=0;
+	FPwrite_control=1;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("R[30] is %h \nFP %b",my_RegisterFile.registers_i[30],FP);
+//-----------------------------------------------------------------------------------------//
+	//case11:  Write ra//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd6;
+	Rt_ID=5'd0;
+	Write_data64=64'hFFF00;
+	RegWr_ID=5'h0;
+	Write_data=32'h0abcde;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=1;	
+	float_control_read=0;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=1;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("R[31] return address is %h",my_RegisterFile.registers_i[31]);
+//-----------------------------------------------------------------------------------------//
+	//case12:  load byte//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd6;
+	Rt_ID=5'd0;
+	Write_data64=64'hFFFFFFFF00000000;
+	RegWr_ID=5'd17;
+	Write_data=32'h443322;
 	Load_Byte_control=1;
 	Store_Byte_control=0;
-	RegWrite=1;
-	#1
-	Clk <= ~Clk;
-	#1
-	$display("byte that will be loaded from memory is %b",my_RegisterFile.registers_i[8]);
-	
-	//case6: I want to store byte from $s1
-	Rt_ID=5'h13;
+	RegWrite=1;	
+	float_control_read=0;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("load byte R[17] is %h",my_RegisterFile.registers_i[17]);
+//-----------------------------------------------------------------------------------------//
+	//case13:  store byte from s1. address value from t0//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd8;
+	Rt_ID=5'd19;
+	Write_data64=64'hFFFFF0000;
+	RegWr_ID=5'd17;
+	Write_data=32'h443322;
 	Load_Byte_control=0;
 	Store_Byte_control=1;
-	RegWrite=0;
-	#1
-	Clk <= ~Clk;
-	#1
-	#5
-	$display("byte that will be stored in memory is %b",Rt_data_ID);
+	RegWrite=0;	
+	float_control_read=0;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=0;					
+	#1	Clk <= ~Clk;
+	#1	$display("store byte value is %h \naddress value is %h",Rt_data_ID,Rs_data_ID);
+//-----------------------------------------------------------------------------------------//
+	//case14:  store FP single-double//
+	#1 Clk <= ~Clk;			
+	Rs_ID=5'd8;//address R[rs] rs=t0
+	Rt_ID=5'd0;//value to store F[rt] rt=f0
+	Write_data64=64'hFFFFF0000;
+	RegWr_ID=5'd17;
+	Write_data=32'h443322;
+	Load_Byte_control=0;
+	Store_Byte_control=0;
+	RegWrite=0;	
+	float_control_read=0;
+	float_control_write=0;
+	FPwrite_control=0;
+	MulDiv_control=0;
+	Write32_64=0;
+	Jal_control=0;
+	Store_FP=1;					
+	#1	Clk <= ~Clk;
+	#1	$display("store value is %h%h \nbaseaddress value is %h",Rt_MSG,Rt_data_ID,Rs_data_ID);
 	
-	Clk <= ~Clk;
 	
 	
-end*/
-//endmodule
+end
+endmodule
 		
 
 

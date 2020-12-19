@@ -110,7 +110,7 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire Flush;
 	
 	
-	
+	/*
 	
 	clock Clock(Clk);
 	//stage1 : instruction fetch (IF)
@@ -258,7 +258,7 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	
 		mux_3to1 MUX_EXE5(IN_ALU_2, IN_ALU_MUX, Adrs_MEM, WB_data, Forward_MUX2);//forwarding mux Rt
 		
-		ALU Top_ALU(OUT_ALU32, OUT_ALU64, ZF_ALU, IN_ALU_MSG1, IN_ALU_1, IN_ALU_2, IN_ALU_MSG2, ALU_control);
+		//ALU Top_ALU(OUT_ALU32, OUT_ALU64, ZF_ALU, IN_ALU_MSG1, IN_ALU_1, IN_ALU_2, IN_ALU_MSG2, ALU_control);
 		
 		Forwarding_unit Top_Forwarding_unit(
 								Forward_MUX1,
@@ -283,5 +283,5 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 		or o2_EXE(Branch_out, Branch_notEq, Branch_Eq);//branch comparison condition 
 		
 		or o3_EXE(Branch, Branch_FP, Branch_out);//branch or not
-		
+		*/
 endmodule 

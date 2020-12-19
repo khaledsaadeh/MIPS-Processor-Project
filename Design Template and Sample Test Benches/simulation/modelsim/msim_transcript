@@ -17,57 +17,32 @@
 # Top level modules:
 # 	Top
 # 
-vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Forwarding_unit.v}
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/RegisterFile.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module Forwarding_unit
-# -- Compiling module testbench_Forwarding_unit
+# -- Compiling module registerFile
+# -- Compiling module testbench_RegisterFile
 # 
 # Top level modules:
-# 	testbench_Forwarding_unit
-vsim work.testbench_Forwarding_unit
-# vsim work.testbench_Forwarding_unit 
-# Loading work.testbench_Forwarding_unit
-# Loading work.Forwarding_unit
-add wave -position insertpoint  \
-sim:/testbench_Forwarding_unit/Forward_MUX1 \
-sim:/testbench_Forwarding_unit/Forward_MUX2 \
-sim:/testbench_Forwarding_unit/RegWr_MEM \
-sim:/testbench_Forwarding_unit/RegWr_WB \
-sim:/testbench_Forwarding_unit/Rt_EXE \
-sim:/testbench_Forwarding_unit/Rs_EXE \
-sim:/testbench_Forwarding_unit/RegWrite_EXE_MEM \
-sim:/testbench_Forwarding_unit/RegWrite_MEM_WB \
-sim:/testbench_Forwarding_unit/Clk
+# 	testbench_RegisterFile
+vsim work.testbench_RegisterFile
+# vsim work.testbench_RegisterFile 
+# Loading work.testbench_RegisterFile
+# Loading work.registerFile
 run -all
-# Rs MUX is 00 
-# Rt MUX is 00 
-# 
-# 
-# Rs MUX is 00 
-# Rt MUX is 00 
-# 
-# 
-# Rs MUX is 01 
-# Rt MUX is 00 
-# 
-# 
-# Rs MUX is 00 
-# Rt MUX is 01 
-# 
-# 
-# Rs MUX is 10 
-# Rt MUX is 00 
-# 
-# 
-# Rs MUX is 00 
-# Rt MUX is 10 
-# 
-# 
-# Rs MUX is 00 
-# Rt MUX is 01 
-# 
-# 
-# Rs MUX is 01 
-# Rt MUX is 00 
-# 
-# 
+# t0 is 00000a12
+# s1 is 0000ffff
+# t0 is 00000a12
+# S1 is 0000ffff
+# f[6] is 00000000000000ee
+# f[6] is 00000000000000ee
+# f[0] is 000000ffffffffff
+# HILO is ffffffff00000000
+# HILO is ffffffff00000000
+# R[30] is 00000001 
+# FP 1
+# R[31] return address is 000abcde
+# load byte R[17] is 00000022
+# store byte value is 000000ff 
+# address value is 00000a12
+# store value is 000000ffffffffff 
+# baseaddress value is 00000a12

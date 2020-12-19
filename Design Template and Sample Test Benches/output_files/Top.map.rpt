@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Top
-Sat Dec 19 23:03:18 2020
+Sun Dec 20 01:40:14 2020
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -10,8 +10,13 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
-  6. Analysis & Synthesis Suppressed Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Elapsed Time Per Partition
+ 10. Analysis & Synthesis Messages
+ 11. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -37,24 +42,24 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Sat Dec 19 23:03:18 2020          ;
+; Analysis & Synthesis Status        ; Successful - Sun Dec 20 01:40:14 2020      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; Top                                        ;
 ; Top-level Entity Name              ; Top                                        ;
 ; Family                             ; Cyclone IV GX                              ;
-; Total logic elements               ; N/A until Partition Merge                  ;
-;     Total combinational functions  ; N/A until Partition Merge                  ;
-;     Dedicated logic registers      ; N/A until Partition Merge                  ;
-; Total registers                    ; N/A until Partition Merge                  ;
-; Total pins                         ; N/A until Partition Merge                  ;
-; Total virtual pins                 ; N/A until Partition Merge                  ;
-; Total memory bits                  ; N/A until Partition Merge                  ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                  ;
-; Total GXB Receiver Channel PCS     ; N/A until Partition Merge                  ;
-; Total GXB Receiver Channel PMA     ; N/A until Partition Merge                  ;
-; Total GXB Transmitter Channel PCS  ; N/A until Partition Merge                  ;
-; Total GXB Transmitter Channel PMA  ; N/A until Partition Merge                  ;
-; Total PLLs                         ; N/A until Partition Merge                  ;
+; Total logic elements               ; 0                                          ;
+;     Total combinational functions  ; 0                                          ;
+;     Dedicated logic registers      ; 0                                          ;
+; Total registers                    ; 0                                          ;
+; Total pins                         ; 1                                          ;
+; Total virtual pins                 ; 0                                          ;
+; Total memory bits                  ; 0                                          ;
+; Embedded Multiplier 9-bit elements ; 0                                          ;
+; Total GXB Receiver Channel PCS     ; 0                                          ;
+; Total GXB Receiver Channel PMA     ; 0                                          ;
+; Total GXB Transmitter Channel PCS  ; 0                                          ;
+; Total GXB Transmitter Channel PMA  ; 0                                          ;
+; Total PLLs                         ; 0                                          ;
 +------------------------------------+--------------------------------------------+
 
 
@@ -155,13 +160,70 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                     ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                                                       ; Library ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------------------------------------------------------------------+---------+
+; Top.v                            ; yes             ; User Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v ;         ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary ;
++--------------------------+------------------+
+; Resource                 ; Usage            ;
++--------------------------+------------------+
+; I/O pins                 ; 1                ;
+; DSP block 9-bit elements ; 0                ;
+; Maximum fan-out node     ; PC_VALUE         ;
+; Maximum fan-out          ; 1                ;
+; Total fan-out            ; 1                ;
+; Average fan-out          ; 0.50             ;
++--------------------------+------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                     ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+-----------+------+--------------+---------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; DSP 36x36 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+-----------+------+--------------+---------------------+--------------+
+; |Top                       ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0         ; 1    ; 0            ; |Top                ;              ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+-----------+------+--------------+---------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sat Dec 19 23:02:38 2020
+    Info: Processing started: Sun Dec 20 01:40:13 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Top -c Top
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file top.v
@@ -210,111 +272,20 @@ Info (12021): Found 1 design units, including 1 entities, in source file hazard_
     Info (12023): Found entity 1: Hazard_Detection_Unit
 Info (12021): Found 1 design units, including 1 entities, in source file insmem.v
     Info (12023): Found entity 1: instructionMemory
-Warning (10236): Verilog HDL Implicit Net warning at Top.v(117): created implicit net for "PC_IN"
-Warning (10236): Verilog HDL Implicit Net warning at Top.v(158): created implicit net for "Jal_control"
-Warning (10236): Verilog HDL Implicit Net warning at Top.v(178): created implicit net for "Write_data64"
-Warning (10236): Verilog HDL Implicit Net warning at Top.v(253): created implicit net for "ALUsrc"
-Warning (10236): Verilog HDL Implicit Net warning at Top.v(276): created implicit net for "bc1t_out"
 Info (12127): Elaborating entity "Top" for the top level hierarchy
-Warning (12125): Using design file clock.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: clock
-Info (12128): Elaborating entity "clock" for hierarchy "clock:Clock"
-Warning (10755): Verilog HDL warning at clock.v(9): assignments to clk create a combinational loop
-Info (12128): Elaborating entity "PC" for hierarchy "PC:top_PC"
-Warning (12125): Using design file adder.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
-    Info (12023): Found entity 1: Adder
-    Info (12023): Found entity 2: testbench_Adder
-Info (12128): Elaborating entity "Adder" for hierarchy "Adder:PC_Adder"
-Info (12128): Elaborating entity "instructionMemory" for hierarchy "instructionMemory:top_Instruction_memory"
-Info (12128): Elaborating entity "IF_ID" for hierarchy "IF_ID:Top_IF_ID"
-Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:Top_control_unit"
-Warning (10272): Verilog HDL Case Statement warning at control_unit.v(129): case item expression covers a value already covered by a previous case item
-Warning (10270): Verilog HDL Case Statement warning at control_unit.v(39): incomplete case statement has no default case item
-Warning (10270): Verilog HDL Case Statement warning at control_unit.v(441): incomplete case statement has no default case item
-Warning (10240): Verilog HDL Always Construct warning at control_unit.v(38): inferring latch(es) for variable "float_control_read", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at control_unit.v(38): inferring latch(es) for variable "HILO_read_control", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at control_unit.v(38): inferring latch(es) for variable "IF_Flush", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at control_unit.v(38): inferring latch(es) for variable "ID_Flush", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at control_unit.v(38): inferring latch(es) for variable "Store_Byte_control", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at control_unit.v(38): inferring latch(es) for variable "Store_FP", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at control_unit.v(38): inferring latch(es) for variable "control_signal", which holds its previous value in one or more paths through the always construct
-Info (10041): Inferred latch for "control_signal[0]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[1]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[2]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[3]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[4]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[5]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[6]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[7]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[8]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[9]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[10]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[11]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[12]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[13]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[14]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[15]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[16]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[17]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[18]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[19]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[20]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[21]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[22]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[23]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[24]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[25]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[26]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[27]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[28]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[29]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[30]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[31]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[32]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[33]" at control_unit.v(38)
-Info (10041): Inferred latch for "control_signal[34]" at control_unit.v(38)
-Info (10041): Inferred latch for "Store_FP" at control_unit.v(38)
-Info (10041): Inferred latch for "Store_Byte_control" at control_unit.v(38)
-Info (10041): Inferred latch for "ID_Flush" at control_unit.v(38)
-Info (10041): Inferred latch for "IF_Flush" at control_unit.v(38)
-Info (10041): Inferred latch for "HILO_read_control[0]" at control_unit.v(38)
-Info (10041): Inferred latch for "HILO_read_control[1]" at control_unit.v(38)
-Info (10041): Inferred latch for "float_control_read" at control_unit.v(38)
-Warning (12125): Using design file shift_left_26bits.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
-    Info (12023): Found entity 1: shift_left_26bits
-    Info (12023): Found entity 2: testbench_shift_left_26bits
-Info (12128): Elaborating entity "shift_left_26bits" for hierarchy "shift_left_26bits:Top_shift_left26"
-Warning (12125): Using design file mux_2to1.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
-    Info (12023): Found entity 1: mux_2to1
-    Info (12023): Found entity 2: testbench_mux_2to1
-Info (12128): Elaborating entity "mux_2to1" for hierarchy "mux_2to1:MUX_ID1"
-Info (12128): Elaborating entity "sign_extend" for hierarchy "sign_extend:Top_sign_extend"
-Info (12128): Elaborating entity "zero_extend" for hierarchy "zero_extend:Top_zero_extend"
-Warning (10090): Verilog HDL syntax warning at registerfile.v(645): extra block comment delimiter characters /* within block comment
-Warning (12125): Using design file registerfile.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: registerFile
-Info (12128): Elaborating entity "registerFile" for hierarchy "registerFile:Top_registerFile"
-Info (12128): Elaborating entity "mux_3to1" for hierarchy "mux_3to1:MUX_ID5"
-Warning (10235): Verilog HDL Always Construct warning at mux_3to1.v(10): variable "a" is read inside the Always Construct but isn't in the Always Construct's Event Control
-Warning (10235): Verilog HDL Always Construct warning at mux_3to1.v(12): variable "b" is read inside the Always Construct but isn't in the Always Construct's Event Control
-Warning (10235): Verilog HDL Always Construct warning at mux_3to1.v(14): variable "c" is read inside the Always Construct but isn't in the Always Construct's Event Control
-Info (12128): Elaborating entity "Hazard_Detection_Unit" for hierarchy "Hazard_Detection_Unit:Top_hazard_Detection_unit"
-Info (12128): Elaborating entity "mux_2to1_35bits" for hierarchy "mux_2to1_35bits:MUX_ID6"
-Info (12128): Elaborating entity "ID_EXE" for hierarchy "ID_EXE:Top_ID_EXE"
-Info (12128): Elaborating entity "shift_left_32bits" for hierarchy "shift_left_32bits:Top_shift_left_32"
-Info (12128): Elaborating entity "mux_4to1" for hierarchy "mux_4to1:MUX_EXE2"
-Warning (10235): Verilog HDL Always Construct warning at mux_4to1.v(11): variable "a" is read inside the Always Construct but isn't in the Always Construct's Event Control
-Warning (10235): Verilog HDL Always Construct warning at mux_4to1.v(13): variable "b" is read inside the Always Construct but isn't in the Always Construct's Event Control
-Warning (10235): Verilog HDL Always Construct warning at mux_4to1.v(15): variable "c" is read inside the Always Construct but isn't in the Always Construct's Event Control
-Warning (10235): Verilog HDL Always Construct warning at mux_4to1.v(17): variable "d" is read inside the Always Construct but isn't in the Always Construct's Event Control
-Info (12128): Elaborating entity "Forwarding_unit" for hierarchy "Forwarding_unit:Top_Forwarding_unit"
-Error (12006): Node instance "Top_ALU" instantiates undefined entity "ALU" File: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v Line: 261
 Info (144001): Generated suppressed messages file D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/output_files/Top.map.smsg
-Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 1 error, 35 warnings
-    Error: Peak virtual memory: 4703 megabytes
-    Error: Processing ended: Sat Dec 19 23:03:18 2020
-    Error: Elapsed time: 00:00:40
-    Error: Total CPU time (on all processors): 00:00:40
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 1 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "PC_VALUE"
+Info (21057): Implemented 1 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 1 input pins
+    Info (21059): Implemented 0 output pins
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 8 warnings
+    Info: Peak virtual memory: 4652 megabytes
+    Info: Processing ended: Sun Dec 20 01:40:14 2020
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
 
 
 +------------------------------------------+
