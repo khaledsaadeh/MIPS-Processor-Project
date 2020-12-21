@@ -11,6 +11,7 @@
 //control_signal[21]=0;  bc1t_control		
 //control_signal[24:22]=3'b000;  MEM_control_EX {MemRead, MemWrite, MemWrite64}						
 //control_signal[34:25]=10'b0110000000;  WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  					 												
+//control_signal[35]=0; Rs_Rt_control
 
 module control_unit(
 					output reg Store_FP,
@@ -19,7 +20,7 @@ module control_unit(
 					output reg Store_Byte_control,
 					output reg float_control_read,
 		    		output reg [1:0]HILO_read_control,
-					output reg [34:0]control_signal,
+					output reg [35:0]control_signal,
 					input [5:0]Op_code,
 					input [5:0]Funct_ID,
 					input [4:0]Fmt,
@@ -45,6 +46,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -66,6 +68,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -88,7 +91,8 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;
 						Store_FP=0;
-		
+						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -110,7 +114,8 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;
 						Store_FP=0;
-		
+						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -133,7 +138,8 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;
 						Store_FP=0;
-		
+						
+						control_signal[35]=1; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -155,7 +161,8 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;
 						Store_FP=0;
-		
+						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -179,6 +186,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -202,6 +210,7 @@ always@(*)begin
 						IF_Flush=1;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=0;//JMP_Rgst_control							
@@ -223,7 +232,8 @@ always@(*)begin
 						ID_Flush=0;
 						Store_Byte_control=0;
 						Store_FP=0;
-		
+						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -246,6 +256,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -268,6 +279,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -290,6 +302,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -312,6 +325,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -334,6 +348,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=1; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -356,6 +371,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=1; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -378,6 +394,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -400,6 +417,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -422,6 +440,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -449,6 +468,7 @@ always@(*)begin
 						IF_Flush=0;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -471,6 +491,7 @@ always@(*)begin
 						IF_Flush=0;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -495,6 +516,7 @@ always@(*)begin
 						float_control_read=1;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -517,6 +539,7 @@ always@(*)begin
 						float_control_read=1;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -541,6 +564,7 @@ always@(*)begin
 						float_control_read=1;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -563,6 +587,7 @@ always@(*)begin
 						float_control_read=1;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -586,6 +611,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -608,6 +634,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -630,6 +657,7 @@ always@(*)begin
 						float_control_read=0;
 						Store_FP=1;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -652,6 +680,7 @@ always@(*)begin
 						float_control_read=0;
 						Store_FP=1;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -674,6 +703,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -696,6 +726,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -718,6 +749,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b10; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -740,6 +772,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -762,6 +795,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -784,6 +818,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -806,6 +841,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b10; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -828,6 +864,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -850,6 +887,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b10; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -872,6 +910,7 @@ always@(*)begin
 						Store_Byte_control=1;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -894,6 +933,7 @@ always@(*)begin
 						Store_Byte_control=0;
 						Store_FP=0;
 		
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b01; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -916,6 +956,7 @@ always@(*)begin
 						IF_Flush=1;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=1;//JMP_Rgst_control							
@@ -938,6 +979,7 @@ always@(*)begin
 						IF_Flush=1;
 						Store_FP=0;
 						
+						control_signal[35]=0; //Rs_Rt_control
 						control_signal[1:0]=2'b00; //ALUSrc									
 						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
 						control_signal[14]=0;//JMP_Rgst_control							
@@ -964,7 +1006,7 @@ module testbench_control_unit();
 		wire Store_Byte_control;
 		wire float_control_read;
 		wire [1:0]HILO_read_control;
-		wire [34:0]control_signal;
+		wire [35:0]control_signal;
 		reg [5:0]Op_code;
 		reg [5:0]Funct_ID;
 		reg [4:0]Fmt;

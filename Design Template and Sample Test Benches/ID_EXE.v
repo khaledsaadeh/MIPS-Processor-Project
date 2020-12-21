@@ -1,4 +1,5 @@
 module ID_EXE(
+				output reg Rs_Rt_control,
 				output reg [9:0]WB_control_EXE,
 				output reg [2:0]MEM_control_EXE,
 				output reg bc1f_control,
@@ -24,7 +25,7 @@ module ID_EXE(
 				output reg [4:0]Rt_EXE,
 				output reg [4:0]Rs_EXE,
 				input Clk,
-				input [34:0]control_signal,
+				input [35:0]control_signal,
 				input	FP,
 				input [31:0]PC_ID,
 				input [31:0]read_data_ID,
@@ -51,6 +52,7 @@ always@(negedge Clk)begin //read on negative edge
 	bc1t_control = control_signal[21];
 	MEM_control_EXE = control_signal[24:22];
 	WB_control_EXE = control_signal[34:25];
+	Rs_Rt_control = control_signal[35];
 	FP_EXE = FP;
 	PC_EXE = PC_ID;
 	Rs_data_EXE = read_data_ID;

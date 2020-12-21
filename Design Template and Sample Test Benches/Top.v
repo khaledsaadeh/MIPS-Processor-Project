@@ -29,7 +29,7 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire float_control_write;
 	wire [1:0]HILO_read_control;
 	wire [1:0]HILO_write_control;
-	wire [34:0]control_signal;
+	wire [35:0]control_signal;
 	wire [27:0]Jmp_Adrs_ID_sl2;
 	wire [4:0]RegRead_ID;
 	wire [31:0]WB_data;
@@ -108,9 +108,9 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire Branch_out;
 	wire Branch;
 	wire Flush;
+	wire Rs_Rt_control;
+	wire [31:0]IN_ALU_MUX2;
 	
-	
-	/*
 	
 	clock Clock(Clk);
 	//stage1 : instruction fetch (IF)
@@ -200,10 +200,11 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	
 	or or_ID1(ID_stall, ID_stall_hazard, ID_Flush, Branch); //determine whether to flush ID
 	
-	mux_2to1_35bits MUX_ID6(control_signal_ID, control_signal, 35'h0, ID_stall); //determine whether to flush ID/EXE register
+	mux_2to1_35bits MUX_ID6(control_signal_ID, control_signal, 36'h0, ID_stall); //determine whether to flush ID/EXE register
 	
 	//stage3 : execuction stage (EXEC)
 	ID_EXE	Top_ID_EXE(
+						Rs_Rt_control,
 						WB_control_EXE,
 						MEM_control_EXE,
 						bc1f_control,            
@@ -248,15 +249,17 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 		
 		Adder Branch_Add(Branch_adrs, PC_EXE, Imm_sl2_EXE);//to calculate branch address
 		
-		mux_2to1 MUX_EXE1(RtRd_data_EXE, Rt_data_EXE, Rd_EXE, Rt_Rd_control);//to select between Rt/Rd to be the input of ALU
+		mux_2to1 MUX_EXE1(IN_ALU_MUX2, Rs_data_EXE, Rt_data_EXE, Rs_Rt_control);//to select between Rs/Rt to be the first input of ALU
 		
-		mux_4to1 MUX_EXE2(IN_ALU_MUX, RtRd_data_EXE, Imm_EXE, Imm_zero_EXE, Shamt_EXE, ALUsrc);//to select second input of ALU 
-	
-		mux_2to1 MUX_EXE3(RegWr_EXE, Rd_EXE, Rt_EXE, REG_dst);//to select the register that we want to write in (in the WB stage)
+		mux_2to1 MUX_EXE2(RtRd_data_EXE, Rt_data_EXE, Rd_EXE, Rt_Rd_control);//to select between Rt/Rd to be the second input of ALU
 		
-		mux_3to1 MUX_EXE4(IN_ALU_1, Rs_data_EXE, Adrs_MEM, WB_data, Forward_MUX1);//forwarding mux Rs
+		mux_4to1 MUX_EXE3(IN_ALU_MUX, RtRd_data_EXE, Imm_EXE, Imm_zero_EXE, Shamt_EXE, ALUsrc);//to select second input of ALU 
 	
-		mux_3to1 MUX_EXE5(IN_ALU_2, IN_ALU_MUX, Adrs_MEM, WB_data, Forward_MUX2);//forwarding mux Rt
+		mux_2to1 MUX_EXE4(RegWr_EXE, Rd_EXE, Rt_EXE, REG_dst);//to select the register that we want to write in (in the WB stage)
+		
+		mux_3to1 MUX_EXE5(IN_ALU_1, Rs_data_EXE, Adrs_MEM, WB_data, Forward_MUX1);//forwarding mux Rs
+	
+		mux_3to1 MUX_EXE6(IN_ALU_2, IN_ALU_MUX, Adrs_MEM, WB_data, Forward_MUX2);//forwarding mux Rt
 		
 		//ALU Top_ALU(OUT_ALU32, OUT_ALU64, ZF_ALU, IN_ALU_MSG1, IN_ALU_1, IN_ALU_2, IN_ALU_MSG2, ALU_control);
 		
@@ -283,5 +286,5 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 		or o2_EXE(Branch_out, Branch_notEq, Branch_Eq);//branch comparison condition 
 		
 		or o3_EXE(Branch, Branch_FP, Branch_out);//branch or not
-		*/
+
 endmodule 
