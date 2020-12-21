@@ -5,7 +5,7 @@ output reg ID_stall_hazard,
 input [31:0]Rt_ID,
 input [31:0]Rs_ID,
 input [31:0]Rd_EXE,
-input [2:0]load_control
+input load_control
 );
 initial begin 
 IF_stall = 0;
