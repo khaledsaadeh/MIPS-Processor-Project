@@ -1,0 +1,116 @@
+module ALU ( 
+output reg [31:0]OUT_ALU32,
+output reg [63:0]OUT_ALU64,
+output reg ZF_ALU,
+input [31:0]IN_ALU_MSG1,
+input [31:0]IN_ALU_1,
+input [31:0]IN_ALU_2,
+input [31:0]IN_ALU_MSG2,
+input [11:0]ALU_control,
+);
+
+reg opcode = ALU_control[11:6];
+reg funct = ALU_control[5:0];
+always @(*) begin
+
+if(ALU_control ==  12'b000011100000)begin // ADD
+OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+
+if (ALU_control == 12'b001001000000 ) begin  //ADD IMMEDIATE
+OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (ALU_control == 12'b000011010100) begin //AND
+OUT_ALU32 = IN_ALU_1 & IN_ALU_2;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (ALU_control == 12'b001100000000) begin //AND IMMEDIATE 
+OUT_ALU32 = IN_ALU_1 & IN_ALU_2;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (ALU_control == 12'b000011100111)begin //NOR
+OUT_ALU32 = ~(IN_ALU_1 | IN_ALU_2);
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (ALU_control == 12'b000011100111)begin //OR
+OUT_ALU32 = IN_ALU_1 | IN_ALU_2;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (ALU_control == 12'b001110000000)begin //OR IMMEDIATE
+OUT_ALU32 = IN_ALU_1 | IN_ALU_2;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (ALU_control == 12'b000011101010)begin  //SET LESS THAN
+if (IN_ALU_1 < IN_ALU_2)
+OUT_ALU32 = 1;
+else OUT_ALU32 = 0;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (ALU_control == 12'b000011101011)begin  //SET LESS THAN UNSIGNED
+if (IN_ALU_1 < IN_ALU_2)
+OUT_ALU32 = 1;
+else OUT_ALU32 = 0;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (ALU_control == 12'b000011000000)begin  // shift RT??
+OUT_ALU32 = IN_ALU_2<<IN_ALU_1;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (ALU_control == 12'b000011000010)begin //shift RT?
+OUT_ALU32 = IN_ALU_2>>IN_ALU_1;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (ALU_control == 12'b000011100100)begin //SUBTRACT
+OUT_ALU32 = IN_ALU_2 - IN_ALU_1;
+if (OUT_ALU32 == 0)
+ZF_ALU = 1;
+OUT_ALU64 = 0;
+end
+
+if (opcode == 6'h22 )begin //load byte unsigned 
+OUT_ALU32 = {24'b0,IN_ALU_1 + IN_ALU_2};
+
+
+end
+
+
+
+
+
+end
+endmodule
