@@ -1,0 +1,45 @@
+library verilog;
+use verilog.vl_types.all;
+entity ID_EXE is
+    port(
+        Rs_Rt_control   : out    vl_logic;
+        WB_control_EXE  : out    vl_logic_vector(9 downto 0);
+        MEM_control_EXE : out    vl_logic_vector(2 downto 0);
+        bc1f_control    : out    vl_logic;
+        bc1t_control    : out    vl_logic;
+        Branch_Eq_control: out    vl_logic;
+        Branch_notEq_control: out    vl_logic;
+        Jmp_Rgst_control: out    vl_logic;
+        Jmp_control     : out    vl_logic;
+        Alusrc          : out    vl_logic_vector(1 downto 0);
+        Rt_Rd_control   : out    vl_logic;
+        REG_dst         : out    vl_logic;
+        ALU_control     : out    vl_logic_vector(11 downto 0);
+        FP_EXE          : out    vl_logic;
+        PC_EXE          : out    vl_logic_vector(31 downto 0);
+        Rs_data_EXE     : out    vl_logic_vector(31 downto 0);
+        IN_ALU_MSG1     : out    vl_logic_vector(31 downto 0);
+        Rt_data_EXE     : out    vl_logic_vector(31 downto 0);
+        IN_ALU_MSG2     : out    vl_logic_vector(31 downto 0);
+        Imm_EXE         : out    vl_logic_vector(31 downto 0);
+        Imm_zero_EXE    : out    vl_logic_vector(31 downto 0);
+        Shamt_EXE       : out    vl_logic_vector(4 downto 0);
+        Rd_EXE          : out    vl_logic_vector(4 downto 0);
+        Rt_EXE          : out    vl_logic_vector(4 downto 0);
+        Rs_EXE          : out    vl_logic_vector(4 downto 0);
+        Clk             : in     vl_logic;
+        control_signal  : in     vl_logic_vector(35 downto 0);
+        FP              : in     vl_logic;
+        PC_ID           : in     vl_logic_vector(31 downto 0);
+        read_data_ID    : in     vl_logic_vector(31 downto 0);
+        Rs_MSG          : in     vl_logic_vector(31 downto 0);
+        Rt_data_ID      : in     vl_logic_vector(31 downto 0);
+        Rt_MSG          : in     vl_logic_vector(31 downto 0);
+        Imm32_ID        : in     vl_logic_vector(31 downto 0);
+        Imm32_zero_ID   : in     vl_logic_vector(31 downto 0);
+        Shamt_ID        : in     vl_logic_vector(4 downto 0);
+        Rd_ID           : in     vl_logic_vector(4 downto 0);
+        Rt_ID           : in     vl_logic_vector(4 downto 0);
+        Rs_ID           : in     vl_logic_vector(4 downto 0)
+    );
+end ID_EXE;

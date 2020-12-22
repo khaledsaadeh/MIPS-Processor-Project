@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Top
-Mon Dec 21 22:36:57 2020
+Tue Dec 22 16:17:26 2020
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -10,8 +10,25 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
   4. Parallel Compilation
-  5. Analysis & Synthesis Messages
-  6. Analysis & Synthesis Suppressed Messages
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Port Connectivity Checks: "mux_2to1_64bits:MUX_WB1"
+ 10. Port Connectivity Checks: "EXE_MEM:Top_EXE_MEM"
+ 11. Port Connectivity Checks: "mux_2to1_5bits:MUX_EXE4"
+ 12. Port Connectivity Checks: "mux_4to1:MUX_EXE3"
+ 13. Port Connectivity Checks: "mux_2to1:MUX_EXE2"
+ 14. Port Connectivity Checks: "mux_2to1:MUX_EXE1"
+ 15. Port Connectivity Checks: "ID_EXE:Top_ID_EXE"
+ 16. Port Connectivity Checks: "mux_2to1_35bits:MUX_ID6"
+ 17. Port Connectivity Checks: "Hazard_Detection_Unit:Top_hazard_Detection_unit"
+ 18. Port Connectivity Checks: "registerFile:Top_registerFile"
+ 19. Port Connectivity Checks: "mux_2to1_5bits:MUX_ID1"
+ 20. Port Connectivity Checks: "Adder:PC_Adder"
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
+ 23. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -37,24 +54,24 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Failed - Mon Dec 21 22:36:57 2020          ;
+; Analysis & Synthesis Status        ; Successful - Tue Dec 22 16:17:26 2020      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; Top                                        ;
 ; Top-level Entity Name              ; Top                                        ;
 ; Family                             ; Cyclone IV GX                              ;
-; Total logic elements               ; N/A until Partition Merge                  ;
-;     Total combinational functions  ; N/A until Partition Merge                  ;
-;     Dedicated logic registers      ; N/A until Partition Merge                  ;
-; Total registers                    ; N/A until Partition Merge                  ;
-; Total pins                         ; N/A until Partition Merge                  ;
-; Total virtual pins                 ; N/A until Partition Merge                  ;
-; Total memory bits                  ; N/A until Partition Merge                  ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                  ;
-; Total GXB Receiver Channel PCS     ; N/A until Partition Merge                  ;
-; Total GXB Receiver Channel PMA     ; N/A until Partition Merge                  ;
-; Total GXB Transmitter Channel PCS  ; N/A until Partition Merge                  ;
-; Total GXB Transmitter Channel PMA  ; N/A until Partition Merge                  ;
-; Total PLLs                         ; N/A until Partition Merge                  ;
+; Total logic elements               ; 0                                          ;
+;     Total combinational functions  ; 0                                          ;
+;     Dedicated logic registers      ; 0                                          ;
+; Total registers                    ; 0                                          ;
+; Total pins                         ; 32                                         ;
+; Total virtual pins                 ; 0                                          ;
+; Total memory bits                  ; 0                                          ;
+; Embedded Multiplier 9-bit elements ; 0                                          ;
+; Total GXB Receiver Channel PCS     ; 0                                          ;
+; Total GXB Receiver Channel PMA     ; 0                                          ;
+; Total GXB Transmitter Channel PCS  ; 0                                          ;
+; Total GXB Transmitter Channel PMA  ; 0                                          ;
+; Total PLLs                         ; 0                                          ;
 +------------------------------------+--------------------------------------------+
 
 
@@ -155,13 +172,213 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                             ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                                         ; Library ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+---------+
+; Top.v                            ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v                   ;         ;
+; mux_3to1.v                       ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_3to1.v              ;         ;
+; PC.v                             ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/PC.v                    ;         ;
+; shift_left_32bits.v              ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/shift_left_32bits.v     ;         ;
+; mux_4to1.v                       ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_4to1.v              ;         ;
+; sign_extend.v                    ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/sign_extend.v           ;         ;
+; zero_extend.v                    ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/zero_extend.v           ;         ;
+; control_unit.v                   ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/control_unit.v          ;         ;
+; IF_ID.v                          ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/IF_ID.v                 ;         ;
+; ID_EXE.v                         ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ID_EXE.v                ;         ;
+; Forwarding_unit.v                ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Forwarding_unit.v       ;         ;
+; mux_2to1_35bits.v                ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1_35bits.v       ;         ;
+; EXE_MEM.v                        ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/EXE_MEM.v               ;         ;
+; MEM_WB.v                         ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/MEM_WB.v                ;         ;
+; Hazard_detection_unit.v          ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Hazard_detection_unit.v ;         ;
+; insMem.v                         ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/insMem.v                ;         ;
+; ALU.v                            ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ALU.v                   ;         ;
+; mux_2to1_64bits.v                ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1_64bits.v       ;         ;
+; DataMemory.v                     ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/DataMemory.v            ;         ;
+; mux_2to1_5bits.v                 ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1_5bits.v        ;         ;
+; clock.v                          ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/clock.v                 ;         ;
+; adder.v                          ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/adder.v                 ;         ;
+; shift_left_26bits.v              ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/shift_left_26bits.v     ;         ;
+; mux_2to1.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v              ;         ;
+; registerfile.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/registerfile.v          ;         ;
++----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+---------+
+
+
++---------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary ;
++--------------------------+------------------+
+; Resource                 ; Usage            ;
++--------------------------+------------------+
+; I/O pins                 ; 32               ;
+; DSP block 9-bit elements ; 0                ;
+; Maximum fan-out node     ; PC_VALUE[0]      ;
+; Maximum fan-out          ; 1                ;
+; Total fan-out            ; 32               ;
+; Average fan-out          ; 0.50             ;
++--------------------------+------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                     ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+-----------+------+--------------+---------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; DSP 36x36 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+-----------+------+--------------+---------------------+--------------+
+; |Top                       ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0         ; 32   ; 0            ; |Top                ;              ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+-----------+------+--------------+---------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 0     ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mux_2to1_64bits:MUX_WB1"                                                            ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; c    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "EXE_MEM:Top_EXE_MEM"                                                                                                                                                                        ;
++----------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port           ; Type  ; Severity ; Details                                                                                                                                                                            ;
++----------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; RegWr_EXE      ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (5 bits) it drives.  The 27 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; WB_control_EX  ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "WB_control_EX[9..1]" will be connected to GND.                             ;
+; MEM_control_EX ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (3 bits) it drives.  Extra input bit(s) "MEM_control_EX[2..1]" will be connected to GND.                             ;
++----------------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mux_2to1_5bits:MUX_EXE4"                                                                                                                                                ;
++------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                                                                 ;
++------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; c    ; Output ; Warning  ; Output or bidir port (5 bits) is smaller than the port expression (32 bits) it drives.  The 27 most-significant bit(s) in the port expression will be connected to GND. ;
++------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mux_4to1:MUX_EXE3"                                                                                                                         ;
++------+-------+----------+---------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                     ;
++------+-------+----------+---------------------------------------------------------------------------------------------------------------------------------------------+
+; d    ; Input ; Warning  ; Input port expression (5 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "d[31..5]" will be connected to GND. ;
+; sel  ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (2 bits) it drives.  Extra input bit(s) "sel[1..1]" will be connected to GND. ;
++------+-------+----------+---------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mux_2to1:MUX_EXE2"                                                                                                                         ;
++------+-------+----------+---------------------------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                                                                                     ;
++------+-------+----------+---------------------------------------------------------------------------------------------------------------------------------------------+
+; b    ; Input ; Warning  ; Input port expression (5 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "b[31..5]" will be connected to GND. ;
++------+-------+----------+---------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mux_2to1:MUX_EXE1"                                                                  ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; c    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "ID_EXE:Top_ID_EXE"                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port            ; Type   ; Severity ; Details                                                                             ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+; WB_control_EXE  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; MEM_control_EXE ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; Alusrc          ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mux_2to1_35bits:MUX_ID6"                                                                                               ;
++------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                                                                ;
++------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
+; c    ; Output ; Warning  ; Output or bidir port (36 bits) is wider than the port expression (1 bits) it drives; bit(s) "c[35..1]" have no fanouts ;
+; c    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                    ;
+; b    ; Input  ; Info     ; Stuck at GND                                                                                                           ;
++------+--------+----------+------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "Hazard_Detection_Unit:Top_hazard_Detection_unit"                                                                                                  ;
++--------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port   ; Type  ; Severity ; Details                                                                                                                                          ;
++--------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Rt_ID  ; Input ; Warning  ; Input port expression (5 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Rt_ID[31..5]" will be connected to GND.  ;
+; Rs_ID  ; Input ; Warning  ; Input port expression (5 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Rs_ID[31..5]" will be connected to GND.  ;
+; Rd_EXE ; Input ; Warning  ; Input port expression (5 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "Rd_EXE[31..5]" will be connected to GND. ;
++--------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "registerFile:Top_registerFile"                                                                                                                                ;
++--------------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port         ; Type  ; Severity ; Details                                                                                                                                                ;
++--------------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Write_data64 ; Input ; Warning  ; Input port expression (1 bits) is smaller than the input port (64 bits) it drives.  Extra input bit(s) "Write_data64[63..1]" will be connected to GND. ;
++--------------+-------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "mux_2to1_5bits:MUX_ID1"                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; c    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++--------------------------------------------+
+; Port Connectivity Checks: "Adder:PC_Adder" ;
++----------+-------+----------+--------------+
+; Port     ; Type  ; Severity ; Details      ;
++----------+-------+----------+--------------+
+; b[31..3] ; Input ; Info     ; Stuck at GND ;
+; b[1..0]  ; Input ; Info     ; Stuck at GND ;
+; b[2]     ; Input ; Info     ; Stuck at VCC ;
++----------+-------+----------+--------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
 +-------------------------------+
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Mon Dec 21 22:36:56 2020
+    Info: Processing started: Tue Dec 22 16:17:22 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Top -c Top
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file top.v
@@ -210,19 +427,947 @@ Info (12021): Found 1 design units, including 1 entities, in source file hazard_
     Info (12023): Found entity 1: Hazard_Detection_Unit
 Info (12021): Found 1 design units, including 1 entities, in source file insmem.v
     Info (12023): Found entity 1: instructionMemory
-Error (10170): Verilog HDL syntax error at ALU.v(10) near text ")";  expecting a direction File: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ALU.v Line: 10
-Error (10170): Verilog HDL syntax error at ALU.v(126) near text "if";  expecting ";" File: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ALU.v Line: 126
-Error (10170): Verilog HDL syntax error at ALU.v(133) near text "if";  expecting ";" File: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ALU.v Line: 133
-Error (10079): Verilog HDL syntax error at ALU.v(182): illegal character in binary number File: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ALU.v Line: 182
-Error (10170): Verilog HDL syntax error at ALU.v(182) near text "'b";  expecting ")" File: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ALU.v Line: 182
-Error (10170): Verilog HDL syntax error at ALU.v(195) near text ")";  expecting "}" File: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ALU.v Line: 195
-Info (12021): Found 0 design units, including 0 entities, in source file alu.v
+Info (12021): Found 1 design units, including 1 entities, in source file alu.v
+    Info (12023): Found entity 1: ALU
+Info (12021): Found 1 design units, including 1 entities, in source file mux_2to1_64bits.v
+    Info (12023): Found entity 1: mux_2to1_64bits
+Warning (10229): Verilog HDL Expression warning at DataMemory.v(129): truncated literal to match 32 bits
+Info (12021): Found 2 design units, including 2 entities, in source file datamemory.v
+    Info (12023): Found entity 1: DataMemory
+    Info (12023): Found entity 2: testbench_memory
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/test1.v
+    Info (12023): Found entity 1: tst_1
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/test2.v
+    Info (12023): Found entity 1: tst_2
+Info (12021): Found 1 design units, including 1 entities, in source file mux_2to1_5bits.v
+    Info (12023): Found entity 1: mux_2to1_5bits
+Warning (10236): Verilog HDL Implicit Net warning at Top.v(203): created implicit net for "Write_data64"
+Warning (10236): Verilog HDL Implicit Net warning at Top.v(281): created implicit net for "ALUsrc"
+Warning (10236): Verilog HDL Implicit Net warning at Top.v(304): created implicit net for "bc1t_out"
+Warning (10236): Verilog HDL Implicit Net warning at Top.v(326): created implicit net for "WB_control_EX"
+Warning (10236): Verilog HDL Implicit Net warning at Top.v(327): created implicit net for "MEM_control_EX"
+Info (12127): Elaborating entity "Top" for the top level hierarchy
+Warning (10855): Verilog HDL warning at Top.v(133): initial value for variable PC_IN should be constant
+Warning (12125): Using design file clock.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: clock
+Info (12128): Elaborating entity "clock" for hierarchy "clock:TOP_Clock"
+Warning (10755): Verilog HDL warning at clock.v(9): assignments to clk create a combinational loop
+Info (12128): Elaborating entity "PC" for hierarchy "PC:top_PC"
+Warning (12125): Using design file adder.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
+    Info (12023): Found entity 1: Adder
+    Info (12023): Found entity 2: testbench_Adder
+Info (12128): Elaborating entity "Adder" for hierarchy "Adder:PC_Adder"
+Info (12128): Elaborating entity "instructionMemory" for hierarchy "instructionMemory:top_Instruction_memory"
+Info (12128): Elaborating entity "IF_ID" for hierarchy "IF_ID:Top_IF_ID"
+Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:Top_control_unit"
+Warning (10272): Verilog HDL Case Statement warning at control_unit.v(134): case item expression covers a value already covered by a previous case item
+Warning (10270): Verilog HDL Case Statement warning at control_unit.v(40): incomplete case statement has no default case item
+Warning (10270): Verilog HDL Case Statement warning at control_unit.v(460): incomplete case statement has no default case item
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(39): inferring latch(es) for variable "float_control_read", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(39): inferring latch(es) for variable "HILO_read_control", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(39): inferring latch(es) for variable "IF_Flush", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(39): inferring latch(es) for variable "ID_Flush", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(39): inferring latch(es) for variable "Store_Byte_control", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(39): inferring latch(es) for variable "Store_FP", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at control_unit.v(39): inferring latch(es) for variable "control_signal", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "control_signal[0]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[1]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[2]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[3]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[4]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[5]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[6]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[7]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[8]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[9]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[10]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[11]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[12]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[13]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[14]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[15]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[16]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[17]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[18]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[19]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[20]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[21]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[22]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[23]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[24]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[25]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[26]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[27]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[28]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[29]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[30]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[31]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[32]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[33]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[34]" at control_unit.v(39)
+Info (10041): Inferred latch for "control_signal[35]" at control_unit.v(39)
+Info (10041): Inferred latch for "Store_FP" at control_unit.v(39)
+Info (10041): Inferred latch for "Store_Byte_control" at control_unit.v(39)
+Info (10041): Inferred latch for "ID_Flush" at control_unit.v(39)
+Info (10041): Inferred latch for "IF_Flush" at control_unit.v(39)
+Info (10041): Inferred latch for "HILO_read_control[0]" at control_unit.v(39)
+Info (10041): Inferred latch for "HILO_read_control[1]" at control_unit.v(39)
+Info (10041): Inferred latch for "float_control_read" at control_unit.v(39)
+Warning (12125): Using design file shift_left_26bits.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
+    Info (12023): Found entity 1: shift_left_26bits
+    Info (12023): Found entity 2: testbench_shift_left_26bits
+Info (12128): Elaborating entity "shift_left_26bits" for hierarchy "shift_left_26bits:Top_shift_left26"
+Info (12128): Elaborating entity "mux_2to1_5bits" for hierarchy "mux_2to1_5bits:MUX_ID1"
+Warning (12125): Using design file mux_2to1.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
+    Info (12023): Found entity 1: mux_2to1
+    Info (12023): Found entity 2: testbench_mux_2to1
+Info (12128): Elaborating entity "mux_2to1" for hierarchy "mux_2to1:MUX_ID2"
+Info (12128): Elaborating entity "sign_extend" for hierarchy "sign_extend:Top_sign_extend"
+Info (12128): Elaborating entity "zero_extend" for hierarchy "zero_extend:Top_zero_extend"
+Warning (12125): Using design file registerfile.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
+    Info (12023): Found entity 1: registerFile
+    Info (12023): Found entity 2: testbench_RegisterFile
+Info (12128): Elaborating entity "registerFile" for hierarchy "registerFile:Top_registerFile"
+Info (12128): Elaborating entity "mux_3to1" for hierarchy "mux_3to1:MUX_ID5"
+Warning (10235): Verilog HDL Always Construct warning at mux_3to1.v(10): variable "a" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at mux_3to1.v(12): variable "b" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at mux_3to1.v(14): variable "c" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Info (12128): Elaborating entity "Hazard_Detection_Unit" for hierarchy "Hazard_Detection_Unit:Top_hazard_Detection_unit"
+Info (12128): Elaborating entity "mux_2to1_35bits" for hierarchy "mux_2to1_35bits:MUX_ID6"
+Info (12128): Elaborating entity "ID_EXE" for hierarchy "ID_EXE:Top_ID_EXE"
+Info (12128): Elaborating entity "shift_left_32bits" for hierarchy "shift_left_32bits:Top_shift_left_32"
+Info (12128): Elaborating entity "mux_4to1" for hierarchy "mux_4to1:MUX_EXE3"
+Warning (10235): Verilog HDL Always Construct warning at mux_4to1.v(11): variable "a" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at mux_4to1.v(13): variable "b" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at mux_4to1.v(15): variable "c" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Warning (10235): Verilog HDL Always Construct warning at mux_4to1.v(17): variable "d" is read inside the Always Construct but isn't in the Always Construct's Event Control
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:Top_ALU"
+Warning (10036): Verilog HDL or VHDL warning at ALU.v(13): object "funct" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at ALU.v(12): truncated value with size 6 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at ALU.v(13): truncated value with size 6 to match size of target (1)
+Warning (10240): Verilog HDL Always Construct warning at ALU.v(17): inferring latch(es) for variable "OUT_ALU32", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at ALU.v(17): inferring latch(es) for variable "ZF_ALU", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at ALU.v(17): inferring latch(es) for variable "OUT_ALU64", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "OUT_ALU64[0]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[1]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[2]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[3]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[4]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[5]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[6]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[7]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[8]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[9]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[10]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[11]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[12]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[13]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[14]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[15]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[16]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[17]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[18]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[19]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[20]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[21]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[22]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[23]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[24]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[25]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[26]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[27]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[28]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[29]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[30]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[31]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[32]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[33]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[34]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[35]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[36]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[37]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[38]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[39]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[40]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[41]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[42]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[43]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[44]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[45]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[46]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[47]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[48]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[49]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[50]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[51]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[52]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[53]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[54]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[55]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[56]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[57]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[58]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[59]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[60]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[61]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[62]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU64[63]" at ALU.v(272)
+Info (10041): Inferred latch for "ZF_ALU" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[0]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[1]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[2]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[3]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[4]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[5]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[6]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[7]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[8]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[9]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[10]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[11]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[12]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[13]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[14]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[15]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[16]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[17]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[18]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[19]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[20]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[21]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[22]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[23]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[24]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[25]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[26]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[27]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[28]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[29]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[30]" at ALU.v(272)
+Info (10041): Inferred latch for "OUT_ALU32[31]" at ALU.v(272)
+Info (12128): Elaborating entity "Forwarding_unit" for hierarchy "Forwarding_unit:Top_Forwarding_unit"
+Info (12128): Elaborating entity "EXE_MEM" for hierarchy "EXE_MEM:Top_EXE_MEM"
+Info (12128): Elaborating entity "DataMemory" for hierarchy "DataMemory:TOP_DataMemory"
+Warning (10230): Verilog HDL assignment warning at DataMemory.v(57): truncated value with size 32 to match size of target (8)
+Info (12128): Elaborating entity "MEM_WB" for hierarchy "MEM_WB:TOP_MEM_WB"
+Info (12128): Elaborating entity "mux_2to1_64bits" for hierarchy "mux_2to1_64bits:MUX_WB1"
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12011): Net is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[31]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[30]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[29]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[28]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[27]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[26]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[25]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[24]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[23]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[22]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[21]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[20]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[19]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[18]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[17]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[16]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[15]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[14]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[13]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[12]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[11]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[10]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[9]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[8]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[7]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[6]" is missing source, defaulting to GND
+    Warning (12110): Net "RegWr_EXE[5]" is missing source, defaulting to GND
+Warning (12241): 7 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (144001): Generated suppressed messages file D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/output_files/Top.map.smsg
-Error: Quartus II 64-Bit Analysis & Synthesis was unsuccessful. 6 errors, 6 warnings
-    Error: Peak virtual memory: 4615 megabytes
-    Error: Processing ended: Mon Dec 21 22:36:57 2020
-    Error: Elapsed time: 00:00:01
-    Error: Total CPU time (on all processors): 00:00:01
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 32 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "PC_VALUE[0]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[1]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[2]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[3]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[4]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[5]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[6]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[7]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[8]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[9]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[10]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[11]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[12]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[13]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[14]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[15]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[16]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[17]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[18]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[19]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[20]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[21]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[22]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[23]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[24]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[25]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[26]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[27]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[28]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[29]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[30]"
+    Warning (15610): No output dependent on input pin "PC_VALUE[31]"
+Info (21057): Implemented 32 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 32 input pins
+    Info (21059): Implemented 0 output pins
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 749 warnings
+    Info: Peak virtual memory: 4811 megabytes
+    Info: Processing ended: Tue Dec 22 16:17:26 2020
+    Info: Elapsed time: 00:00:04
+    Info: Total CPU time (on all processors): 00:00:04
 
 
 +------------------------------------------+

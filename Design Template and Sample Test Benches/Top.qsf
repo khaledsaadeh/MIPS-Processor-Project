@@ -70,4 +70,9 @@ set_global_assignment -name VERILOG_FILE MEM_WB.v
 set_global_assignment -name VERILOG_FILE Hazard_detection_unit.v
 set_global_assignment -name VERILOG_FILE insMem.v
 set_global_assignment -name VERILOG_FILE ALU.v
+set_global_assignment -name VERILOG_FILE mux_2to1_64bits.v
+set_global_assignment -name VERILOG_FILE DataMemory.v
+set_global_assignment -name VERILOG_FILE testbenches/test1.v
+set_global_assignment -name VERILOG_FILE testbenches/test2.v
+set_global_assignment -name VERILOG_FILE mux_2to1_5bits.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

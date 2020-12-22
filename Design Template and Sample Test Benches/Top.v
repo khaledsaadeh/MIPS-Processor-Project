@@ -1,10 +1,6 @@
-/*
-
-stage4 : memory stage (MEM)
-stage5 : writeback stage (WB)
-*/
 module Top(PC_VALUE);// testbench holds the PC Value.
-	input PC_VALUE;
+	input [31:0]PC_VALUE;
+	
 	wire Clk;
 	wire [31:0]PC_out;
 	wire [31:0]Inst;
@@ -28,16 +24,17 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire float_control_read;
 	wire float_control_write;
 	wire [1:0]HILO_read_control;
-	wire [1:0]HILO_write_control;
+	wire HILO_write_control;
 	wire [35:0]control_signal;
 	wire [27:0]Jmp_Adrs_ID_sl2;
+	wire [31:0]Jmp_adrs;
 	wire [4:0]RegRead_ID;
 	wire [31:0]WB_data;
 	wire [31:0]Write_data_MUX;
 	wire [31:0]HILO_write_WB;
 	wire [31:0]Write_data;
-	wire [31:0]RegWr_WB;
-	wire [31:0]RegWr_ID;
+	wire [4:0]RegWr_WB;
+	wire [4:0]RegWr_ID;
 	wire [31:0]Imm32_ID;
 	wire [31:0]Imm32_zero_ID;
 	wire ID_Flush;
@@ -57,7 +54,7 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire [31:0]read_data_ID;
 	wire PC_stall;
 	wire ID_stall_hazard;
-	wire load_control; // 3 or 1?
+	wire load_control;
 	wire ID_stall;
 	wire control_signal_ID;
 	wire [9:0]WB_control_EXE;
@@ -110,9 +107,35 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire Flush;
 	wire Rs_Rt_control;
 	wire [31:0]IN_ALU_MUX2;
+	wire [9:0]WB_control_MEM;
+	wire MemWrite;
+	wire MemWrite64;
+	wire MemRead;
+	wire [63:0]OUT_ALU64_MEM;
+	wire [31:0]Rt_data_MEM;
+	wire [63:0]Rt_data64_MEM;
+	wire [31:0]HILO_write_MEM;
+	wire [31:0]OUT_data_MEM;
+	wire [31:0]OUT_nextdata_MEM;
+	wire [63:0]OUT_data64_MEM;
+	wire [63:0]Rt_data64_EXE;
+	wire [63:0]OUT_ALU64_WB;
+	wire [63:0]OUT_data64_WB;
+	wire [31:0]Memory_WB;
+	wire [31:0]ALU_WB;
+	wire  MemToReg;
+	wire  MemToReg64;
+	wire  Jal_control;
+	wire [31:0]PC_IN1;
+	wire [31:0]PC_IN2;
+	reg [31:0]PC_IN;
 	
-	
-	clock Clock(Clk);
+initial begin
+	PC_IN=PC_VALUE;
+end
+
+	clock TOP_Clock(Clk);
+		
 	//stage1 : instruction fetch (IF)
 	PC top_PC(PC_out, PC_IN, PC_stall, Clk);
 	Adder PC_Adder(PC_4, PC_out, 32'h4);
@@ -154,10 +177,12 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 					
 	shift_left_26bits Top_shift_left26(Jmp_Adrs_ID_sl2, Jmp_Adrs_ID);
 	
-	mux_2to1 MUX_ID1(RegRead_ID, Rs_ID, Fs, float_control_read); //to read first register (Rs or Fs)
+	assign Jmp_adrs={PC_ID[31:28], Jmp_Adrs_ID_sl2[27:0]};
+	
+	mux_2to1_5bits MUX_ID1(RegRead_ID, Rs_ID, Fs, float_control_read); //to read first register (Rs or Fs)
 	mux_2to1 MUX_ID2(Write_data_MUX, WB_data , PC_ID , Jal_control); //to select PC in jump and link case
 	mux_2to1 MUX_ID3(Write_data, Write_data_MUX, HILO_write_WB, HILO_write_control); //to select HI/LO data in move from HI/LO case
-	mux_2to1 MUX_ID4(RegWr_ID, RegWr_WB, Fd, float_control_write); //to write in floating point registers or core instruction registers
+	mux_2to1_5bits MUX_ID4(RegWr_ID, RegWr_WB, Fd, float_control_write); //to write in floating point registers or core instruction registers
 	
 	sign_extend Top_sign_extend(Imm32_ID, Imm16_ID);
 	zero_extend Top_zero_extend(Imm32_zero_ID, Imm16_ID);
@@ -255,13 +280,13 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 		
 		mux_4to1 MUX_EXE3(IN_ALU_MUX, RtRd_data_EXE, Imm_EXE, Imm_zero_EXE, Shamt_EXE, ALUsrc);//to select second input of ALU 
 	
-		mux_2to1 MUX_EXE4(RegWr_EXE, Rd_EXE, Rt_EXE, REG_dst);//to select the register that we want to write in (in the WB stage)
+		mux_2to1_5bits MUX_EXE4(RegWr_EXE, Rd_EXE, Rt_EXE, REG_dst);//to select the register that we want to write in (in the WB stage)
 		
 		mux_3to1 MUX_EXE5(IN_ALU_1, Rs_data_EXE, Adrs_MEM, WB_data, Forward_MUX1);//forwarding mux Rs
 	
 		mux_3to1 MUX_EXE6(IN_ALU_2, IN_ALU_MUX, Adrs_MEM, WB_data, Forward_MUX2);//forwarding mux Rt
 		
-		//ALU Top_ALU(OUT_ALU32, OUT_ALU64, ZF_ALU, IN_ALU_MSG1, IN_ALU_1, IN_ALU_2, IN_ALU_MSG2, ALU_control);
+		ALU Top_ALU(OUT_ALU32, OUT_ALU64, ZF_ALU, IN_ALU_MSG1, IN_ALU_1, IN_ALU_2, IN_ALU_MSG2, ALU_control);
 		
 		Forwarding_unit Top_Forwarding_unit(
 								Forward_MUX1,
@@ -287,4 +312,83 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 		
 		or o3_EXE(Branch, Branch_FP, Branch_out);//branch or not
 
+		assign Rt_data64_EXE = {IN_ALU_MSG2, Rt_data_EXE};
+		
+		//stage4 : memory stage (MEM)
+		EXE_MEM Top_EXE_MEM(   
+					Clk,
+					OUT_ALU64,
+					OUT_ALU32,
+					Rt_data64_EXE,
+					Rt_data_EXE,
+					RegWr_EXE,
+					Rs_data_EXE,
+					WB_control_EX,
+					MEM_control_EX,
+					OUT_ALU64_MEM,
+					Adrs_MEM,
+					Rt_data_MEM,
+					Rt_data64_MEM,
+					RegWr_MEM,
+					HILO_write_MEM,
+					WB_control_MEM,
+					MemWrite64,
+					MemWrite,
+					MemRead);
+		
+		assign RegWrite_EXE_MEM = WB_control_MEM[8];
+		
+		DataMemory TOP_DataMemory(
+					OUT_data_MEM,
+					OUT_nextdata_MEM,
+					Adrs_MEM,
+					Rt_data_MEM,
+					Rt_data64_MEM,
+					MemRead,
+					MemWrite,
+					MemWrite64,
+					Clk);	
+		
+		assign OUT_data64_MEM = {OUT_data_MEM, OUT_nextdata_MEM};
+		
+		//stage5 : writeback stage (WB)		
+		MEM_WB TOP_MEM_WB(
+					Clk,
+					OUT_ALU64_MEM,
+					OUT_data64_MEM,
+					OUT_data_MEM,
+					Adrs_MEM,
+					RegWr_MEM,
+					HILO_write_MEM,
+					WB_control_MEM,
+					OUT_ALU64_WB,
+					OUT_data64_WB,
+					Memory_WB,
+					ALU_WB,
+					RegWr_WB,
+					HILO_write_WB,
+					RegWrite,
+					MemToReg,
+					MemToReg64,
+					MulDiv_control,
+					HILO_write_control,
+					Jal_control,
+					FPwrite_control,
+					Load_Byte_control,
+					float_control_write,
+					Write32_64);
+					
+		mux_2to1_64bits MUX_WB1(WB_data64, OUT_ALU64_WB, OUT_data64_WB, MemToReg64);//64 bit mux to select data to write back (ALU or Memory)
+		
+		mux_2to1 MUX_WB2(WB_data, Memory_WB, ALU_WB, MemToReg);//32 bit mux to select data to write back (ALU or Memory)
+		
+		assign RegWrite_MEM_WB = RegWrite;
+	
+		mux_2to1 MUX_WB3(PC_IN1, PC_4, Branch_adrs, Branch);//select branch adrs or next instruction
+		
+		mux_2to1 MUX_WB4(PC_IN2, Jmp_adrs, PC_IN1, Jmp_control);//select jump adrs or next instruction
+		
+		mux_2to1 MUX_WB5(PC_IN, Rt_data_EXE, PC_IN2, Jmp_Rgst_control);//select jump register adrs or next instruction
+		
 endmodule 
+
