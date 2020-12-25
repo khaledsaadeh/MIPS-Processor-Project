@@ -12,6 +12,13 @@ input [11:0]ALU_control
 wire opcode = ALU_control[11:6];
 wire funct = ALU_control[5:0];
 
+	
+initial begin
+	OUT_ALU32=32'h0;
+	OUT_ALU64=64'h0;
+	ZF_ALU=0;
+end
+
 always @(*) begin
 
 if(ALU_control ==  12'b000011100000)begin // ADD

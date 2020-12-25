@@ -109,12 +109,6 @@
 # 
 # Top level modules:
 # 	Hazard_Detection_Unit
-# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/insMem.v}
-# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module instructionMemory
-# 
-# Top level modules:
-# 	instructionMemory
 # vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ALU.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module ALU
@@ -131,7 +125,7 @@
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module DataMemory
 # -- Compiling module testbench_memory
-# ** Warning: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/DataMemory.v(129): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# ** Warning: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/DataMemory.v(137): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
 # 
 # 
 # Top level modules:
@@ -145,9 +139,16 @@
 # vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/clock.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module clock
+# -- Compiling module testbench_clock
 # 
 # Top level modules:
-# 	clock
+# 	testbench_clock
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/instructionMemory.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module instructionMemory
+# 
+# Top level modules:
+# 	instructionMemory
 # vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/adder.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module Adder
@@ -155,13 +156,6 @@
 # 
 # Top level modules:
 # 	testbench_Adder
-# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/shift_left_26bits.v}
-# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module shift_left_26bits
-# -- Compiling module testbench_shift_left_26bits
-# 
-# Top level modules:
-# 	testbench_shift_left_26bits
 # vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module mux_2to1
@@ -169,6 +163,13 @@
 # 
 # Top level modules:
 # 	testbench_mux_2to1
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/shift_left_26bits.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module shift_left_26bits
+# -- Compiling module testbench_shift_left_26bits
+# 
+# Top level modules:
+# 	testbench_shift_left_26bits
 # vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/registerfile.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module registerFile
@@ -190,12 +191,12 @@ vsim work.tst_1
 # Loading work.clock
 # Loading work.PC
 # Loading work.Adder
+# Loading work.mux_2to1
 # Loading work.instructionMemory
 # Loading work.IF_ID
 # Loading work.control_unit
 # Loading work.shift_left_26bits
 # Loading work.mux_2to1_5bits
-# Loading work.mux_2to1
 # Loading work.sign_extend
 # Loading work.zero_extend
 # Loading work.registerFile
@@ -211,43 +212,19 @@ vsim work.tst_1
 # Loading work.DataMemory
 # Loading work.MEM_WB
 # Loading work.mux_2to1_64bits
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(213): [PCDPC] - Port size (64 or 64) does not match connection size (1) for port 'Write_data64'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/registerfile.v(14).
-# 
-#         Region: /tst_1/top/Top_registerFile
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(224): [PCDPC] - Port size (32 or 32) does not match connection size (5) for port 'Rt_ID'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Hazard_detection_unit.v(5).
-# 
-#         Region: /tst_1/top/Top_hazard_Detection_unit
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(224): [PCDPC] - Port size (32 or 32) does not match connection size (5) for port 'Rs_ID'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Hazard_detection_unit.v(6).
-# 
-#         Region: /tst_1/top/Top_hazard_Detection_unit
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(224): [PCDPC] - Port size (32 or 32) does not match connection size (5) for port 'Rd_EXE'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Hazard_detection_unit.v(7).
-# 
-#         Region: /tst_1/top/Top_hazard_Detection_unit
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(228): [PCDPC] - Port size (36 or 36) does not match connection size (1) for port 'c'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1_35bits.v(1).
-# 
-#         Region: /tst_1/top/MUX_ID6
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(279): [PCDPC] - Port size (32 or 32) does not match connection size (5) for port 'b'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v(1).
-# 
-#         Region: /tst_1/top/MUX_EXE2
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(281): [PCDPC] - Port size (32 or 32) does not match connection size (5) for port 'd'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_4to1.v(1).
-# 
-#         Region: /tst_1/top/MUX_EXE3
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(281): [PCDPC] - Port size (2 or 2) does not match connection size (1) for port 'sel'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_4to1.v(1).
-# 
-#         Region: /tst_1/top/MUX_EXE3
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(283): [PCDPC] - Port size (5 or 5) does not match connection size (32) for port 'c'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1_5bits.v(1).
-# 
-#         Region: /tst_1/top/MUX_EXE4
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(337): [PCDPC] - Port size (5 or 5) does not match connection size (32) for port 'RegWr_EXE'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/EXE_MEM.v(7).
-# 
-#         Region: /tst_1/top/Top_EXE_MEM
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(337): [PCDPC] - Port size (10 or 10) does not match connection size (1) for port 'WB_control_EX'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/EXE_MEM.v(9).
-# 
-#         Region: /tst_1/top/Top_EXE_MEM
-# ** Warning: (vsim-3015) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(337): [PCDPC] - Port size (3 or 3) does not match connection size (1) for port 'MEM_control_EX'. The port definition is at: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/EXE_MEM.v(10).
-# 
-#         Region: /tst_1/top/Top_EXE_MEM
-# ** Error: (vsim-3053) D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v(391): Illegal output or inout port connection for "port 'c'".
-# 
-#         Region: /tst_1/top/MUX_WB5
-# Error loading design
+run -all
+# cycle:         14
+# PC:          0
+# ALUOut_EXEC:          0
+# $t0:          4 The correct value is 4
+# $t1:          0 The correct value is 8
+# $t2:          0 The correct value is 12
+# $t3:          0 The correct value is 16
+# $t4:          0 The correct value is 20
+# $t5:          0 The correct value is 24
+# $t6:          0 The correct value is 28
+# $t7:          0 The correct value is 32
+# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test1.v(25)
+#    Time: 1350 ps  Iteration: 1  Instance: /tst_1
+# 1
+# Break in Module tst_1 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test1.v line 25

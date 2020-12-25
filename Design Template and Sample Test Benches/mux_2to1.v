@@ -2,8 +2,18 @@ module mux_2to1(c,a,b,sel);
 	input [31:0]a;
 	input [31:0]b;
 	input sel;
-	output [31:0]c;
-	assign c = (sel==0)?a:b;
+	output reg[31:0]c;
+			
+	always@(*)begin 
+		if(sel==0)
+			c=a;
+		else if(sel==1)
+			c=b;
+		else c=32'hx;
+	end
+	
+	
+	
 endmodule
 /*--------------------------------------------------------------*/
 module testbench_mux_2to1();
@@ -15,11 +25,12 @@ module testbench_mux_2to1();
 	
 	
 initial begin
-	$monitor("z= %b",z);
-	x= 32'h 1;
-	y=0;
+	x= 32'h0;
+	y= 32'h0fff0;
 	sel=0;
-	
+	$monitor("z= %b",z);
+	#1 sel=1;
+	#1 $monitor("z= %b",z);
 end
 
 endmodule

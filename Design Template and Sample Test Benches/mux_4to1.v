@@ -2,11 +2,11 @@ module mux_4to1(z,a,b,c,d,sel);
 	input [31:0]a;
 	input [31:0]b;
 	input [31:0]c;
-	input [31:0]d;
+	input [4:0]d;
 	input [1:0]sel;
 	output reg[31:0]z;
 	
-	always@(sel)begin 
+	always@(*)begin 
 		if(sel==0)
 			z=a;
 		else if(sel==01)

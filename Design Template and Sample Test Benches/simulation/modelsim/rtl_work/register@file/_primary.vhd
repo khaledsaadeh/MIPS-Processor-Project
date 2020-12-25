@@ -6,12 +6,14 @@ entity registerFile is
         Rs_MSG          : out    vl_logic_vector(31 downto 0);
         Rt_data_ID      : out    vl_logic_vector(31 downto 0);
         Rt_MSG          : out    vl_logic_vector(31 downto 0);
+        Rd_data_ID      : out    vl_logic_vector(31 downto 0);
         HI              : out    vl_logic_vector(31 downto 0);
         LO              : out    vl_logic_vector(31 downto 0);
         FP              : out    vl_logic;
         Clk             : in     vl_logic;
         Rs_ID           : in     vl_logic_vector(4 downto 0);
         Rt_ID           : in     vl_logic_vector(4 downto 0);
+        Rd_ID           : in     vl_logic_vector(4 downto 0);
         RegWr_ID        : in     vl_logic_vector(4 downto 0);
         Write_data      : in     vl_logic_vector(31 downto 0);
         Write_data64    : in     vl_logic_vector(63 downto 0);

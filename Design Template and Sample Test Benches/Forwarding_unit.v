@@ -7,6 +7,10 @@ module Forwarding_unit(
 								input [4:0]Rs_EXE,
 								input RegWrite_EXE_MEM,
 								input RegWrite_MEM_WB);
+initial begin
+	Forward_MUX1=2'h0;
+	Forward_MUX2=2'h0;
+end
 								
 always@(*)begin
 	/*default case*/

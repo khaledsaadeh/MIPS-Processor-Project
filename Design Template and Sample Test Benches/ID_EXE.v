@@ -24,6 +24,7 @@ module ID_EXE(
 				output reg [4:0]Rd_EXE,
 				output reg [4:0]Rt_EXE,
 				output reg [4:0]Rs_EXE,
+				output reg [31:0]Rd_data_EXE,
 				input Clk,
 				input [35:0]control_signal,
 				input	FP,
@@ -32,6 +33,7 @@ module ID_EXE(
 				input [31:0]Rs_MSG,
 				input [31:0]Rt_data_ID,
 				input [31:0]Rt_MSG,
+				input [31:0]Rd_data_ID,
 				input [31:0]Imm32_ID,
 				input [31:0]Imm32_zero_ID,
 				input [4:0]Shamt_ID,
@@ -39,7 +41,36 @@ module ID_EXE(
 				input [4:0]Rt_ID,
 				input [4:0]Rs_ID);
 
-always@(negedge Clk)begin //read on negative edge
+initial begin
+	Rs_Rt_control=0;
+	WB_control_EXE=10'h0;
+	MEM_control_EXE=3'h0;
+	bc1f_control=0;
+	bc1t_control=0;
+	Branch_Eq_control=0;
+	Branch_notEq_control=0;
+	Jmp_Rgst_control=0;
+	Jmp_control=0;
+	Alusrc=2'b0;
+	Rt_Rd_control=0;
+	REG_dst=0;
+	ALU_control=12'h0;
+	FP_EXE=0;
+	PC_EXE=32'h0;
+	Rs_data_EXE=32'h0;
+	IN_ALU_MSG1=32'h0;
+	Rt_data_EXE=32'h0;
+	IN_ALU_MSG2=32'h0;
+	Imm_EXE=32'h0;
+	Imm_zero_EXE=32'h0;
+	Shamt_EXE=5'h0;
+	Rd_EXE=5'h0;
+	Rt_EXE=5'h0;
+	Rs_EXE=5'h0;
+	Rd_data_EXE=32'h0;
+end
+
+always@(posedge Clk)begin //read on negative edge
 	Alusrc = control_signal[1:0];
 	ALU_control = control_signal[13:2];
 	Jmp_Rgst_control = control_signal[14];

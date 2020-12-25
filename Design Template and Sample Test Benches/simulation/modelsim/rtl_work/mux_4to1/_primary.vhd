@@ -6,7 +6,7 @@ entity mux_4to1 is
         a               : in     vl_logic_vector(31 downto 0);
         b               : in     vl_logic_vector(31 downto 0);
         c               : in     vl_logic_vector(31 downto 0);
-        d               : in     vl_logic_vector(31 downto 0);
+        d               : in     vl_logic_vector(4 downto 0);
         sel             : in     vl_logic_vector(1 downto 0)
     );
 end mux_4to1;

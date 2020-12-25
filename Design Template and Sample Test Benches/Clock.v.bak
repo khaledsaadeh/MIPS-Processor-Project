@@ -4,9 +4,10 @@ module clock(clk);
 	initial begin
 		clk <= 0;
 	end
-	always
+	always@(*)
 		begin
-		#50 
+		#1//50 
 		clk <= ~clk;	
 	end
 endmodule
+

@@ -1,6 +1,7 @@
 module shift_left_32bits(
 					output [31:0]y,
 					input [31:0]x);
+	
 	assign y=x<<2;
 endmodule
 

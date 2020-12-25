@@ -1,6 +1,7 @@
 module zero_extend(
 				output [31:0]y,
 				input [15:0]x);
+	
 	assign y={{16{1'b0}},x};
 endmodule
 /*-------------------------*/

@@ -6,8 +6,17 @@ module clock(clk);
 	end
 	always
 		begin
-		#50 
+		#50
 		clk <= ~clk;	
 	end
 endmodule
+/*-------------------*/
+module testbench_clock();
+wire Clk;
 
+clock My_clock(Clk);
+
+initial begin
+	#1 $monitor("clock: %b",Clk);
+end
+endmodule

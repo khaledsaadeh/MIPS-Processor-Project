@@ -27,6 +27,7 @@ entity ID_EXE is
         Rd_EXE          : out    vl_logic_vector(4 downto 0);
         Rt_EXE          : out    vl_logic_vector(4 downto 0);
         Rs_EXE          : out    vl_logic_vector(4 downto 0);
+        Rd_data_EXE     : out    vl_logic_vector(31 downto 0);
         Clk             : in     vl_logic;
         control_signal  : in     vl_logic_vector(35 downto 0);
         FP              : in     vl_logic;
@@ -35,6 +36,7 @@ entity ID_EXE is
         Rs_MSG          : in     vl_logic_vector(31 downto 0);
         Rt_data_ID      : in     vl_logic_vector(31 downto 0);
         Rt_MSG          : in     vl_logic_vector(31 downto 0);
+        Rd_data_ID      : in     vl_logic_vector(31 downto 0);
         Imm32_ID        : in     vl_logic_vector(31 downto 0);
         Imm32_zero_ID   : in     vl_logic_vector(31 downto 0);
         Shamt_ID        : in     vl_logic_vector(4 downto 0);

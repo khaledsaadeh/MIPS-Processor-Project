@@ -3,12 +3,14 @@ module registerFile( output reg [31:0]Rs_data_ID,
 							output reg [31:0]Rs_MSG,
 							output reg [31:0]Rt_data_ID,
 							output reg [31:0]Rt_MSG,
+							output reg [31:0]Rd_data_ID,
 							output reg [31:0]HI,
 							output reg [31:0]LO,
 							output reg FP,
 							input Clk,
 							input [4:0]Rs_ID,
 							input [4:0]Rt_ID,
+							input [4:0]Rd_ID,
 							input [4:0]RegWr_ID,
 							input [31:0]Write_data,
 							input [63:0]Write_data64,
@@ -31,7 +33,15 @@ module registerFile( output reg [31:0]Rs_data_ID,
 	reg [31:0] lo;
 
 initial begin
-	hi=32'h0;
+	Rs_data_ID=32'h0;
+	Rs_MSG=32'h0;
+	Rt_data_ID=32'h0;
+	Rt_MSG=32'h0;
+	Rd_data_ID=32'h0;
+	HI=32'h0; //output
+	LO=32'h0;
+
+	hi=32'h0; //registers in register file
 	lo=32'h0;
 	FP=0;
 	
@@ -103,7 +113,41 @@ initial begin
 end
 
 always@(negedge Clk)begin //read on negative edge
-
+case(Rd_ID)
+			5'b00000: Rd_data_ID = registers_i[0] ;//	zero
+			5'b00001: Rd_data_ID = registers_i[1] ;//	at
+			5'b00010: Rd_data_ID = registers_i[2] ;//	v0
+			5'b00011: Rd_data_ID = registers_i[3] ;//	v1
+			5'b00100: Rd_data_ID = registers_i[4] ;//	a0
+			5'b00101: Rd_data_ID = registers_i[5] ;//	a1
+			5'b00110: Rd_data_ID = registers_i[6] ;//	a2
+			5'b00111: Rd_data_ID = registers_i[7] ;//	a3
+			5'b01000: Rd_data_ID = registers_i[8] ;//	t0
+			5'b01001: Rd_data_ID = registers_i[9] ;//	t1
+			5'b01010: Rd_data_ID = registers_i[10];//	t2
+			5'b01011: Rd_data_ID = registers_i[11];//	t3
+			5'b01100: Rd_data_ID = registers_i[12];//	t4
+			5'b01101: Rd_data_ID = registers_i[13];//	t5
+			5'b01110: Rd_data_ID = registers_i[14];//	t6
+			5'b01111: Rd_data_ID = registers_i[15];//	t7
+			5'b10000: Rd_data_ID = registers_i[16];//	t8
+			5'b10001: Rd_data_ID = registers_i[17];//	t9
+			5'b10010: Rd_data_ID = registers_i[18];//	s0
+			5'b10011: Rd_data_ID = registers_i[19];//	s1
+			5'b10100: Rd_data_ID = registers_i[20];//	s2
+			5'b10101: Rd_data_ID = registers_i[21];//	s3
+			5'b10110: Rd_data_ID = registers_i[22];//	s4
+			5'b10111: Rd_data_ID = registers_i[23];//	s5
+			5'b11000: Rd_data_ID = registers_i[24];//	s6
+			5'b11001: Rd_data_ID = registers_i[25];//	s7
+			5'b11010: Rd_data_ID = registers_i[26];//	k0
+			5'b11011: Rd_data_ID = registers_i[27];//	k1
+			5'b11100: Rd_data_ID = registers_i[28];//	gp
+			5'b11101: Rd_data_ID = registers_i[29];//	sp
+			5'b11110: Rd_data_ID = registers_i[30];//	fp
+			5'b11111: Rd_data_ID = registers_i[31];//	ra
+			endcase
+			
 FP=registers_i[30][0];//FP flag
 
 	if(Store_FP)begin //SPECIAL CASE: store FP instructions requires reading from both f & i register files at the same cycle

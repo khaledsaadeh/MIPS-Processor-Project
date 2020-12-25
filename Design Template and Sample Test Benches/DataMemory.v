@@ -57,6 +57,14 @@ initial
 				mem[i] <= i+1;
 			end
 		
+	 mem[3] 	= 4;
+	 mem[7] 	= 8;
+	 mem[11]	= 12;
+	 mem[15]	= 16;
+	 mem[19]	= 20;
+	 mem[23]	= 24;
+	 mem[27]	= 28;
+	 mem[31]	= 32;
 	end
 
 //read from memory 

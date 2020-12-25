@@ -27,12 +27,13 @@ module control_unit(
 					input [4:0]Ft);
 
 initial begin 
-	float_control_read=0;
-	HILO_read_control = 2'b00;
-	IF_Flush=0;
-	ID_Flush=0;
-	Store_Byte_control=0;
 	Store_FP=0;
+	ID_Flush=0;
+	IF_Flush=0;
+	Store_Byte_control=0;
+	float_control_read=0;
+	HILO_read_control=2'b0;
+	control_signal=36'h0;
 end
 				
 always@(*)begin
@@ -456,7 +457,7 @@ always@(*)begin
 				end	
 			endcase	
 		end
-		
+/*--------------------------------------------------------------------------------------------------------------------------------------------------------*/	
 	case(Op_code)//I, J, FR, and FI type instructions
 		6'h 11: //FR & FI instructions
 				if(Fmt==8)begin  //FI

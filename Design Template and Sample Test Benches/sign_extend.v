@@ -1,6 +1,7 @@
 module sign_extend(
 				output [31:0]y,
 				input [15:0]x);
+
 	assign y={{16{x[15]}},x};
 endmodule
 /*-------------------------*/

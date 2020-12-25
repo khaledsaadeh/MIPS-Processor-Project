@@ -23,7 +23,7 @@ module instructionMemory(instruction, PC);
 			for (j=j; j<16384; j = j + 1)   // 16 K Memory
 				begin
 					mem[j] <= 8'b0;
-				end		
+				end			
 				
 			// ******************************************************	
 			///Test Case 1: Load Operations 
