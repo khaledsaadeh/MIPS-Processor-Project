@@ -6,9 +6,18 @@ module instructionMemory(instruction, PC);
 	reg [7:0] mem [16383:0];
 	wire [31:0]instruction;
 	initial begin
+	
+		for (j = 0; j<4096; j = j + 1)   // 16 K Memory
+				begin
+					mem[j] <= 8'b0;
+					mem[j+1] <= 8'b0;
+					mem[j+2] <= 8'b0;
+					mem[j+3] <= 8'b0;
+					mem[j+4] <= 8'b0;
+				end		
 			// SOME softwares would have a 5000 limit on for loop.
 			// You can break this into multiple loops or initialize several locations in parallel
-			for (j = 0; j<4000; j = j + 1)   // 16 K Memory
+			/*for (j = 0; j<4000; j = j + 1)   // 16 K Memory
 				begin
 					mem[j] <= 8'b0;
 				end	
@@ -23,9 +32,8 @@ module instructionMemory(instruction, PC);
 			for (j=12000; j<16384; j = j + 1)   // 16 K Memory
 				begin
 					mem[j] <= 8'b0;
-				end			
-	end
-initial begin	
+				end	*/		
+	
 			// ******************************************************	
 			///Test Case 1: Load Operations 
 			// ****************************************************** 

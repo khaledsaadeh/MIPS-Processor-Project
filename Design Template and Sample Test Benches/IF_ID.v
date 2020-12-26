@@ -35,31 +35,31 @@ end
 
 always@(posedge Clk)begin //read
 if(!IF_Flush && !IF_stall)begin
-	Op_code=	Inst[31:26];
-	Rs_ID=Inst[25:21];		
-   Rt_ID=Inst[20:16];
-   Rd_ID=Inst[15:11];		
-   Shamt_ID=Inst[10:6];		
-   Funct_ID=Inst[5:0];		
-   Imm16_ID=Inst[15:0];		
-   Jmp_Adrs_ID=Inst[25:0];
-   Fmt=Inst[25:21];			
-   Fs=Inst[15:11];				
-   Fd=Inst[10:6];				
+	Op_code	<=	Inst[31:26];
+	Rs_ID	<=Inst[25:21];		
+   Rt_ID	<=Inst[20:16];
+   Rd_ID	<=Inst[15:11];		
+   Shamt_ID	<=Inst[10:6];		
+   Funct_ID	<=Inst[5:0];		
+   Imm16_ID	<=Inst[15:0];		
+   Jmp_Adrs_ID<=Inst[25:0];
+   Fmt<=Inst[25:21];			
+   Fs	<=Inst[15:11];				
+   Fd	<=Inst[10:6];				
    PC_ID=PC_4;
 end else if(IF_Flush)begin
-	Op_code=6'b0;
-	Rs_ID=5'b0;		
-   Rt_ID=5'b0;
-   Rd_ID=5'b0;		
-   Shamt_ID=5'b0;		
-   Funct_ID=6'b0;		
-   Imm16_ID=16'b0;		
-   Jmp_Adrs_ID=26'b0;
-   Fmt=5'b0;			
-   Fs=5'b0;				
-   Fd=5'b0;				
-   PC_ID=PC_4;
+	Op_code<=6'b0;
+	Rs_ID<=5'b0;		
+   Rt_ID<=5'b0;
+   Rd_ID<=5'b0;		
+   Shamt_ID<=5'b0;		
+   Funct_ID<=6'b0;		
+   Imm16_ID<=16'b0;		
+   Jmp_Adrs_ID<=26'b0;
+   Fmt<=5'b0;			
+   Fs<=5'b0;				
+   Fd<=5'b0;				
+   PC_ID<=PC_4;
 end else if(IF_stall)begin
 end
 end

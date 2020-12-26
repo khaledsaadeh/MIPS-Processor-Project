@@ -179,6 +179,10 @@
 # Top level modules:
 # 	testbench_RegisterFile
 # 
+vsim work.testbench_RegisterFile
+# vsim work.testbench_RegisterFile 
+# Loading work.testbench_RegisterFile
+# Loading work.registerFile
 vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test2.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module tst_2
@@ -213,10 +217,11 @@ vsim work.tst_2
 # Loading work.DataMemory
 # Loading work.MEM_WB
 # Loading work.mux_2to1_64bits
+# WARNING: No extended dataflow license exists
 add wave -r /*
 run -all
 # cycle:         12
-# PC:        236
+# PC:        244
 # ALUOut_EXEC:          0
 # $s1:          0 The correct value is 5
 # $s2:         10 The correct value is 10

@@ -211,7 +211,7 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 							MulDiv_control,
 							Write32_64,
 							Jal_control,
-							Store_FP);		
+							Store_FP);	
 		
 	mux_3to1 MUX_ID5(read_data_ID, Rs_data_ID, HI, LO, HILO_read_control); //determine Rs/HI/LO in case of move from HI/LO
 	
@@ -229,7 +229,7 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	mux_2to1_35bits MUX_ID6(control_signal_ID, control_signal, 36'h0, ID_stall); //determine whether to flush ID/EXE register
 	
 	//stage3 : execuction stage (EXEC)
-	ID_EXE	Top_ID_EXE(
+	ID_EXE Top_ID_EXE(
 						Rs_Rt_control,
 						WB_control_EXE,
 						MEM_control_EXE,
@@ -271,7 +271,7 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 						Rd_ID,
 						Rt_ID,
 						Rs_ID);
-						
+	
 		assign load_control=MEM_control_EXE[2];
 		
 		shift_left_32bits Top_shift_left_32(Imm_sl2_EXE, Imm_EXE); //to calculate branch address

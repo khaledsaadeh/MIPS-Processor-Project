@@ -238,7 +238,7 @@ FP=registers_i[30][0];//FP flag
 		endcase	
 		end
 
-	if(float_control_read==1 && !Store_FP)begin //use float registers 
+	if(float_control_read && !Store_FP)begin //use float registers 
 			HI=hi;
 			LO=lo;
 			
@@ -381,6 +381,41 @@ end
 			5'b11110: Rs_data_ID = registers_i[30];//	fp
 			5'b11111: Rs_data_ID = registers_i[31];//	ra
 		endcase
+		
+		case(Rt_ID)
+			5'b00000: Rt_data_ID = registers_i[0] ;//	zero
+			5'b00001: Rt_data_ID = registers_i[1] ;//	at
+			5'b00010: Rt_data_ID = registers_i[2] ;//	v0
+			5'b00011: Rt_data_ID = registers_i[3] ;//	v1
+			5'b00100: Rt_data_ID = registers_i[4] ;//	a0
+			5'b00101: Rt_data_ID = registers_i[5] ;//	a1
+			5'b00110: Rt_data_ID = registers_i[6] ;//	a2
+			5'b00111: Rt_data_ID = registers_i[7] ;//	a3
+			5'b01000: Rt_data_ID = registers_i[8] ;//	t0
+			5'b01001: Rt_data_ID = registers_i[9] ;//	t1
+			5'b01010: Rt_data_ID = registers_i[10];//	t2
+			5'b01011: Rt_data_ID = registers_i[11];//	t3
+			5'b01100: Rt_data_ID = registers_i[12];//	t4
+			5'b01101: Rt_data_ID = registers_i[13];//	t5
+			5'b01110: Rt_data_ID = registers_i[14];//	t6
+			5'b01111: Rt_data_ID = registers_i[15];//	t7
+			5'b10000: Rt_data_ID = registers_i[16];//	t8
+			5'b10001: Rt_data_ID = registers_i[17];//	t9
+			5'b10010: Rt_data_ID = registers_i[18];//	s0
+			5'b10011: Rt_data_ID = registers_i[19];//	s1
+			5'b10100: Rt_data_ID = registers_i[20];//	s2
+			5'b10101: Rt_data_ID = registers_i[21];//	s3
+			5'b10110: Rt_data_ID = registers_i[22];//	s4
+			5'b10111: Rt_data_ID = registers_i[23];//	s5
+			5'b11000: Rt_data_ID = registers_i[24];//	s6
+			5'b11001: Rt_data_ID = registers_i[25];//	s7
+			5'b11010: Rt_data_ID = registers_i[26];//	k0
+			5'b11011: Rt_data_ID = registers_i[27];//	k1
+			5'b11100: Rt_data_ID = registers_i[28];//	gp
+			5'b11101: Rt_data_ID = registers_i[29];//	sp
+			5'b11110: Rt_data_ID = registers_i[30];//	fp
+			5'b11111: Rt_data_ID = registers_i[31];//	ra
+		endcase
 
 	if(Store_Byte_control)begin
 		case(Rt_ID)
@@ -417,7 +452,7 @@ end
 			5'b11110: Rt_data_ID = {24'b0,registers_i[30][7:0]};
 			5'b11111: Rt_data_ID = {24'b0,registers_i[31][7:0]};
 	endcase
-	end else if(!Store_Byte_control)begin		
+	end/* else if(!Store_Byte_control)begin		
 			case(Rt_ID)
 				5'b00000: Rt_data_ID=registers_i[0] ;//	ze
 				5'b00001: Rt_data_ID=registers_i[1] ;//	at
@@ -451,7 +486,7 @@ end
 				5'b11101: Rt_data_ID=registers_i[29];//	sp
 				5'b11110: Rt_data_ID=registers_i[30];//	fp
 				5'b11111: Rt_data_ID=registers_i[31];//	ra
-		endcase end
+		endcase end*/
 end
 end
 
@@ -665,6 +700,7 @@ module testbench_RegisterFile();
 		wire [31:0]HI;
 		wire [31:0]LO;
 		wire  FP;
+		wire [31:0]Rd_data_ID;
 		reg Clk;
 		reg [4:0] Rs_ID;
 		reg [4:0] Rt_ID;
@@ -681,8 +717,9 @@ module testbench_RegisterFile();
 		reg Write32_64;
 		reg Jal_control;
 		reg Store_FP;								
-
-registerFile my_RegisterFile(Rs_data_ID, Rs_MSG, Rt_data_ID, Rt_MSG,	HI, LO, FP,	Clk, Rs_ID,	Rt_ID, RegWr_ID, Write_data, Write_data64, Load_Byte_control, Store_Byte_control, RegWrite, float_control_read, float_control_write, FPwrite_control, MulDiv_control, Write32_64, Jal_control, Store_FP);
+		reg [4:0]Rd_ID;
+		
+registerFile my_RegisterFile(Rs_data_ID, Rs_MSG, Rt_data_ID, Rt_MSG, Rd_data_ID,	HI, LO, FP,	Clk, Rs_ID,	Rt_ID, Rd_ID,RegWr_ID, Write_data, Write_data64, Load_Byte_control, Store_Byte_control, RegWrite, float_control_read, float_control_write, FPwrite_control, MulDiv_control, Write32_64, Jal_control, Store_FP);
 	
 initial begin
 	Clk <= 0;

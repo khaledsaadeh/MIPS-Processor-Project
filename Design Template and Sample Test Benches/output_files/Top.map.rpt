@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Top
-Sat Dec 26 02:38:43 2020
+Sat Dec 26 23:01:48 2020
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -46,7 +46,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Dec 26 02:38:43 2020      ;
+; Analysis & Synthesis Status        ; Successful - Sat Dec 26 23:01:48 2020      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; Top                                        ;
 ; Top-level Entity Name              ; Top                                        ;
@@ -290,7 +290,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sat Dec 26 02:38:40 2020
+    Info: Processing started: Sat Dec 26 23:01:45 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Top -c Top
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file top.v
@@ -377,7 +377,8 @@ Warning (12125): Using design file adder.v, which is not specified as a design f
     Info (12023): Found entity 2: testbench_Adder
 Info (12128): Elaborating entity "Adder" for hierarchy "Adder:PC_Adder"
 Info (12128): Elaborating entity "instructionMemory" for hierarchy "instructionMemory:top_Instruction_memory"
-Warning (10855): Verilog HDL warning at instructionMemory.v(28): initial value for variable mem should be constant
+Warning (10855): Verilog HDL warning at instructionMemory.v(8): initial value for variable mem should be constant
+Warning (10030): Net "mem" at instructionMemory.v(6) has no driver or initial value, using a default initial value '0'
 Info (12128): Elaborating entity "IF_ID" for hierarchy "IF_ID:Top_IF_ID"
 Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:Top_control_unit"
 Warning (10272): Verilog HDL Case Statement warning at control_unit.v(135): case item expression covers a value already covered by a previous case item
@@ -601,10 +602,10 @@ Warning (21074): Design contains 32 input pin(s) that do not drive logic
 Info (21057): Implemented 32 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 32 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 63 warnings
-    Info: Peak virtual memory: 4760 megabytes
-    Info: Processing ended: Sat Dec 26 02:38:44 2020
-    Info: Elapsed time: 00:00:04
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 64 warnings
+    Info: Peak virtual memory: 4764 megabytes
+    Info: Processing ended: Sat Dec 26 23:01:48 2020
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03
 
 

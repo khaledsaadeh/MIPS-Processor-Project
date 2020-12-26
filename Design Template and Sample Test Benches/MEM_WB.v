@@ -45,23 +45,23 @@ initial begin
 end
 always@(posedge Clk)begin
 
-Jal_control = WB_control_MEM[0];
-Load_Byte_control = WB_control_MEM[1];
-FPwrite_control = WB_control_MEM[2];
-HILO_write_control = WB_control_MEM[3];
-MulDiv_control = WB_control_MEM[4];
-float_control_write = WB_control_MEM[5];
-MemToReg64 = WB_control_MEM[6];
-MemToReg = WB_control_MEM[7];
-RegWrite = WB_control_MEM[8];
-Write32_64 = WB_control_MEM[9];
+Jal_control 		<= WB_control_MEM[0];
+Load_Byte_control <= WB_control_MEM[1];
+FPwrite_control 	<= WB_control_MEM[2];
+HILO_write_control<= WB_control_MEM[3];
+MulDiv_control		<= WB_control_MEM[4];
+float_control_write<= WB_control_MEM[5];
+MemToReg64 			<= WB_control_MEM[6];
+MemToReg 			<= WB_control_MEM[7];
+RegWrite			 	<= WB_control_MEM[8];
+Write32_64		 	<= WB_control_MEM[9];
 
-OUT_ALU64_WB=OUT_ALU64_MEM;
-OUT_data64_WB=OUT_data64_MEM;
-Memory_WB=OUT_data_MEM;
-ALU_WB=Adrs_MEM;
-RegWr_WB=RegWr_MEM;
-HILO_write_WB=HILO_write_MEM;
+OUT_ALU64_WB		<=OUT_ALU64_MEM;
+OUT_data64_WB		<=OUT_data64_MEM;
+Memory_WB			<=OUT_data_MEM;
+ALU_WB				<=Adrs_MEM;
+RegWr_WB				<=RegWr_MEM;
+HILO_write_WB		<=HILO_write_MEM;
 
 
 

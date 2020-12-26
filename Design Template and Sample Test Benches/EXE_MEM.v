@@ -34,18 +34,18 @@ initial begin
 end
 
 always@(posedge Clk)begin
-WB_control_MEM=WB_control_EX;
-MemRead=MEM_control_EX[2];
-MemWrite=MEM_control_EX[1];
-MemWrite64=MEM_control_EX[0];
+WB_control_MEM<=WB_control_EX;
+MemRead<=MEM_control_EX[2];
+MemWrite<=MEM_control_EX[1];
+MemWrite64<=MEM_control_EX[0];
 
 
-OUT_ALU64_MEM=OUT_ALU64;
-Adrs_MEM=OUT_ALU32;
-Rt_data_MEM=Rt_data_EXE;
-Rt_data64_MEM=Rt_data64_EXE;
-RegWr_MEM=RegWr_EXE;
-HILO_write_MEM=Rs_data_EXE;
+OUT_ALU64_MEM<=OUT_ALU64;
+Adrs_MEM<=OUT_ALU32;
+Rt_data_MEM<=Rt_data_EXE;
+Rt_data64_MEM<=Rt_data64_EXE;
+RegWr_MEM<=RegWr_EXE;
+HILO_write_MEM<=Rs_data_EXE;
 
 
 
