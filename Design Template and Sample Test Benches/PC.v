@@ -6,10 +6,11 @@ module PC(output reg[31:0]PC_out,
 			 );
 
 initial begin
-	 #1 PC_out=PC_INITIAL;
+	  #50 PC_out=PC_INITIAL;
 end
 
  always@(posedge clk)begin
+ 
 	if(control==0)	//fetch new instruction
 		PC_out=PC_IN;
 	else if(control==1)

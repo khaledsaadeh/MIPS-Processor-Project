@@ -24,7 +24,8 @@ module instructionMemory(instruction, PC);
 				begin
 					mem[j] <= 8'b0;
 				end			
-				
+	end
+initial begin	
 			// ******************************************************	
 			///Test Case 1: Load Operations 
 			// ****************************************************** 
@@ -304,5 +305,5 @@ module instructionMemory(instruction, PC);
 			
 						
 	end	 
-   assign instruction = {mem[PC],mem[PC+1],mem[PC+2],mem[PC+3]}; 
+   assign instruction = {mem[PC+0],mem[PC+1],mem[PC+2],mem[PC+3]}; 
 endmodule

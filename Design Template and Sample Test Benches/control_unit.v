@@ -458,8 +458,9 @@ always@(*)begin
 			endcase	
 		end
 /*--------------------------------------------------------------------------------------------------------------------------------------------------------*/	
+	else 
 	case(Op_code)//I, J, FR, and FI type instructions
-		6'h 11: //FR & FI instructions
+		6'b 010001:begin //FR & FI instructions
 				if(Fmt==8)begin  //FI
 					if(Ft==1)begin//Branch FP true	
 						float_control_read=0;
@@ -603,8 +604,9 @@ always@(*)begin
 						control_signal[34:25]=10'b0110000100;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 	    				end
 				end
+				end
 				
-		6'h 31:begin //LOAD FP SINGLE 
+		6'b 110001:begin //LOAD FP SINGLE 
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -627,7 +629,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0100100000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  			 												
 						end
 						
-		6'h 35:begin //LOAD FP DOUBLE 
+		6'b 110101:begin //LOAD FP DOUBLE 
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -650,7 +652,7 @@ always@(*)begin
 						control_signal[34:25]=10'b1101100000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 						end
 						
-		6'h 39:begin //STORE FP SINGLE
+		6'b 111001:begin //STORE FP SINGLE
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
 						ID_Flush=0;
@@ -673,7 +675,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 						end
 						
-		6'h 3d:begin //STORE FP DOUBLE
+		6'b 111101:begin //STORE FP DOUBLE
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
 						ID_Flush=0;
@@ -696,7 +698,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 						end
 						
-		6'h 9:begin //ADDi
+		6'b 001001:begin //ADDi
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -719,7 +721,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 8:begin //ADDiu (NOT REQUIRED ANYMORE !!!)
+		6'b 001000:begin //ADDiu (NOT REQUIRED ANYMORE !!!)
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -742,7 +744,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 					end
 					
-		6'h 0c:begin //ANDi
+		6'b 001100:begin //ANDi
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -765,7 +767,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 5:begin //BRANCH EQUAL
+		6'b 000101:begin //BRANCH EQUAL
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -788,7 +790,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 4:begin //BRANCH NOT EQUAL
+		6'b 000100:begin //BRANCH NOT EQUAL
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -811,7 +813,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 22:begin //LOAD BYTE UNSIGNED
+		6'b 100010:begin //LOAD BYTE UNSIGNED
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -834,7 +836,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0100000010;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 0F:begin //LOAD UPPER IMM
+		6'b 001111:begin //LOAD UPPER IMM
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -857,7 +859,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 12:begin //LOAD WORD
+		6'b 010010:begin //LOAD WORD
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -880,7 +882,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0100000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 0E:begin //OR IMM
+		6'b 001110:begin //OR IMM
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -903,7 +905,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 28:begin //STORE BYTE
+		6'b 101000:begin //STORE BYTE
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -926,7 +928,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 2B:begin //STORE WORD
+		6'b 101011:begin //STORE WORD
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						IF_Flush=0;
@@ -949,7 +951,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 02:begin //Jump
+		6'b 000010:begin //Jump
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						ID_Flush=0;
@@ -972,7 +974,7 @@ always@(*)begin
 						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
-		6'h 07:begin //Jump AND LINK
+		6'b 000111:begin //Jump AND LINK
 						float_control_read=0;
 						HILO_read_control = 2'b00;
 						ID_Flush=0;

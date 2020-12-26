@@ -5,11 +5,11 @@ module mux_2to1(c,a,b,sel);
 	output reg[31:0]c;
 			
 	always@(*)begin 
+		c=a;
 		if(sel==0)
 			c=a;
 		else if(sel==1)
 			c=b;
-		else c=32'hx;
 	end
 	
 	

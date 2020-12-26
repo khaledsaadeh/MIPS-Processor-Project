@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Top
-Thu Dec 24 20:59:45 2020
+Sat Dec 26 02:38:43 2020
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -46,7 +46,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Dec 24 20:59:45 2020      ;
+; Analysis & Synthesis Status        ; Successful - Sat Dec 26 02:38:43 2020      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; Top                                        ;
 ; Top-level Entity Name              ; Top                                        ;
@@ -191,8 +191,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; clock.v                          ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/clock.v                 ;         ;
 ; instructionMemory.v              ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/instructionMemory.v     ;         ;
 ; adder.v                          ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/adder.v                 ;         ;
-; mux_2to1.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v              ;         ;
 ; shift_left_26bits.v              ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/shift_left_26bits.v     ;         ;
+; mux_2to1.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v              ;         ;
 ; registerfile.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/registerfile.v          ;         ;
 +----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+---------+
 
@@ -290,7 +290,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Thu Dec 24 20:59:41 2020
+    Info: Processing started: Sat Dec 26 02:38:40 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Top -c Top
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file top.v
@@ -376,16 +376,13 @@ Warning (12125): Using design file adder.v, which is not specified as a design f
     Info (12023): Found entity 1: Adder
     Info (12023): Found entity 2: testbench_Adder
 Info (12128): Elaborating entity "Adder" for hierarchy "Adder:PC_Adder"
-Warning (12125): Using design file mux_2to1.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
-    Info (12023): Found entity 1: mux_2to1
-    Info (12023): Found entity 2: testbench_mux_2to1
-Info (12128): Elaborating entity "mux_2to1" for hierarchy "mux_2to1:MUX_WB3"
 Info (12128): Elaborating entity "instructionMemory" for hierarchy "instructionMemory:top_Instruction_memory"
+Warning (10855): Verilog HDL warning at instructionMemory.v(28): initial value for variable mem should be constant
 Info (12128): Elaborating entity "IF_ID" for hierarchy "IF_ID:Top_IF_ID"
 Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:Top_control_unit"
 Warning (10272): Verilog HDL Case Statement warning at control_unit.v(135): case item expression covers a value already covered by a previous case item
 Warning (10270): Verilog HDL Case Statement warning at control_unit.v(41): incomplete case statement has no default case item
-Warning (10270): Verilog HDL Case Statement warning at control_unit.v(461): incomplete case statement has no default case item
+Warning (10270): Verilog HDL Case Statement warning at control_unit.v(462): incomplete case statement has no default case item
 Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inferring latch(es) for variable "float_control_read", which holds its previous value in one or more paths through the always construct
 Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inferring latch(es) for variable "HILO_read_control", which holds its previous value in one or more paths through the always construct
 Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inferring latch(es) for variable "IF_Flush", which holds its previous value in one or more paths through the always construct
@@ -393,60 +390,64 @@ Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inf
 Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inferring latch(es) for variable "Store_Byte_control", which holds its previous value in one or more paths through the always construct
 Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inferring latch(es) for variable "Store_FP", which holds its previous value in one or more paths through the always construct
 Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inferring latch(es) for variable "control_signal", which holds its previous value in one or more paths through the always construct
-Info (10041): Inferred latch for "control_signal[0]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[1]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[2]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[3]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[4]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[5]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[6]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[7]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[8]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[9]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[10]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[11]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[12]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[13]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[14]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[15]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[16]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[17]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[18]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[19]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[20]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[21]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[22]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[23]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[24]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[25]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[26]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[27]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[28]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[29]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[30]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[31]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[32]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[33]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[34]" at control_unit.v(40)
-Info (10041): Inferred latch for "control_signal[35]" at control_unit.v(40)
-Info (10041): Inferred latch for "Store_FP" at control_unit.v(40)
-Info (10041): Inferred latch for "Store_Byte_control" at control_unit.v(40)
-Info (10041): Inferred latch for "ID_Flush" at control_unit.v(40)
-Info (10041): Inferred latch for "IF_Flush" at control_unit.v(40)
-Info (10041): Inferred latch for "HILO_read_control[0]" at control_unit.v(40)
-Info (10041): Inferred latch for "HILO_read_control[1]" at control_unit.v(40)
-Info (10041): Inferred latch for "float_control_read" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[0]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[1]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[2]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[3]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[4]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[5]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[6]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[7]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[8]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[9]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[10]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[11]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[12]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[13]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[14]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[15]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[16]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[17]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[18]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[19]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[20]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[21]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[22]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[23]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[24]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[25]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[26]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[27]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[28]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[29]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[30]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[31]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[32]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[33]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[34]" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[35]" at control_unit.v(462)
+Info (10041): Inferred latch for "Store_FP" at control_unit.v(462)
+Info (10041): Inferred latch for "Store_Byte_control" at control_unit.v(462)
+Info (10041): Inferred latch for "ID_Flush" at control_unit.v(462)
+Info (10041): Inferred latch for "IF_Flush" at control_unit.v(462)
+Info (10041): Inferred latch for "HILO_read_control[0]" at control_unit.v(462)
+Info (10041): Inferred latch for "HILO_read_control[1]" at control_unit.v(462)
+Info (10041): Inferred latch for "float_control_read" at control_unit.v(462)
 Warning (12125): Using design file shift_left_26bits.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
     Info (12023): Found entity 1: shift_left_26bits
     Info (12023): Found entity 2: testbench_shift_left_26bits
 Info (12128): Elaborating entity "shift_left_26bits" for hierarchy "shift_left_26bits:Top_shift_left26"
 Info (12128): Elaborating entity "mux_2to1_5bits" for hierarchy "mux_2to1_5bits:MUX_ID1"
+Warning (12125): Using design file mux_2to1.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
+    Info (12023): Found entity 1: mux_2to1
+    Info (12023): Found entity 2: testbench_mux_2to1
+Info (12128): Elaborating entity "mux_2to1" for hierarchy "mux_2to1:MUX_ID2"
 Info (12128): Elaborating entity "sign_extend" for hierarchy "sign_extend:Top_sign_extend"
 Info (12128): Elaborating entity "zero_extend" for hierarchy "zero_extend:Top_zero_extend"
 Warning (12125): Using design file registerfile.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
     Info (12023): Found entity 1: registerFile
     Info (12023): Found entity 2: testbench_RegisterFile
-Info (12128): Elaborating entity "registerFile" for hierarchy "registerFile:Top_registerFile"
+Info (12128): Elaborating entity "registerFile" for hierarchy "registerFile:regFile"
 Info (12128): Elaborating entity "mux_3to1" for hierarchy "mux_3to1:MUX_ID5"
 Info (12128): Elaborating entity "Hazard_Detection_Unit" for hierarchy "Hazard_Detection_Unit:Top_hazard_Detection_unit"
 Info (12128): Elaborating entity "mux_2to1_35bits" for hierarchy "mux_2to1_35bits:MUX_ID6"
@@ -454,109 +455,107 @@ Info (12128): Elaborating entity "ID_EXE" for hierarchy "ID_EXE:Top_ID_EXE"
 Info (12128): Elaborating entity "shift_left_32bits" for hierarchy "shift_left_32bits:Top_shift_left_32"
 Info (12128): Elaborating entity "mux_4to1" for hierarchy "mux_4to1:MUX_EXE3"
 Info (12128): Elaborating entity "ALU" for hierarchy "ALU:Top_ALU"
-Warning (10036): Verilog HDL or VHDL warning at ALU.v(13): object "funct" assigned a value but never read
-Warning (10230): Verilog HDL assignment warning at ALU.v(12): truncated value with size 6 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at ALU.v(13): truncated value with size 6 to match size of target (1)
-Warning (10240): Verilog HDL Always Construct warning at ALU.v(24): inferring latch(es) for variable "OUT_ALU32", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at ALU.v(24): inferring latch(es) for variable "ZF_ALU", which holds its previous value in one or more paths through the always construct
-Warning (10240): Verilog HDL Always Construct warning at ALU.v(24): inferring latch(es) for variable "OUT_ALU64", which holds its previous value in one or more paths through the always construct
-Info (10041): Inferred latch for "OUT_ALU64[0]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[1]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[2]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[3]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[4]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[5]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[6]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[7]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[8]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[9]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[10]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[11]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[12]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[13]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[14]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[15]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[16]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[17]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[18]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[19]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[20]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[21]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[22]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[23]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[24]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[25]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[26]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[27]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[28]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[29]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[30]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[31]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[32]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[33]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[34]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[35]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[36]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[37]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[38]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[39]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[40]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[41]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[42]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[43]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[44]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[45]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[46]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[47]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[48]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[49]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[50]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[51]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[52]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[53]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[54]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[55]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[56]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[57]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[58]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[59]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[60]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[61]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[62]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU64[63]" at ALU.v(279)
-Info (10041): Inferred latch for "ZF_ALU" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[0]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[1]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[2]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[3]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[4]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[5]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[6]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[7]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[8]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[9]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[10]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[11]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[12]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[13]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[14]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[15]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[16]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[17]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[18]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[19]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[20]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[21]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[22]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[23]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[24]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[25]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[26]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[27]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[28]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[29]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[30]" at ALU.v(279)
-Info (10041): Inferred latch for "OUT_ALU32[31]" at ALU.v(279)
+Warning (10230): Verilog HDL assignment warning at ALU.v(74): truncated value with size 48 to match size of target (32)
+Warning (10240): Verilog HDL Always Construct warning at ALU.v(25): inferring latch(es) for variable "OUT_ALU32", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at ALU.v(25): inferring latch(es) for variable "ZF_ALU", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at ALU.v(25): inferring latch(es) for variable "OUT_ALU64", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "ZF_ALU" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[0]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[1]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[2]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[3]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[4]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[5]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[6]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[7]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[8]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[9]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[10]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[11]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[12]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[13]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[14]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[15]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[16]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[17]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[18]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[19]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[20]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[21]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[22]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[23]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[24]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[25]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[26]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[27]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[28]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[29]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[30]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU32[31]" at ALU.v(294)
+Info (10041): Inferred latch for "OUT_ALU64[0]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[1]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[2]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[3]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[4]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[5]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[6]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[7]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[8]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[9]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[10]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[11]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[12]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[13]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[14]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[15]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[16]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[17]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[18]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[19]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[20]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[21]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[22]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[23]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[24]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[25]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[26]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[27]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[28]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[29]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[30]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[31]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[32]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[33]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[34]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[35]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[36]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[37]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[38]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[39]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[40]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[41]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[42]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[43]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[44]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[45]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[46]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[47]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[48]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[49]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[50]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[51]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[52]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[53]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[54]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[55]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[56]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[57]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[58]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[59]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[60]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[61]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[62]" at ALU.v(287)
+Info (10041): Inferred latch for "OUT_ALU64[63]" at ALU.v(287)
 Info (12128): Elaborating entity "Forwarding_unit" for hierarchy "Forwarding_unit:Top_Forwarding_unit"
 Info (12128): Elaborating entity "EXE_MEM" for hierarchy "EXE_MEM:Top_EXE_MEM"
 Info (12128): Elaborating entity "DataMemory" for hierarchy "DataMemory:TOP_DataMemory"
@@ -602,9 +601,9 @@ Warning (21074): Design contains 32 input pin(s) that do not drive logic
 Info (21057): Implemented 32 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 32 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 64 warnings
-    Info: Peak virtual memory: 4819 megabytes
-    Info: Processing ended: Thu Dec 24 20:59:45 2020
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 63 warnings
+    Info: Peak virtual memory: 4760 megabytes
+    Info: Processing ended: Sat Dec 26 02:38:44 2020
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:03
 

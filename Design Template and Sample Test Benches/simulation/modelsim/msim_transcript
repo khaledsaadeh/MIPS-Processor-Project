@@ -1,4 +1,5 @@
 # Reading C:/altera/13.0/modelsim_ase/tcl/vsim/pref.tcl 
+# ERROR: No extended dataflow license exists
 # do Top_run_msim_rtl_verilog.do 
 # if {[file exists rtl_work]} {
 # 	vdel -lib rtl_work -all
@@ -156,13 +157,6 @@
 # 
 # Top level modules:
 # 	testbench_Adder
-# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v}
-# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module mux_2to1
-# -- Compiling module testbench_mux_2to1
-# 
-# Top level modules:
-# 	testbench_mux_2to1
 # vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/shift_left_26bits.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module shift_left_26bits
@@ -170,6 +164,13 @@
 # 
 # Top level modules:
 # 	testbench_shift_left_26bits
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module mux_2to1
+# -- Compiling module testbench_mux_2to1
+# 
+# Top level modules:
+# 	testbench_mux_2to1
 # vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/registerfile.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module registerFile
@@ -178,25 +179,25 @@
 # Top level modules:
 # 	testbench_RegisterFile
 # 
-vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test1.v}
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test2.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
-# -- Compiling module tst_1
+# -- Compiling module tst_2
 # 
 # Top level modules:
-# 	tst_1
-vsim work.tst_1
-# vsim work.tst_1 
-# Loading work.tst_1
+# 	tst_2
+vsim work.tst_2
+# vsim work.tst_2 
+# Loading work.tst_2
 # Loading work.Top
 # Loading work.clock
 # Loading work.PC
 # Loading work.Adder
-# Loading work.mux_2to1
 # Loading work.instructionMemory
 # Loading work.IF_ID
 # Loading work.control_unit
 # Loading work.shift_left_26bits
 # Loading work.mux_2to1_5bits
+# Loading work.mux_2to1
 # Loading work.sign_extend
 # Loading work.zero_extend
 # Loading work.registerFile
@@ -212,19 +213,18 @@ vsim work.tst_1
 # Loading work.DataMemory
 # Loading work.MEM_WB
 # Loading work.mux_2to1_64bits
+add wave -r /*
 run -all
-# cycle:         14
-# PC:          0
+# cycle:         12
+# PC:        236
 # ALUOut_EXEC:          0
-# $t0:          4 The correct value is 4
-# $t1:          0 The correct value is 8
-# $t2:          0 The correct value is 12
-# $t3:          0 The correct value is 16
-# $t4:          0 The correct value is 20
-# $t5:          0 The correct value is 24
-# $t6:          0 The correct value is 28
-# $t7:          0 The correct value is 32
-# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test1.v(25)
-#    Time: 1350 ps  Iteration: 1  Instance: /tst_1
+# $s1:          0 The correct value is 5
+# $s2:         10 The correct value is 10
+# $s3:          3 The correct value is 3
+# $s4:          2 The correct value is 2
+# $s5:          0 The correct value is 15
+# $s6:          0 The correct value is -2  *** Check reporesentation
+# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test2.v(23)
+#    Time: 1150 ps  Iteration: 1  Instance: /tst_2
 # 1
-# Break in Module tst_1 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test1.v line 25
+# Break in Module tst_2 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test2.v line 23

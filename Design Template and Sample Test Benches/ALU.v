@@ -9,17 +9,18 @@ input [31:0]IN_ALU_MSG2,
 input [11:0]ALU_control
 );
 
-wire opcode = ALU_control[11:6];
-wire funct = ALU_control[5:0];
-
-	
+//reg opcode;
+//reg funct;
 initial begin
+	
 	OUT_ALU32=32'h0;
 	OUT_ALU64=64'h0;
 	ZF_ALU=0;
 end
 
 always @(*) begin
+//opcode = ALU_control[11:6];
+//funct = ALU_control[5:0];
 
 if(ALU_control ==  12'b000011100000)begin // ADD
 OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
@@ -29,7 +30,7 @@ OUT_ALU64 = 0;
 end
 
 
-if (opcode == 6'h9 ) begin  //ADD IMMEDIATE
+if (ALU_control[11:6] == 6'h9 ) begin  //ADD IMMEDIATE
 OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
 if (OUT_ALU32 == 0)
 ZF_ALU = 1;else ZF_ALU=0;
@@ -43,40 +44,40 @@ ZF_ALU = 1;else ZF_ALU=0;
 OUT_ALU64 = 0;
 end
 
-if (opcode == 6'hc) begin //AND IMMEDIATE 
+if (ALU_control[11:6] == 6'hc) begin //AND IMMEDIATE 
 OUT_ALU32 = IN_ALU_1 & IN_ALU_2;
 if (OUT_ALU32 == 0)
 ZF_ALU = 1;else ZF_ALU=0;
 OUT_ALU64 = 0;
 end
 
-if (opcode == 6'h5) begin  // BRANCH EQUAL
+if (ALU_control[11:6] == 6'h5) begin  // BRANCH EQUAL
 if (IN_ALU_1 == IN_ALU_2)
 ZF_ALU =1;
 else ZF_ALU =0;
 end
 
-if (opcode == 6'h4) begin  // BRANCH NOT EQUAL
+if (ALU_control[11:6] == 6'h4) begin  // BRANCH NOT EQUAL
 if (IN_ALU_1 != IN_ALU_2)
 ZF_ALU =1;
 else ZF_ALU = 0;
 end
 
-if (opcode == 6'h22 )begin //LOAD BYTE UNSIGNED
+if (ALU_control[11:6] == 6'h22 )begin //LOAD BYTE UNSIGNED
 OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
 OUT_ALU64 = 0;
 if (OUT_ALU32 == 0)
 ZF_ALU=1;else ZF_ALU=0;
 end
 
-if (opcode == 6'hf)begin //LOAD UPPER IMMEDIATE
+if (ALU_control[11:6] == 6'hf)begin //LOAD UPPER IMMEDIATE
 OUT_ALU32 = {IN_ALU_2, 16'b0};
 OUT_ALU64 = 0;
 if (OUT_ALU32 == 0)
 ZF_ALU=1;else ZF_ALU=0;
 end
 
-if (opcode == 6'h12 )begin //LOAD WORD
+if (ALU_control[11:6] == 6'h12 )begin //LOAD WORD
 OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
 OUT_ALU64 = 0;
 if (OUT_ALU32 == 0)
@@ -105,7 +106,7 @@ ZF_ALU = 1;else ZF_ALU=0;
 OUT_ALU64 = 0;
 end
 
-if (opcode==6'he)begin //OR IMMEDIATE	
+if (ALU_control[11:6]==6'he)begin //OR IMMEDIATE	
 OUT_ALU32 = IN_ALU_1 | IN_ALU_2;
 if (OUT_ALU32 == 0)
 ZF_ALU = 1;else ZF_ALU=0;
@@ -144,14 +145,14 @@ ZF_ALU = 1;else ZF_ALU=0;
 OUT_ALU64 = 0;
 end
 
-if (opcode == 6'h28) begin //STORE BYTE
+if (ALU_control[11:6] == 6'h28) begin //STORE BYTE
 OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
 OUT_ALU64 = 0;
 if (OUT_ALU32 == 0)
 ZF_ALU=1;else ZF_ALU=0;
 end
 
-if (opcode == 6'h2b)begin //STORE WORD
+if (ALU_control[11:6] == 6'h2b)begin //STORE WORD
 OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
 OUT_ALU64 = 0;
 if (OUT_ALU32 == 0)
@@ -240,7 +241,7 @@ ZF_ALU=1;else ZF_ALU=0;
 end
 
 
-if (opcode==6'h31) begin //LOAD FP SINGLE
+if (ALU_control[11:6]==6'h31) begin //LOAD FP SINGLE
 OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
 if (OUT_ALU32 == 0)
 ZF_ALU = 1;else ZF_ALU=0;
@@ -248,7 +249,7 @@ OUT_ALU64 = 0;
 end
 
 
-if (opcode == 6'h35) begin //LOAD FP DOUBLE
+if (ALU_control[11:6] == 6'h35) begin //LOAD FP DOUBLE
 OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
 if (OUT_ALU32 == 0)
 ZF_ALU =1;else ZF_ALU=0;
@@ -283,14 +284,14 @@ ZF_ALU = 1;else ZF_ALU=0;
 OUT_ALU64 = 0;
 end
 
-if (opcode == 6'h39) begin // STORE FP SINGLE
+if (ALU_control[11:6] == 6'h39) begin // STORE FP SINGLE
 OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
 if (OUT_ALU32 == 0)
 ZF_ALU = 1;else ZF_ALU=0;
 OUT_ALU64 = 0;
 end 
 
-if (opcode == 6'h3d) begin  //STORE FP DOUBLE
+if (ALU_control[11:6] == 6'h3d) begin  //STORE FP DOUBLE
 OUT_ALU32 = IN_ALU_1 + IN_ALU_2;
 if (OUT_ALU32 == 0)
 ZF_ALU =1;else ZF_ALU=0;

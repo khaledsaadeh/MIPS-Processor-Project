@@ -7,7 +7,7 @@ entity Hazard_Detection_Unit is
         ID_stall_hazard : out    vl_logic;
         Rt_ID           : in     vl_logic_vector(4 downto 0);
         Rs_ID           : in     vl_logic_vector(4 downto 0);
-        Rd_EXE          : in     vl_logic_vector(4 downto 0);
+        RegWr_EXE       : in     vl_logic_vector(4 downto 0);
         load_control    : in     vl_logic
     );
 end Hazard_Detection_Unit;

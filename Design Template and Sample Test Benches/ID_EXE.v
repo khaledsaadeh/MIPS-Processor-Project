@@ -70,7 +70,7 @@ initial begin
 	Rd_data_EXE=32'h0;
 end
 
-always@(posedge Clk)begin //read on negative edge
+always@(posedge Clk)begin //read 
 	Alusrc = control_signal[1:0];
 	ALU_control = control_signal[13:2];
 	Jmp_Rgst_control = control_signal[14];

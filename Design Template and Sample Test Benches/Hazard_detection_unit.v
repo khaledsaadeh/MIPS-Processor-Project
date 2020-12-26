@@ -4,7 +4,7 @@ module Hazard_Detection_Unit(
 	output reg ID_stall_hazard,
 	input [4:0]Rt_ID,
 	input [4:0]Rs_ID,
-	input [4:0]Rd_EXE,
+	input [4:0]RegWr_EXE,
 	input load_control
 );
 
@@ -15,7 +15,7 @@ ID_stall_hazard = 0;
 end 
 
 always@(*)begin
-if((load_control) && (Rd_EXE == Rs_ID || Rd_EXE == Rt_ID)) begin
+if((load_control) && (RegWr_EXE == Rs_ID || RegWr_EXE == Rt_ID)) begin
 
 IF_stall = 1;
 PC_stall = 1;
