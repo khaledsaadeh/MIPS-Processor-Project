@@ -26,21 +26,21 @@ module MEM_WB(
 );
 
 initial begin 
-	 OUT_ALU64_WB=64'h0;
-	 OUT_data64_WB=64'h0;
-	 Memory_WB=32'h0;
-	 ALU_WB=32'h0;
-	 RegWr_WB=5'h0;
-	 HILO_write_WB=32'h0;
-	 RegWrite=0;
-	 MemToReg=0;
-	 MemToReg64=0;
-	 MulDiv_control=0;
+	 OUT_ALU64_WB	<=64'h0;
+	 OUT_data64_WB	<=64'h0;
+	 Memory_WB		<=32'h0;
+	 ALU_WB			<=32'h0;
+	 RegWr_WB		<=5'h0;
+	 HILO_write_WB	<=32'h0;
+	 RegWrite		<=0;
+	 MemToReg		<=0;
+	 MemToReg64		<=0;
+	 MulDiv_control<=0;
 	 HILO_write_control=0;
-	 Jal_control=0;
-	 FPwrite_control=0;
-	 Load_Byte_control=0;
-	 float_control_write=0;
+	 Jal_control		<=0;
+	 FPwrite_control	<=0;
+	 Load_Byte_control<=0;
+	 float_control_write<=0;
 	 Write32_64=0;
 end
 always@(posedge Clk)begin

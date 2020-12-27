@@ -4,5 +4,7 @@ Warning (10268): Verilog HDL information at IF_ID.v(36): always construct contai
 Warning (10273): Verilog HDL warning at mux_2to1_35bits.v(12): extended using "x" or "z"
 Warning (10273): Verilog HDL warning at mux_2to1_64bits.v(12): extended using "x" or "z"
 Warning (10273): Verilog HDL warning at mux_2to1_5bits.v(13): extended using "x" or "z"
+Warning (10268): Verilog HDL information at registerfile.v(115): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at registerfile.v(494): always construct contains both blocking and non-blocking assignments
 Info (10281): Verilog HDL Declaration information at registerfile.v(7): object "HI" differs only in case from object "hi" in the same scope
 Info (10281): Verilog HDL Declaration information at registerfile.v(8): object "LO" differs only in case from object "lo" in the same scope

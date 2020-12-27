@@ -19,18 +19,18 @@ module IF_ID(
 				);
 
 initial begin
-	Op_code=6'h0;	
-	Rs_ID=5'h0;
-	Rt_ID=5'h0;
-	Rd_ID=5'h0;	
-	Shamt_ID=5'h0;
-	Funct_ID=6'h0;
-	Imm16_ID=16'h0;	
-	Jmp_Adrs_ID=26'h0;
-	Fmt=5'h0;
-	Fs=5'h0;	
-	Fd=5'h0;		
-	PC_ID=32'h0;		
+	Op_code	<=6'h0;	
+	Rs_ID		<=5'h0;
+	Rt_ID		<=5'h0;
+	Rd_ID		<=5'h0;	
+	Shamt_ID	<=5'h0;
+	Funct_ID	<=6'h0;
+	Imm16_ID	<=16'h0;	
+	Jmp_Adrs_ID<=26'h0;
+	Fmt	<=5'h0;
+	Fs		<=5'h0;	
+	Fd		<=5'h0;		
+	PC_ID	<=32'h0;		
 end
 
 always@(posedge Clk)begin //read

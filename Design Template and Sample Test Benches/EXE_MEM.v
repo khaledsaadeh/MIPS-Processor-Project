@@ -21,16 +21,16 @@ module EXE_MEM(
 );
 
 initial begin
-	OUT_ALU64_MEM=64'h0;
-	Adrs_MEM=32'h0;
-	Rt_data_MEM=32'h0;
-	Rt_data64_MEM=64'h0;
-	RegWr_MEM=5'h0;
-	HILO_write_MEM=32'h0;
-	WB_control_MEM=10'h0;
-	MemWrite64=0;
-	MemWrite=0;
-	MemRead=0;
+	OUT_ALU64_MEM	<=64'h0;
+	Adrs_MEM			<=32'h0;
+	Rt_data_MEM		<=32'h0;
+	Rt_data64_MEM	<=64'h0;
+	RegWr_MEM		<=5'h0;
+	HILO_write_MEM	<=32'h0;
+	WB_control_MEM	<=10'h0;
+	MemWrite64		<=0;
+	MemWrite			<=0;
+	MemRead			<=0;
 end
 
 always@(posedge Clk)begin

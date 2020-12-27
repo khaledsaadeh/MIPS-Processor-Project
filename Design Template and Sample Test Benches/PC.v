@@ -1,19 +1,19 @@
 module PC(output reg[31:0]PC_out,
-			 input [31:0]PC_INITIAL,
+			 //input [31:0]PC_INITIAL,
 			 input [31:0]PC_IN,
 			 input control,
 			 input clk
 			 );
-
+/*
 initial begin
-	   #1 PC_out=PC_INITIAL;
+	   #100 	PC_out<=PC_INITIAL;
 end
-
+*/
  always@(posedge clk)begin
 	if(control==0)	//fetch new instruction
-		PC_out=PC_IN;
+		PC_out<=PC_IN;
 	else if(control==1)
-		PC_out=PC_out;//stall
+		PC_out<=PC_out;//stall
 end
 endmodule
 

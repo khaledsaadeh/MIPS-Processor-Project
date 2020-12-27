@@ -27,433 +27,433 @@ module control_unit(
 					input [4:0]Ft);
 
 initial begin 
-	Store_FP=0;
-	ID_Flush=0;
-	IF_Flush=0;
-	Store_Byte_control=0;
-	float_control_read=0;
-	HILO_read_control=2'b0;
-	control_signal=36'h0;
+	Store_FP<=0;
+	ID_Flush<=0;
+	IF_Flush<=0;
+	Store_Byte_control<=0;
+	float_control_read<=0;
+	HILO_read_control<=2'b0;
+	control_signal<=36'h0;
 end
 				
 always@(*)begin
 	if(Op_code==6'h 3)begin /*R type inst*/
 			case(Funct_ID)
 				6'h 1a:begin //DIVIDE
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b1100010000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b1100010000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  
 				end
 				6'h 10:begin //MOVE FROM HI
-						HILO_read_control=2'b01;
-						float_control_read=1;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						HILO_read_control	<=2'b01;
+						float_control_read<=1;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0100001000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0100001000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 
 
 					end
 				6'h 12:begin //MOVE FROM LO
-						HILO_read_control=2'b10;
-						float_control_read=1;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						HILO_read_control	<=2'b10;
+						float_control_read<=1;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0100001000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  							
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0100001000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  							
 
 				end
 				6'h 18:begin //MULTIPLY
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b1100010000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  		 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b1100010000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  		 												
 
 						
 					end
-				6'h 18:begin //SHIFT_RIGHT_ARTH
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+				6'h 3:begin //SHIFT_RIGHT_ARTH
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 						
-						control_signal[35]=1; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
+						control_signal[35]	<=1; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 
 					end				
 				6'h 14:begin //AND
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 
 					end
 					
 				6'h 20:begin //ADD
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
 
 						
 					end
 				6'h 08:begin //Jump Register
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						ID_Flush=0;
-						Store_Byte_control=0;		
-						IF_Flush=1;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						ID_Flush<=0;
+						Store_Byte_control<=0;		
+						IF_Flush<=1;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=1;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0010000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=1;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0010000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  					 												
 
 					end
 				6'h 21:begin //Load word new
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=1;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b100;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0100000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=1;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b100;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0100000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 
 					end
 				6'h 27:begin //NOR
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
 
 					end
 				6'h 25:begin //OR
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  					 												
 
 					end
 				6'h 2A:begin //SET LESS THAN
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
 
 					end
 				6'h 2B:begin //SET LESS THAN UNSIGNED 
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  					 												
 					end
 					
 				6'h 0:begin //SHIFT LEFT LOGICAL
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=1; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
+						control_signal[35]	<=1; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
 					end
 					
 				6'h 02:begin //SHIFT RIGHT LOGICAL
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=1; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
+						control_signal[35]	<=1; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 					end
 					
 				6'h 13:begin //STORE word new
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=1;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b010;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=1;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b010;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 					end
 					
 				6'h 24:begin //SUBTRACT
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 					end
 					
 				6'h 22:begin //SUBTRACT UNSIGNED (NOT REQUIERD ANYMORE !!!)
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
 				end	
 			endcase	
 		end
@@ -463,538 +463,538 @@ always@(*)begin
 		6'b 010001:begin //FR & FI instructions
 				if(Fmt==8)begin  //FI
 					if(Ft==1)begin//Branch FP true	
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						Store_Byte_control=0;
-						ID_Flush=0;
-						IF_Flush=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						Store_Byte_control<=0;
+						ID_Flush<=0;
+						IF_Flush<=0;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=1;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=1;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  				 												
 						end
 						
 					else if(Ft==0)begin//Branch on FP false
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						Store_Byte_control=0;
-						ID_Flush=0;
-						IF_Flush=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						Store_Byte_control<=0;
+						ID_Flush<=0;
+						IF_Flush<=0;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=1;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=1;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end	
 						
 					end
 				else if(Fmt==5'h10)begin //FR
 					if(Funct_ID==6'h0)begin //ADD FP single
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						float_control_read=1;
-						Store_FP=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						float_control_read<=1;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110100000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110100000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 						end
 						
 					else if(Funct_ID==6'h32 || Funct_ID==6'h3c || Funct_ID==6'h3e)begin //compare FP single 
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						float_control_read=1;
-						Store_FP=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						float_control_read<=1;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000100;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000100;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 						end
 						
 				end
 				else if(Fmt==6'h11)begin //FR
 					if(Funct_ID==6'h0)begin //Add double FP
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						float_control_read=1;
-						Store_FP=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						float_control_read<=1;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b1110100000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b1110100000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  					 												
 						end
 						
 					else if(Funct_ID==6'h32 || Funct_ID==6'h3c || Funct_ID==6'h3e)begin//compare double FP
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						float_control_read=1;
-						Store_FP=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						float_control_read<=1;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000100;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000100;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 	    				end
 				end
 				end
 				
 		6'b 110001:begin //LOAD FP SINGLE 
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b01; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b100;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0100100000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  			 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b01; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b100;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0100100000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}  			 												
 						end
 						
 		6'b 110101:begin //LOAD FP DOUBLE 
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b01; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b100;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b1101100000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b01; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b100;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b1101100000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 						end
 						
 		6'b 111001:begin //STORE FP SINGLE
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						float_control_read=0;
-						Store_FP=1;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						float_control_read<=0;
+						Store_FP<=1;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b01; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=1;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b010;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b01; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=1;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b010;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 						end
 						
 		6'b 111101:begin //STORE FP DOUBLE
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						float_control_read=0;
-						Store_FP=1;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						float_control_read<=0;
+						Store_FP<=1;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b01; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=1;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b001;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b01; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=1;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b001;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}    					 												
 						end
 						
 		6'b 001001:begin //ADDi
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b01; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b01; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 001000:begin //ADDiu (NOT REQUIRED ANYMORE !!!)
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b01; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b01; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 					end
 					
 		6'b 001100:begin //ANDi
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b10; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b10; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 000101:begin //BRANCH EQUAL
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=1;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=1;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 000100:begin //BRANCH NOT EQUAL
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=1;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=1;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 100010:begin //LOAD BYTE UNSIGNED
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b01; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b100;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0100000010;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b01; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b100;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0100000010;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 001111:begin //LOAD UPPER IMM
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b10; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b10; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 010010:begin //LOAD WORD
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b01; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b100;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0100000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]<=0; //Rs_Rt_control
+						control_signal[1:0]<=2'b01; //ALUSrc									
+						control_signal[13:2]<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b100;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0100000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 001110:begin //OR IMM
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b10; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]<=0; //Rs_Rt_control
+						control_signal[1:0]<=2'b10; //ALUSrc									
+						control_signal[13:2]<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0110000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 101000:begin //STORE BYTE
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=1;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=1;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b01; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b010;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b01; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b010;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 101011:begin //STORE WORD
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						IF_Flush=0;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						IF_Flush<=0;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						Store_FP<=0;
 		
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b01; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=0;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=1;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b010;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b01; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=0;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=1;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b010;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 000010:begin //Jump
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						ID_Flush=0;
-						Store_Byte_control=0;
-						IF_Flush=1;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						ID_Flush<=0;
+						Store_Byte_control<=0;
+						IF_Flush<=1;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=1;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]	<=0; //Rs_Rt_control
+						control_signal[1:0]	<=2'b00; //ALUSrc									
+						control_signal[13:2]	<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=1;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0000000000;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end
 						
 		6'b 000111:begin //Jump AND LINK
-						float_control_read=0;
-						HILO_read_control = 2'b00;
-						ID_Flush=0;
-						Store_Byte_control=0;		
-						IF_Flush=1;
-						Store_FP=0;
+						float_control_read<=0;
+						HILO_read_control <= 2'b00;
+						ID_Flush<=0;
+						Store_Byte_control<=0;		
+						IF_Flush<=1;
+						Store_FP<=0;
 						
-						control_signal[35]=0; //Rs_Rt_control
-						control_signal[1:0]=2'b00; //ALUSrc									
-						control_signal[13:2]={Op_code,Funct_ID};//OP code & funct
-						control_signal[14]=0;//JMP_Rgst_control							
-						control_signal[15]=1;//Jmp_control									
-						control_signal[16]=0;//Branch_Eq_control						
-						control_signal[17]=0;//Branch_notEq_control						
-						control_signal[18]=0;//REG_dst	
-						control_signal[19]=0;//Rt_Rd_control
-						control_signal[20]=0;//bc1f_control
-						control_signal[21]=0;//bc1t_control		
-						control_signal[24:22]=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
-						control_signal[34:25]=10'b0100000001;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
+						control_signal[35]<=0; //Rs_Rt_control
+						control_signal[1:0]<=2'b00; //ALUSrc									
+						control_signal[13:2]<={Op_code,Funct_ID};//OP code & funct
+						control_signal[14]<=0;//JMP_Rgst_control							
+						control_signal[15]<=1;//Jmp_control									
+						control_signal[16]<=0;//Branch_Eq_control						
+						control_signal[17]<=0;//Branch_notEq_control						
+						control_signal[18]<=0;//REG_dst	
+						control_signal[19]<=0;//Rt_Rd_control
+						control_signal[20]<=0;//bc1f_control
+						control_signal[21]<=0;//bc1t_control		
+						control_signal[24:22]<=3'b000;//MEM_control_EX {MemRead, MemWrite, MemWrite64}						
+						control_signal[34:25]<=10'b0100000001;//WB_control_EX {1 Write32_64,2 RegWrite,3 MemToReg,4 MemToReg64,5 float_control_write,6 MulDiv_control,7 HilO_write_control,8 FPwrite_control,10 Load_Byte_control, Jal_control}   					 												
 						end	
 			
 	endcase

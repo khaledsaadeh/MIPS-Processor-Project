@@ -96,7 +96,7 @@ module instructionMemory(instruction, PC);
 			//addi $s4,$0,2			
 			//add  $s5,$s1,$s2
 			//sub  $s6,$s1,$s3
-			mem[200] <= 'h24;
+			mem[200] = 'h24;
 			mem[201] <= 'h13;
 			mem[202] <= 'h00;
 			mem[203] <= 'h05;
@@ -313,5 +313,5 @@ module instructionMemory(instruction, PC);
 			
 						
 	end	 
-   assign instruction = {mem[PC+0],mem[PC+1],mem[PC+2],mem[PC+3]}; 
+   assign instruction = {mem[PC],mem[PC+1],mem[PC+2],mem[PC+3]}; 
 endmodule

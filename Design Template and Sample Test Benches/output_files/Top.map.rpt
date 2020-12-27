@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Top
-Sat Dec 26 23:01:48 2020
+Sun Dec 27 11:43:18 2020
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -18,9 +18,10 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
  10. Port Connectivity Checks: "mux_2to1_35bits:MUX_ID6"
  11. Port Connectivity Checks: "mux_2to1_5bits:MUX_ID1"
  12. Port Connectivity Checks: "Adder:PC_Adder"
- 13. Elapsed Time Per Partition
- 14. Analysis & Synthesis Messages
- 15. Analysis & Synthesis Suppressed Messages
+ 13. Port Connectivity Checks: "mux_2to1:PC_MUX"
+ 14. Elapsed Time Per Partition
+ 15. Analysis & Synthesis Messages
+ 16. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -46,7 +47,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Dec 26 23:01:48 2020      ;
+; Analysis & Synthesis Status        ; Successful - Sun Dec 27 11:43:18 2020      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; Top                                        ;
 ; Top-level Entity Name              ; Top                                        ;
@@ -190,9 +191,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; mux_2to1_5bits.v                 ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1_5bits.v        ;         ;
 ; clock.v                          ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/clock.v                 ;         ;
 ; instructionMemory.v              ; yes             ; User Verilog HDL File        ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/instructionMemory.v     ;         ;
+; mux_2to1.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v              ;         ;
 ; adder.v                          ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/adder.v                 ;         ;
 ; shift_left_26bits.v              ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/shift_left_26bits.v     ;         ;
-; mux_2to1.v                       ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v              ;         ;
 ; registerfile.v                   ; yes             ; Auto-Found Verilog HDL File  ; D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/registerfile.v          ;         ;
 +----------------------------------+-----------------+------------------------------+--------------------------------------------------------------------------------------------------------------------------------------+---------+
 
@@ -275,6 +276,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------+-------+----------+--------------+
 
 
++---------------------------------------------+
+; Port Connectivity Checks: "mux_2to1:PC_MUX" ;
++------+-------+----------+-------------------+
+; Port ; Type  ; Severity ; Details           ;
++------+-------+----------+-------------------+
+; sel  ; Input ; Info     ; Stuck at GND      ;
++------+-------+----------+-------------------+
+
+
 +-------------------------------+
 ; Elapsed Time Per Partition    ;
 +----------------+--------------+
@@ -290,7 +300,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sat Dec 26 23:01:45 2020
+    Info: Processing started: Sun Dec 27 11:42:22 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Top -c Top
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file top.v
@@ -370,8 +380,11 @@ Info (12021): Found 1 design units, including 1 entities, in source file testben
 Info (12127): Elaborating entity "Top" for the top level hierarchy
 Info (12128): Elaborating entity "clock" for hierarchy "clock:TOP_Clock"
 Warning (10755): Verilog HDL warning at clock.v(9): assignments to clk create a combinational loop
+Warning (12125): Using design file mux_2to1.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
+    Info (12023): Found entity 1: mux_2to1
+    Info (12023): Found entity 2: testbench_mux_2to1
+Info (12128): Elaborating entity "mux_2to1" for hierarchy "mux_2to1:PC_MUX"
 Info (12128): Elaborating entity "PC" for hierarchy "PC:top_PC"
-Warning (10855): Verilog HDL warning at PC.v(8): initial value for variable PC_out should be constant
 Warning (12125): Using design file adder.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
     Info (12023): Found entity 1: Adder
     Info (12023): Found entity 2: testbench_Adder
@@ -381,7 +394,6 @@ Warning (10855): Verilog HDL warning at instructionMemory.v(8): initial value fo
 Warning (10030): Net "mem" at instructionMemory.v(6) has no driver or initial value, using a default initial value '0'
 Info (12128): Elaborating entity "IF_ID" for hierarchy "IF_ID:Top_IF_ID"
 Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:Top_control_unit"
-Warning (10272): Verilog HDL Case Statement warning at control_unit.v(135): case item expression covers a value already covered by a previous case item
 Warning (10270): Verilog HDL Case Statement warning at control_unit.v(41): incomplete case statement has no default case item
 Warning (10270): Verilog HDL Case Statement warning at control_unit.v(462): incomplete case statement has no default case item
 Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inferring latch(es) for variable "float_control_read", which holds its previous value in one or more paths through the always construct
@@ -391,58 +403,54 @@ Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inf
 Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inferring latch(es) for variable "Store_Byte_control", which holds its previous value in one or more paths through the always construct
 Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inferring latch(es) for variable "Store_FP", which holds its previous value in one or more paths through the always construct
 Warning (10240): Verilog HDL Always Construct warning at control_unit.v(40): inferring latch(es) for variable "control_signal", which holds its previous value in one or more paths through the always construct
-Info (10041): Inferred latch for "control_signal[0]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[1]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[2]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[3]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[4]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[5]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[6]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[7]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[8]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[9]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[10]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[11]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[12]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[13]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[14]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[15]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[16]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[17]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[18]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[19]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[20]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[21]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[22]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[23]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[24]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[25]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[26]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[27]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[28]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[29]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[30]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[31]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[32]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[33]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[34]" at control_unit.v(462)
-Info (10041): Inferred latch for "control_signal[35]" at control_unit.v(462)
-Info (10041): Inferred latch for "Store_FP" at control_unit.v(462)
-Info (10041): Inferred latch for "Store_Byte_control" at control_unit.v(462)
-Info (10041): Inferred latch for "ID_Flush" at control_unit.v(462)
-Info (10041): Inferred latch for "IF_Flush" at control_unit.v(462)
-Info (10041): Inferred latch for "HILO_read_control[0]" at control_unit.v(462)
-Info (10041): Inferred latch for "HILO_read_control[1]" at control_unit.v(462)
-Info (10041): Inferred latch for "float_control_read" at control_unit.v(462)
+Info (10041): Inferred latch for "control_signal[0]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[1]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[2]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[3]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[4]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[5]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[6]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[7]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[8]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[9]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[10]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[11]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[12]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[13]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[14]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[15]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[16]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[17]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[18]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[19]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[20]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[21]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[22]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[23]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[24]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[25]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[26]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[27]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[28]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[29]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[30]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[31]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[32]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[33]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[34]" at control_unit.v(40)
+Info (10041): Inferred latch for "control_signal[35]" at control_unit.v(40)
+Info (10041): Inferred latch for "Store_FP" at control_unit.v(40)
+Info (10041): Inferred latch for "Store_Byte_control" at control_unit.v(40)
+Info (10041): Inferred latch for "ID_Flush" at control_unit.v(40)
+Info (10041): Inferred latch for "IF_Flush" at control_unit.v(40)
+Info (10041): Inferred latch for "HILO_read_control[0]" at control_unit.v(40)
+Info (10041): Inferred latch for "HILO_read_control[1]" at control_unit.v(40)
+Info (10041): Inferred latch for "float_control_read" at control_unit.v(40)
 Warning (12125): Using design file shift_left_26bits.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
     Info (12023): Found entity 1: shift_left_26bits
     Info (12023): Found entity 2: testbench_shift_left_26bits
 Info (12128): Elaborating entity "shift_left_26bits" for hierarchy "shift_left_26bits:Top_shift_left26"
 Info (12128): Elaborating entity "mux_2to1_5bits" for hierarchy "mux_2to1_5bits:MUX_ID1"
-Warning (12125): Using design file mux_2to1.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
-    Info (12023): Found entity 1: mux_2to1
-    Info (12023): Found entity 2: testbench_mux_2to1
-Info (12128): Elaborating entity "mux_2to1" for hierarchy "mux_2to1:MUX_ID2"
 Info (12128): Elaborating entity "sign_extend" for hierarchy "sign_extend:Top_sign_extend"
 Info (12128): Elaborating entity "zero_extend" for hierarchy "zero_extend:Top_zero_extend"
 Warning (12125): Using design file registerfile.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
@@ -602,11 +610,11 @@ Warning (21074): Design contains 32 input pin(s) that do not drive logic
 Info (21057): Implemented 32 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 32 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 64 warnings
-    Info: Peak virtual memory: 4764 megabytes
-    Info: Processing ended: Sat Dec 26 23:01:48 2020
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 62 warnings
+    Info: Peak virtual memory: 4776 megabytes
+    Info: Processing ended: Sun Dec 27 11:43:18 2020
+    Info: Elapsed time: 00:00:56
+    Info: Total CPU time (on all processors): 00:00:56
 
 
 +------------------------------------------+

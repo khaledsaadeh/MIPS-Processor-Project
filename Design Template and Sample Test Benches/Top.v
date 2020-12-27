@@ -1,5 +1,5 @@
 module Top(PC_VALUE);// testbench holds the PC Value.
-	input [31:0]PC_VALUE;
+	input wire[31:0]PC_VALUE;
 	
 	wire clk;
 	wire [31:0]program_counter;
@@ -128,14 +128,25 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire  Jal_control;
 	wire [31:0]PC_IN1;
 	wire [31:0]PC_IN2;
-	wire  [31:0]PC_IN;
+	wire [31:0]PC_IN;
 	wire [31:0]Rd_data_ID;
 	wire [31:0]Rd_data_EXE;	
+	wire [31:0]PC_wire;
+	reg c1;
 	
+initial begin
+	c1=1;
+end
+always@(clk)begin
+		#100 c1=0;
+end
+	//buf  PC_buffer(PC_IN,PC_VALUE);
 	clock TOP_Clock(clk);
-
+	mux_2to1 PC_MUX(PC_wire,PC_IN,PC_VALUE,c1);
 	//stage1 : instruction fetch (IF)
-	PC top_PC(program_counter, PC_VALUE, PC_IN, PC_stall, clk);
+	//PC top_PC(program_counter, PC_VALUE, PC_IN, PC_stall, clk);
+	PC top_PC(program_counter, PC_wire, PC_stall, clk);
+	
 	Adder PC_Adder(PC_4, program_counter, 32'h4);
 
 	instructionMemory top_Instruction_memory(Inst, program_counter);
@@ -387,11 +398,11 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 		mux_2to1 MUX_WB2(WB_data, Memory_WB, ALU_WB, MemToReg);//32 bit mux to select data to write back (ALU or Memory)
 		
 		assign RegWrite_MEM_WB = RegWrite;
-			
+		
+		
 		mux_2to1 MUX_WB3(PC_IN1, PC_4, Branch_adrs, Branch);//select branch adrs or next instruction
 		mux_2to1 MUX_WB4(PC_IN2, PC_IN1, Jmp_adrs, Jmp_control);//select jump adrs or next instruction
 		mux_2to1 MUX_WB5(PC_IN , PC_IN2, Rt_data_EXE, Jmp_Rgst_control);//select jump register adrs or next instruction
 	
-		
 endmodule 
 
