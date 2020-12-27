@@ -33,83 +33,83 @@ module registerFile( output reg [31:0]Rs_data_ID,
 	reg [31:0] lo;
 
 initial begin
-	Rs_data_ID=32'h0;
-	Rs_MSG=32'h0;
-	Rt_data_ID=32'h0;
-	Rt_MSG=32'h0;
-	Rd_data_ID=32'h0;
-	HI=32'h0; //output
-	LO=32'h0;
+	Rs_data_ID	<=32'h0;
+	Rs_MSG		<=32'h0;
+	Rt_data_ID	<=32'h0;
+	Rt_MSG		<=32'h0;
+	Rd_data_ID	<=32'h0;
+	HI<=32'h0; //output
+	LO<=32'h0;
 
-	hi=32'h0; //registers in register file
-	lo=32'h0;
-	FP=0;
+	hi<=32'h0; //registers in register file
+	lo<=32'h0;
+	FP<=0;
 	
-	registers_i[0] =32'h0;	//00000	zero
-	registers_i[1] =32'h0;	//00001	at
-	registers_i[2] =32'h0;	//00010	v0
-	registers_i[3] =32'h0;	//00011	v1
-	registers_i[4] =32'h0;	//00100	a0
-	registers_i[5] =32'h0;	//00101	a1
-	registers_i[6] =32'h0;	//00110	a2
-	registers_i[7] =32'h0;	//00111	a3
-	registers_i[8] =32'h0;	//01000	t0
-	registers_i[9] =32'h0;	//01001	t1
-	registers_i[10]=32'h0;	//01010	t2
-	registers_i[11]=32'h0;	//01011	t3
-	registers_i[12]=32'h0;	//01100	t4
-	registers_i[13]=32'h0;	//01101	t5
-	registers_i[14]=32'h0;	//01110	t6
-	registers_i[15]=32'h0;	//01111	t7
-	registers_i[16]=32'h0;	//10000	t8
-	registers_i[17]=32'h0;	//10001	t9
-	registers_i[18]=32'h0;	//10010	s0
-	registers_i[19]=32'h0;	//10011	s1
-	registers_i[20]=32'h0;	//10100	s2
-	registers_i[21]=32'h0;	//10101	s3
-	registers_i[22]=32'h0;	//10110	s4
-	registers_i[23]=32'h0;	//10111	s5
-	registers_i[24]=32'h0;	//11000	s6
-	registers_i[25]=32'h0;	//11001	s7
-	registers_i[26]=32'h0;	//11010	k0
-	registers_i[27]=32'h0;	//11011	k1
-	registers_i[28]=32'h0;	//11100	gp
-	registers_i[29]=32'h0;	//11101	sp
-	registers_i[30]=32'h0;	//11110	fp
-	registers_i[31]=32'h0;	//11111	ra
+	registers_i[0] <=32'h0;	//00000	zero
+	registers_i[1] <=32'h0;	//00001	at
+	registers_i[2] <=32'h0;	//00010	v0
+	registers_i[3] <=32'h0;	//00011	v1
+	registers_i[4] <=32'h0;	//00100	a0
+	registers_i[5] <=32'h0;	//00101	a1
+	registers_i[6] <=32'h0;	//00110	a2
+	registers_i[7] <=32'h0;	//00111	a3
+	registers_i[8] <=32'h0;	//01000	t0
+	registers_i[9] <=32'h0;	//01001	t1
+	registers_i[10]<=32'h0;	//01010	t2
+	registers_i[11]<=32'h0;	//01011	t3
+	registers_i[12]<=32'h0;	//01100	t4
+	registers_i[13]<=32'h0;	//01101	t5
+	registers_i[14]<=32'h0;	//01110	t6
+	registers_i[15]<=32'h0;	//01111	t7
+	registers_i[16]<=32'h0;	//10000	t8
+	registers_i[17]<=32'h0;	//10001	t9
+	registers_i[18]<=32'h0;	//10010	s0
+	registers_i[19]<=32'h0;	//10011	s1
+	registers_i[20]<=32'h0;	//10100	s2
+	registers_i[21]<=32'h0;	//10101	s3
+	registers_i[22]<=32'h0;	//10110	s4
+	registers_i[23]<=32'h0;	//10111	s5
+	registers_i[24]<=32'h0;	//11000	s6
+	registers_i[25]<=32'h0;	//11001	s7
+	registers_i[26]<=32'h0;	//11010	k0
+	registers_i[27]<=32'h0;	//11011	k1
+	registers_i[28]<=32'h0;	//11100	gp
+	registers_i[29]<=32'h0;	//11101	sp
+	registers_i[30]<=32'h0;	//11110	fp
+	registers_i[31]<=32'h0;	//11111	ra
 	
-	registers_f[0] =32'h0;	//00000	
-	registers_f[1] =32'h0;	//00001	
-	registers_f[2] =32'h0;	//00010	
-	registers_f[3] =32'h0;	//00011	
-	registers_f[4] =32'h0;	//00100	
-	registers_f[5] =32'h0;	//00101	
-	registers_f[6] =32'h0;	//00110	
-	registers_f[7] =32'h0;	//00111	
-	registers_f[8] =32'h0;	//01000	
-	registers_f[9] =32'h0;	//01001	
-	registers_f[10]=32'h0;	//01010	
-	registers_f[11]=32'h0;	//01011	
-	registers_f[12]=32'h0;	//01100	
-	registers_f[13]=32'h0;	//01101	
-	registers_f[14]=32'h0;	//01110	
-	registers_f[15]=32'h0;	//01111	
-	registers_f[16]=32'h0;	//10000	
-	registers_f[17]=32'h0;	//10001	
-	registers_f[18]=32'h0;	//10010	
-	registers_f[19]=32'h0;	//10011	
-	registers_f[20]=32'h0;	//10100	
-	registers_f[21]=32'h0;	//10101	
-	registers_f[22]=32'h0;	//10110	
-	registers_f[23]=32'h0;	//10111	
-	registers_f[24]=32'h0;	//11000	
-	registers_f[25]=32'h0;	//11001	
-	registers_f[26]=32'h0;	//11010	
-	registers_f[27]=32'h0;	//11011	
-	registers_f[28]=32'h0;	//11100	
-	registers_f[29]=32'h0;	//11101	
-	registers_f[30]=32'h0;	//11110	
-	registers_f[31]=32'h0;	//11111	
+	registers_f[0] <=32'h0;	//00000	
+	registers_f[1] <=32'h0;	//00001	
+	registers_f[2] <=32'h0;	//00010	
+	registers_f[3] <=32'h0;	//00011	
+	registers_f[4] <=32'h0;	//00100	
+	registers_f[5] <=32'h0;	//00101	
+	registers_f[6] <=32'h0;	//00110	
+	registers_f[7] <=32'h0;	//00111	
+	registers_f[8] <=32'h0;	//01000	
+	registers_f[9] <=32'h0;	//01001	
+	registers_f[10]<=32'h0;	//01010	
+	registers_f[11]<=32'h0;	//01011	
+	registers_f[12]<=32'h0;	//01100	
+	registers_f[13]<=32'h0;	//01101	
+	registers_f[14]<=32'h0;	//01110	
+	registers_f[15]<=32'h0;	//01111	
+	registers_f[16]<=32'h0;	//10000	
+	registers_f[17]<=32'h0;	//10001	
+	registers_f[18]<=32'h0;	//10010	
+	registers_f[19]<=32'h0;	//10011	
+	registers_f[20]<=32'h0;	//10100	
+	registers_f[21]<=32'h0;	//10101	
+	registers_f[22]<=32'h0;	//10110	
+	registers_f[23]<=32'h0;	//10111	
+	registers_f[24]<=32'h0;	//11000	
+	registers_f[25]<=32'h0;	//11001	
+	registers_f[26]<=32'h0;	//11010	
+	registers_f[27]<=32'h0;	//11011	
+	registers_f[28]<=32'h0;	//11100	
+	registers_f[29]<=32'h0;	//11101	
+	registers_f[30]<=32'h0;	//11110	
+	registers_f[31]<=32'h0;	//11111	
 end
 
 always@(negedge Clk)begin //read on negative edge
@@ -238,7 +238,7 @@ FP=registers_i[30][0];//FP flag
 		endcase	
 		end
 
-	if(float_control_read && !Store_FP)begin //use float registers 
+	else if(float_control_read && !Store_FP)begin //use float registers 
 			HI=hi;
 			LO=lo;
 			
@@ -346,7 +346,41 @@ FP=registers_i[30][0];//FP flag
 end 
 
 //read from normal register file (core instructions)
-	if(!float_control_read && !Store_FP)begin
+	else if(!float_control_read && !Store_FP)begin
+		case(Rt_ID)
+			5'b00000: Rt_data_ID <= registers_i[0] ;//	zero
+			5'b00001: Rt_data_ID <= registers_i[1] ;//	at
+			5'b00010: Rt_data_ID <= registers_i[2] ;//	v0
+			5'b00011: Rt_data_ID <= registers_i[3] ;//	v1
+			5'b00100: Rt_data_ID <= registers_i[4] ;//	a0
+			5'b00101: Rt_data_ID <= registers_i[5] ;//	a1
+			5'b00110: Rt_data_ID <= registers_i[6] ;//	a2
+			5'b00111: Rt_data_ID <= registers_i[7] ;//	a3
+			5'b01000: Rt_data_ID <= registers_i[8] ;//	t0
+			5'b01001: Rt_data_ID <= registers_i[9] ;//	t1
+			5'b01010: Rt_data_ID <= registers_i[10];//	t2
+			5'b01011: Rt_data_ID <= registers_i[11];//	t3
+			5'b01100: Rt_data_ID <= registers_i[12];//	t4
+			5'b01101: Rt_data_ID <= registers_i[13];//	t5
+			5'b01110: Rt_data_ID <= registers_i[14];//	t6
+			5'b01111: Rt_data_ID <= registers_i[15];//	t7
+			5'b10000: Rt_data_ID <= registers_i[16];//	t8
+			5'b10001: Rt_data_ID <= registers_i[17];//	t9
+			5'b10010: Rt_data_ID <= registers_i[18];//	s0
+			5'b10011: Rt_data_ID <= registers_i[19];//	s1
+			5'b10100: Rt_data_ID <= registers_i[20];//	s2
+			5'b10101: Rt_data_ID <= registers_i[21];//	s3
+			5'b10110: Rt_data_ID <= registers_i[22];//	s4
+			5'b10111: Rt_data_ID <= registers_i[23];//	s5
+			5'b11000: Rt_data_ID <= registers_i[24];//	s6
+			5'b11001: Rt_data_ID <= registers_i[25];//	s7
+			5'b11010: Rt_data_ID <= registers_i[26];//	k0
+			5'b11011: Rt_data_ID <= registers_i[27];//	k1
+			5'b11100: Rt_data_ID <= registers_i[28];//	gp
+			5'b11101: Rt_data_ID <= registers_i[29];//	sp
+			5'b11110: Rt_data_ID <= registers_i[30];//	fp
+			5'b11111: Rt_data_ID <= registers_i[31];//	ra
+		endcase
 		case(Rs_ID)
 			5'b00000: Rs_data_ID <= registers_i[0] ;//	zero
 			5'b00001: Rs_data_ID <= registers_i[1] ;//	at
@@ -382,40 +416,7 @@ end
 			5'b11111: Rs_data_ID <= registers_i[31];//	ra
 		endcase
 		
-		case(Rt_ID)
-			5'b00000: Rt_data_ID <= registers_i[0] ;//	zero
-			5'b00001: Rt_data_ID <= registers_i[1] ;//	at
-			5'b00010: Rt_data_ID <= registers_i[2] ;//	v0
-			5'b00011: Rt_data_ID <= registers_i[3] ;//	v1
-			5'b00100: Rt_data_ID <= registers_i[4] ;//	a0
-			5'b00101: Rt_data_ID <= registers_i[5] ;//	a1
-			5'b00110: Rt_data_ID <= registers_i[6] ;//	a2
-			5'b00111: Rt_data_ID <= registers_i[7] ;//	a3
-			5'b01000: Rt_data_ID <= registers_i[8] ;//	t0
-			5'b01001: Rt_data_ID <= registers_i[9] ;//	t1
-			5'b01010: Rt_data_ID <= registers_i[10];//	t2
-			5'b01011: Rt_data_ID <= registers_i[11];//	t3
-			5'b01100: Rt_data_ID <= registers_i[12];//	t4
-			5'b01101: Rt_data_ID <= registers_i[13];//	t5
-			5'b01110: Rt_data_ID <= registers_i[14];//	t6
-			5'b01111: Rt_data_ID <= registers_i[15];//	t7
-			5'b10000: Rt_data_ID <= registers_i[16];//	t8
-			5'b10001: Rt_data_ID <= registers_i[17];//	t9
-			5'b10010: Rt_data_ID <= registers_i[18];//	s0
-			5'b10011: Rt_data_ID <= registers_i[19];//	s1
-			5'b10100: Rt_data_ID <= registers_i[20];//	s2
-			5'b10101: Rt_data_ID <= registers_i[21];//	s3
-			5'b10110: Rt_data_ID <= registers_i[22];//	s4
-			5'b10111: Rt_data_ID <= registers_i[23];//	s5
-			5'b11000: Rt_data_ID <= registers_i[24];//	s6
-			5'b11001: Rt_data_ID <= registers_i[25];//	s7
-			5'b11010: Rt_data_ID <= registers_i[26];//	k0
-			5'b11011: Rt_data_ID <= registers_i[27];//	k1
-			5'b11100: Rt_data_ID <= registers_i[28];//	gp
-			5'b11101: Rt_data_ID <= registers_i[29];//	sp
-			5'b11110: Rt_data_ID <= registers_i[30];//	fp
-			5'b11111: Rt_data_ID <= registers_i[31];//	ra
-		endcase
+		 end
 
 	if(Store_Byte_control)begin
 		case(Rt_ID)
@@ -452,42 +453,41 @@ end
 			5'b11110: Rt_data_ID <= {24'b0,registers_i[30][7:0]};
 			5'b11111: Rt_data_ID <= {24'b0,registers_i[31][7:0]};
 	endcase
-	end/* else if(!Store_Byte_control)begin		
+	end else if(!Store_Byte_control)begin		
 			case(Rt_ID)
-				5'b00000: Rt_data_ID=registers_i[0] ;//	ze
-				5'b00001: Rt_data_ID=registers_i[1] ;//	at
-				5'b00010: Rt_data_ID=registers_i[2] ;//	v0
-				5'b00011: Rt_data_ID=registers_i[3] ;//	v1
-				5'b00100: Rt_data_ID=registers_i[4] ;//	a0
-				5'b00101: Rt_data_ID=registers_i[5] ;//	a1
-				5'b00110: Rt_data_ID=registers_i[6] ;//	a2
-				5'b00111: Rt_data_ID=registers_i[7] ;//	a3
-				5'b01000: Rt_data_ID=registers_i[8] ;//	t0
-				5'b01001: Rt_data_ID=registers_i[9] ;//	t1
-				5'b01010: Rt_data_ID=registers_i[10];//	t2
-				5'b01011: Rt_data_ID=registers_i[11];//	t3
-				5'b01100: Rt_data_ID=registers_i[12];//	t4
-				5'b01101: Rt_data_ID=registers_i[13];//	t5
-				5'b01110: Rt_data_ID=registers_i[14];//	t6
-				5'b01111: Rt_data_ID=registers_i[15];//	t7
-				5'b10000: Rt_data_ID=registers_i[16];//	t8
-				5'b10001: Rt_data_ID=registers_i[17];//	t9
-				5'b10010: Rt_data_ID=registers_i[18];//	s0
-				5'b10011: Rt_data_ID=registers_i[19];//	s1
-				5'b10100: Rt_data_ID=registers_i[20];//	s2
-				5'b10101: Rt_data_ID=registers_i[21];//	s3
-				5'b10110: Rt_data_ID=registers_i[22];//	s4
-				5'b10111: Rt_data_ID=registers_i[23];//	s5
-				5'b11000: Rt_data_ID=registers_i[24];//	s6
-				5'b11001: Rt_data_ID=registers_i[25];//	s7
-				5'b11010: Rt_data_ID=registers_i[26];//	k0
-				5'b11011: Rt_data_ID=registers_i[27];//	k1
-				5'b11100: Rt_data_ID=registers_i[28];//	gp
-				5'b11101: Rt_data_ID=registers_i[29];//	sp
-				5'b11110: Rt_data_ID=registers_i[30];//	fp
-				5'b11111: Rt_data_ID=registers_i[31];//	ra
-		endcase end*/
-end
+				5'b00000: Rt_data_ID<=registers_i[0] ;//	ze
+				5'b00001: Rt_data_ID<=registers_i[1] ;//	at
+				5'b00010: Rt_data_ID<=registers_i[2] ;//	v0
+				5'b00011: Rt_data_ID<=registers_i[3] ;//	v1
+				5'b00100: Rt_data_ID<=registers_i[4] ;//	a0
+				5'b00101: Rt_data_ID<=registers_i[5] ;//	a1
+				5'b00110: Rt_data_ID<=registers_i[6] ;//	a2
+				5'b00111: Rt_data_ID<=registers_i[7] ;//	a3
+				5'b01000: Rt_data_ID<=registers_i[8] ;//	t0
+				5'b01001: Rt_data_ID<=registers_i[9] ;//	t1
+				5'b01010: Rt_data_ID<=registers_i[10];//	t2
+				5'b01011: Rt_data_ID<=registers_i[11];//	t3
+				5'b01100: Rt_data_ID<=registers_i[12];//	t4
+				5'b01101: Rt_data_ID<=registers_i[13];//	t5
+				5'b01110: Rt_data_ID<=registers_i[14];//	t6
+				5'b01111: Rt_data_ID<=registers_i[15];//	t7
+				5'b10000: Rt_data_ID<=registers_i[16];//	t8
+				5'b10001: Rt_data_ID<=registers_i[17];//	t9
+				5'b10010: Rt_data_ID<=registers_i[18];//	s0
+				5'b10011: Rt_data_ID<=registers_i[19];//	s1
+				5'b10100: Rt_data_ID<=registers_i[20];//	s2
+				5'b10101: Rt_data_ID<=registers_i[21];//	s3
+				5'b10110: Rt_data_ID<=registers_i[22];//	s4
+				5'b10111: Rt_data_ID<=registers_i[23];//	s5
+				5'b11000: Rt_data_ID<=registers_i[24];//	s6
+				5'b11001: Rt_data_ID<=registers_i[25];//	s7
+				5'b11010: Rt_data_ID<=registers_i[26];//	k0
+				5'b11011: Rt_data_ID<=registers_i[27];//	k1
+				5'b11100: Rt_data_ID<=registers_i[28];//	gp
+				5'b11101: Rt_data_ID<=registers_i[29];//	sp
+				5'b11110: Rt_data_ID<=registers_i[30];//	fp
+				5'b11111: Rt_data_ID<=registers_i[31];//	ra
+		endcase end
 end
 
 
@@ -605,8 +605,7 @@ always@(posedge Clk)begin //write on positive edge
 						endcase 
 				end
 			end	
-	
-//read from normal register file (core instructions)		
+		
 	if(!float_control_write)begin
 		if(RegWrite)begin
 			if(Load_Byte_control)begin
@@ -722,6 +721,7 @@ module testbench_RegisterFile();
 registerFile my_RegisterFile(Rs_data_ID, Rs_MSG, Rt_data_ID, Rt_MSG, Rd_data_ID,	HI, LO, FP,	Clk, Rs_ID,	Rt_ID, Rd_ID,RegWr_ID, Write_data, Write_data64, Load_Byte_control, Store_Byte_control, RegWrite, float_control_read, float_control_write, FPwrite_control, MulDiv_control, Write32_64, Jal_control, Store_FP);
 	
 initial begin
+	Rd_ID=5'd0;
 	Clk <= 0;
 	#1 Clk <= ~Clk;	
 //-----------------------------------------------------------------------------------------//	
@@ -784,9 +784,9 @@ initial begin
 	#1	Clk <= ~Clk;
 	#1	$display("t0 is %h",Rs_data_ID);
 //-----------------------------------------------------------------------------------------//
-	//case4: Read from $s1//
+	//case4: Read from $s1 & $t0//
 	#1 Clk <= ~Clk;			
-	Rs_ID=5'd0;
+	Rs_ID=5'd8;
 	Rt_ID=5'd19;
 	Write_data64=64'h0;
 	RegWr_ID=5'h8;
@@ -802,7 +802,7 @@ initial begin
 	Jal_control=0;
 	Store_FP=0;					
 	#1	Clk <= ~Clk;
-	#1	$display("S1 is %h",Rt_data_ID);
+	#1	$display("S1 is %h\t t0 is %h",Rt_data_ID,Rs_data_ID);
 //-----------------------------------------------------------------------------------------//
 	//case5: Write to F[6] the value 32'h 0EE//
 	#1 Clk <= ~Clk;			

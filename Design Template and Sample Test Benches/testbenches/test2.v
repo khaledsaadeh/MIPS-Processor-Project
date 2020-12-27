@@ -23,9 +23,7 @@ module tst_2;
 		$finish;
 		end
 			cycle = cycle + 1;
-		
-		
-	
+
 		
 	end
 endmodule

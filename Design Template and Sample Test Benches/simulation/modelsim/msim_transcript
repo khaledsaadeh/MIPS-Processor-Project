@@ -218,12 +218,12 @@ run -all
 # cycle:         12
 # PC:        240
 # ALUOut_EXEC:          0
-# $s1:          0 The correct value is 5
+# $s1:          5 The correct value is 5
 # $s2:         10 The correct value is 10
 # $s3:          3 The correct value is 3
 # $s4:          2 The correct value is 2
-# $s5:          0 The correct value is 15
-# $s6:          0 The correct value is -2  *** Check reporesentation
+# $s5:          5 The correct value is 15
+# $s6: 4294967291 The correct value is -2  *** Check reporesentation
 # ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test2.v(23)
 #    Time: 1150 ps  Iteration: 1  Instance: /tst_2
 # 1
