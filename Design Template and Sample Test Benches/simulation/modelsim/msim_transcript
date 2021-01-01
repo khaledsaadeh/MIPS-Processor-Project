@@ -179,12 +179,85 @@
 # Top level modules:
 # 	testbench_RegisterFile
 # 
-vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test2.v}
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_1.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_1
+# 
+# Top level modules:
+# 	tst_1
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_2.v}
 # Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 # -- Compiling module tst_2
 # 
 # Top level modules:
 # 	tst_2
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_3 .v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module arethmatic1
+# 
+# Top level modules:
+# 	arethmatic1
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_4.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_4
+# 
+# Top level modules:
+# 	tst_4
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_5.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_5
+# 
+# Top level modules:
+# 	tst_5
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_6.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_6
+# 
+# Top level modules:
+# 	tst_6
+vsim work.tst_1
+# vsim work.tst_1 
+# Loading work.tst_1
+# Loading work.Top
+# Loading work.clock
+# Loading work.mux_2to1
+# Loading work.PC
+# Loading work.Adder
+# Loading work.instructionMemory
+# Loading work.IF_ID
+# Loading work.control_unit
+# Loading work.shift_left_26bits
+# Loading work.mux_2to1_5bits
+# Loading work.sign_extend
+# Loading work.zero_extend
+# Loading work.registerFile
+# Loading work.mux_3to1
+# Loading work.Hazard_Detection_Unit
+# Loading work.mux_2to1_35bits
+# Loading work.ID_EXE
+# Loading work.shift_left_32bits
+# Loading work.mux_4to1
+# Loading work.ALU
+# Loading work.Forwarding_unit
+# Loading work.EXE_MEM
+# Loading work.DataMemory
+# Loading work.MEM_WB
+# Loading work.mux_2to1_64bits
+run -all
+# cycle:         14
+# PC:        140
+# $t0:          4 The correct value is 4
+# $t1:          8 The correct value is 8
+# $t2:         12 The correct value is 12
+# $t3:         16 The correct value is 16
+# $t4:         20 The correct value is 20
+# $t5:         24 The correct value is 24
+# $t6:         28 The correct value is 28
+# $t7:         32 The correct value is 32
+# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_1.v(24)
+#    Time: 1350 ps  Iteration: 1  Instance: /tst_1
+# 1
+# Break in Module tst_1 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_1.v line 24
 vsim work.tst_2
 # vsim work.tst_2 
 # Loading work.tst_2
@@ -213,18 +286,173 @@ vsim work.tst_2
 # Loading work.DataMemory
 # Loading work.MEM_WB
 # Loading work.mux_2to1_64bits
-add wave -r /*
 run -all
 # cycle:         12
 # PC:        240
-# ALUOut_EXEC:          0
 # $s1:          5 The correct value is 5
 # $s2:         10 The correct value is 10
 # $s3:          3 The correct value is 3
 # $s4:          2 The correct value is 2
-# $s5:          5 The correct value is 15
-# $s6: 4294967291 The correct value is -2  *** Check reporesentation
-# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test2.v(23)
+# $s5:         15 The correct value is 15
+# $s6: 4294967294 The correct value is -2  *** Check reporesentation
+# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_2.v(22)
 #    Time: 1150 ps  Iteration: 1  Instance: /tst_2
 # 1
-# Break in Module tst_2 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/test2.v line 23
+# Break in Module tst_2 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_2.v line 22
+vsim work.tst_4
+# vsim work.tst_4 
+# Loading work.tst_4
+# Loading work.Top
+# Loading work.clock
+# Loading work.mux_2to1
+# Loading work.PC
+# Loading work.Adder
+# Loading work.instructionMemory
+# Loading work.IF_ID
+# Loading work.control_unit
+# Loading work.shift_left_26bits
+# Loading work.mux_2to1_5bits
+# Loading work.sign_extend
+# Loading work.zero_extend
+# Loading work.registerFile
+# Loading work.mux_3to1
+# Loading work.Hazard_Detection_Unit
+# Loading work.mux_2to1_35bits
+# Loading work.ID_EXE
+# Loading work.shift_left_32bits
+# Loading work.mux_4to1
+# Loading work.ALU
+# Loading work.Forwarding_unit
+# Loading work.EXE_MEM
+# Loading work.DataMemory
+# Loading work.MEM_WB
+# Loading work.mux_2to1_64bits
+run -all
+# cycle:         13
+# PC:        436
+# $s1:          0 The correct value is 0
+# $s2:         10 The correct value is 10
+# $s3:         15 The correct value is 15
+# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_4.v(19)
+#    Time: 1150 ps  Iteration: 1  Instance: /tst_4
+# 1
+# Break in Module tst_4 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_4.v line 19
+vsim work.tst_5
+# vsim work.tst_5 
+# Loading work.tst_5
+# Loading work.Top
+# Loading work.clock
+# Loading work.mux_2to1
+# Loading work.PC
+# Loading work.Adder
+# Loading work.instructionMemory
+# Loading work.IF_ID
+# Loading work.control_unit
+# Loading work.shift_left_26bits
+# Loading work.mux_2to1_5bits
+# Loading work.sign_extend
+# Loading work.zero_extend
+# Loading work.registerFile
+# Loading work.mux_3to1
+# Loading work.Hazard_Detection_Unit
+# Loading work.mux_2to1_35bits
+# Loading work.ID_EXE
+# Loading work.shift_left_32bits
+# Loading work.mux_4to1
+# Loading work.ALU
+# Loading work.Forwarding_unit
+# Loading work.EXE_MEM
+# Loading work.DataMemory
+# Loading work.MEM_WB
+# Loading work.mux_2to1_64bits
+run -all
+# cycle:         16
+# PC:        556
+# $s1:         30 The correct value is 30
+# $s2:         20 The correct value is 20
+# $s3:          6 The correct value is 6
+# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_5.v(18)
+#    Time: 1550 ps  Iteration: 1  Instance: /tst_5
+# 1
+# Break in Module tst_5 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_5.v line 18
+vsim work.tst_6
+# vsim work.tst_6 
+# Loading work.tst_6
+# Loading work.Top
+# Loading work.clock
+# Loading work.mux_2to1
+# Loading work.PC
+# Loading work.Adder
+# Loading work.instructionMemory
+# Loading work.IF_ID
+# Loading work.control_unit
+# Loading work.shift_left_26bits
+# Loading work.mux_2to1_5bits
+# Loading work.sign_extend
+# Loading work.zero_extend
+# Loading work.registerFile
+# Loading work.mux_3to1
+# Loading work.Hazard_Detection_Unit
+# Loading work.mux_2to1_35bits
+# Loading work.ID_EXE
+# Loading work.shift_left_32bits
+# Loading work.mux_4to1
+# Loading work.ALU
+# Loading work.Forwarding_unit
+# Loading work.EXE_MEM
+# Loading work.DataMemory
+# Loading work.MEM_WB
+# Loading work.mux_2to1_64bits
+run -all
+# cycle:         11
+# PC:        636
+# $s1:         15 The correct value is 15
+# $s2:         10 The correct value is 10
+# $s3:          3 The correct value is 3
+# $s4:         25 The correct value is 25
+# $s5:         28 The correct value is 28
+# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_6.v(20)
+#    Time: 1050 ps  Iteration: 1  Instance: /tst_6
+# 1
+# Break in Module tst_6 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_6.v line 20
+vsim work.arethmatic1
+# vsim work.arethmatic1 
+# Loading work.arethmatic1
+# Loading work.Top
+# Loading work.clock
+# Loading work.mux_2to1
+# Loading work.PC
+# Loading work.Adder
+# Loading work.instructionMemory
+# Loading work.IF_ID
+# Loading work.control_unit
+# Loading work.shift_left_26bits
+# Loading work.mux_2to1_5bits
+# Loading work.sign_extend
+# Loading work.zero_extend
+# Loading work.registerFile
+# Loading work.mux_3to1
+# Loading work.Hazard_Detection_Unit
+# Loading work.mux_2to1_35bits
+# Loading work.ID_EXE
+# Loading work.shift_left_32bits
+# Loading work.mux_4to1
+# Loading work.ALU
+# Loading work.Forwarding_unit
+# Loading work.EXE_MEM
+# Loading work.DataMemory
+# Loading work.MEM_WB
+# Loading work.mux_2to1_64bits
+run -all
+# cycle:         12
+# PC:        340
+# $s1:         15 The correct value is 15
+# $s2:         10 The correct value is 10
+# $s3:          3 The correct value is 3
+# $s4:          2 The correct value is 2
+# $s5:         10 The correct value is 10
+# $s6:         11 The correct value is 11
+# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_3 .v(22)
+#    Time: 1150 ps  Iteration: 1  Instance: /arethmatic1
+# 1
+# Break in Module arethmatic1 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_3 .v line 22

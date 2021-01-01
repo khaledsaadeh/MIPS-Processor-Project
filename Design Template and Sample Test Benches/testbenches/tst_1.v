@@ -12,7 +12,6 @@ module tst_1;
 	begin
 		$display("cycle: %d" , cycle);
 		$display("PC: %d",top.program_counter);				   
-		$display("ALUOut_EXEC: %d" , top.ALUOut_EXEC);
 		$display("$t0: %d" , top.regFile.registers_i[8], " The correct value is 4");
 		$display("$t1: %d" , top.regFile.registers_i[9], " The correct value is 8");		
 		$display("$t2: %d" , top.regFile.registers_i[10], " The correct value is 12");		

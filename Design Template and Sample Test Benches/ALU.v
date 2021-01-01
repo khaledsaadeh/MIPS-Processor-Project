@@ -100,7 +100,7 @@ ZF_ALU = 1;else ZF_ALU=0;
 OUT_ALU64 = 0;
 end
 
-if (ALU_control == 12'b000011100111)begin //OR
+if (ALU_control == 12'b000011100101)begin //OR
 OUT_ALU32 = IN_ALU_1 | IN_ALU_2;
 if (OUT_ALU32 == 0)
 ZF_ALU = 1;else ZF_ALU=0;

@@ -133,6 +133,11 @@ module Top(PC_VALUE);// testbench holds the PC Value.
 	wire [31:0]Rd_data_EXE;	
 	wire [31:0]PC_wire;
 	reg c1;
+	/*wire FP_out;
+	wire [31:0]Rs_MSG_out;
+	wire [31:0]Rt_data_ID_out;
+	wire [31:0]Rt_MSG_out;
+	wire [31:0]Rd_data_ID_out;*/
 	
 initial begin
 	c1=1;
@@ -183,7 +188,7 @@ end
 					Op_code,
 					Funct_ID,
 					Fmt,
-					Rt_ID);
+					Rt_ID);//ft
 					
 	shift_left_26bits Top_shift_left26(Jmp_Adrs_ID_sl2, Jmp_Adrs_ID);
 	
@@ -196,7 +201,7 @@ end
 	
 	sign_extend Top_sign_extend(Imm32_ID, Imm16_ID);
 	zero_extend Top_zero_extend(Imm32_zero_ID, Imm16_ID);
-	
+		
 	registerFile regFile(
 							Rs_data_ID,
 							Rs_MSG,
@@ -223,7 +228,18 @@ end
 							Write32_64,
 							Jal_control,
 							Store_FP);	
-		
+	
+	/*Buffer_n Test_Buffer(clk,FP,
+								Rs_MSG,
+								Rt_data_ID,
+								Rt_MSG,
+								Rd_data_ID,
+								FP_out,
+								Rs_MSG_out,
+								Rt_data_ID_out,
+								Rt_MSG_out,
+								Rd_data_ID_out);*/
+	
 	mux_3to1 MUX_ID5(read_data_ID, Rs_data_ID, HI, LO, HILO_read_control); //determine Rs/HI/LO in case of move from HI/LO
 	
 	Hazard_Detection_Unit Top_hazard_Detection_unit(
@@ -269,7 +285,7 @@ end
 						Rd_data_EXE,
 						clk,
 						control_signal,
-						FP,
+						FP_out,
 						PC_ID,
 						read_data_ID,
 						Rs_MSG,

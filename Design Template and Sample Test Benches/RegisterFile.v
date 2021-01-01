@@ -112,386 +112,9 @@ initial begin
 	registers_f[31]<=32'h0;	//11111	
 end
 
-always@(negedge Clk)begin //read on negative edge
-case(Rd_ID)
-			5'b00000: Rd_data_ID <= registers_i[0] ;//	zero
-			5'b00001: Rd_data_ID <= registers_i[1] ;//	at
-			5'b00010: Rd_data_ID <= registers_i[2] ;//	v0
-			5'b00011: Rd_data_ID <= registers_i[3] ;//	v1
-			5'b00100: Rd_data_ID <= registers_i[4] ;//	a0
-			5'b00101: Rd_data_ID <= registers_i[5] ;//	a1
-			5'b00110: Rd_data_ID <= registers_i[6] ;//	a2
-			5'b00111: Rd_data_ID <= registers_i[7] ;//	a3
-			5'b01000: Rd_data_ID <= registers_i[8] ;//	t0
-			5'b01001: Rd_data_ID <= registers_i[9] ;//	t1
-			5'b01010: Rd_data_ID <= registers_i[10];//	t2
-			5'b01011: Rd_data_ID <= registers_i[11];//	t3
-			5'b01100: Rd_data_ID <= registers_i[12];//	t4
-			5'b01101: Rd_data_ID <= registers_i[13];//	t5
-			5'b01110: Rd_data_ID <= registers_i[14];//	t6
-			5'b01111: Rd_data_ID <= registers_i[15];//	t7
-			5'b10000: Rd_data_ID <= registers_i[16];//	t8
-			5'b10001: Rd_data_ID <= registers_i[17];//	t9
-			5'b10010: Rd_data_ID <= registers_i[18];//	s0
-			5'b10011: Rd_data_ID <= registers_i[19];//	s1
-			5'b10100: Rd_data_ID <= registers_i[20];//	s2
-			5'b10101: Rd_data_ID <= registers_i[21];//	s3
-			5'b10110: Rd_data_ID <= registers_i[22];//	s4
-			5'b10111: Rd_data_ID <= registers_i[23];//	s5
-			5'b11000: Rd_data_ID <= registers_i[24];//	s6
-			5'b11001: Rd_data_ID <= registers_i[25];//	s7
-			5'b11010: Rd_data_ID <= registers_i[26];//	k0
-			5'b11011: Rd_data_ID <= registers_i[27];//	k1
-			5'b11100: Rd_data_ID <= registers_i[28];//	gp
-			5'b11101: Rd_data_ID <= registers_i[29];//	sp
-			5'b11110: Rd_data_ID <= registers_i[30];//	fp
-			5'b11111: Rd_data_ID <= registers_i[31];//	ra
-			endcase
-			
-FP=registers_i[30][0];//FP flag
 
-	if(Store_FP)begin //SPECIAL CASE: store FP instructions requires reading from both f & i register files at the same cycle
-			case(Rs_ID)
-			5'b00000: Rs_data_ID <= registers_i[0] ;//	zero
-			5'b00001: Rs_data_ID <= registers_i[1] ;//	at
-			5'b00010: Rs_data_ID <= registers_i[2] ;//	v0
-			5'b00011: Rs_data_ID <= registers_i[3] ;//	v1
-			5'b00100: Rs_data_ID <= registers_i[4] ;//	a0
-			5'b00101: Rs_data_ID <= registers_i[5] ;//	a1
-			5'b00110: Rs_data_ID <= registers_i[6] ;//	a2
-			5'b00111: Rs_data_ID <= registers_i[7] ;//	a3
-			5'b01000: Rs_data_ID <= registers_i[8] ;//	t0
-			5'b01001: Rs_data_ID <= registers_i[9] ;//	t1
-			5'b01010: Rs_data_ID <= registers_i[10];//	t2
-			5'b01011: Rs_data_ID <= registers_i[11];//	t3
-			5'b01100: Rs_data_ID <= registers_i[12];//	t4
-			5'b01101: Rs_data_ID <= registers_i[13];//	t5
-			5'b01110: Rs_data_ID <= registers_i[14];//	t6
-			5'b01111: Rs_data_ID <= registers_i[15];//	t7
-			5'b10000: Rs_data_ID <= registers_i[16];//	t8
-			5'b10001: Rs_data_ID <= registers_i[17];//	t9
-			5'b10010: Rs_data_ID <= registers_i[18];//	s0
-			5'b10011: Rs_data_ID <= registers_i[19];//	s1
-			5'b10100: Rs_data_ID <= registers_i[20];//	s2
-			5'b10101: Rs_data_ID <= registers_i[21];//	s3
-			5'b10110: Rs_data_ID <= registers_i[22];//	s4
-			5'b10111: Rs_data_ID <= registers_i[23];//	s5
-			5'b11000: Rs_data_ID <= registers_i[24];//	s6
-			5'b11001: Rs_data_ID <= registers_i[25];//	s7
-			5'b11010: Rs_data_ID <= registers_i[26];//	k0
-			5'b11011: Rs_data_ID <= registers_i[27];//	k1
-			5'b11100: Rs_data_ID <= registers_i[28];//	gp
-			5'b11101: Rs_data_ID <= registers_i[29];//	sp
-			5'b11110: Rs_data_ID <= registers_i[30];//	fp
-			5'b11111: Rs_data_ID <= registers_i[31];//	ra
-			endcase
-			
-			case(Rt_ID)
-			5'b00000:begin Rt_MSG <= registers_f[0] ;
-						 Rt_data_ID<=registers_f[1];end
-			5'b00001: ;//can't read odd numbered registers as every pair create a double.
-			5'b00010:begin Rt_MSG <= registers_f[2] ;
-						 Rt_data_ID<=registers_f[3];end
-			5'b00011: ;
-			5'b00100:begin Rt_MSG<= registers_f[4] ;
-						 Rt_data_ID <=registers_f[5];end
-			5'b00101: ;
-			5'b00110:begin Rt_MSG <= registers_f[6] ;
-						 Rt_data_ID<=registers_f[7];end
-			5'b00111: ;
-			5'b01000:begin Rt_MSG <= registers_f[8] ;
-						 Rt_data_ID<=registers_f[9];end
-			5'b01001: ;
-			5'b01010:begin Rt_MSG <= registers_f[10];
-						 Rt_data_ID<=registers_f[11];end
-			5'b01011: ;
-			5'b01100:begin Rt_MSG <= registers_f[12];
-						 Rt_data_ID<=registers_f[13];end
-			5'b01101: ;
-			5'b01110:begin Rt_MSG <= registers_f[14];
-						 Rt_data_ID<=registers_f[15];end
-			5'b01111: ;
-			5'b10000:begin Rt_MSG <= registers_f[16];
-						 Rt_data_ID<=registers_f[17];end
-			5'b10001: ;
-			5'b10010:begin Rt_MSG <= registers_f[18];
-						 Rt_data_ID<=registers_f[19];end
-			5'b10011: ;
-			5'b10100:begin Rt_MSG <= registers_f[20];
-						 Rt_data_ID<=registers_f[21];end
-			5'b10101: ;
-			5'b10110:begin Rt_MSG <= registers_f[22];
-						 Rt_data_ID<=registers_f[23];end
-			5'b10111: ;
-			5'b11000:begin Rt_MSG <= registers_f[24];
-						 Rt_data_ID<=registers_f[25];end
-			5'b11001: ;
-			5'b11010:begin Rt_MSG <= registers_f[26];
-						 Rt_data_ID<=registers_f[27];end
-			5'b11011: ;
-			5'b11100:begin Rt_MSG <= registers_f[28];
-						 Rt_data_ID <=registers_f[29];end
-			5'b11101: ;
-			5'b11110:begin Rt_MSG <= registers_f[30];
-						 Rt_data_ID<=registers_f[31];end
-			5'b11111: ; 
-		endcase	
-		end
+always@(negedge Clk)begin //write on negative edge	
 
-	else if(float_control_read && !Store_FP)begin //use float registers 
-			HI=hi;
-			LO=lo;
-			
-		case(Rs_ID)
-			5'b00000 :begin Rs_MSG <= registers_f[0] ;
-						 		Rs_data_ID <= registers_f[1];end
-			5'b00001 :	;	//can't read odd numbered registers as every pair create a double.
-			5'b00010 :begin Rs_MSG<= registers_f[2] ;
-						 		Rs_data_ID<= registers_f[3];end
-			5'b00011 :;
-			5'b00100 :begin Rs_MSG <= registers_f[4] ;
-						 		Rs_data_ID<=registers_f[5];end
-			5'b00101 :;
-			5'b00110 :begin Rs_MSG <= registers_f[6] ;
-						 		Rs_data_ID<=registers_f[7];end
-			5'b00111 :;
-			5'b01000 :begin Rs_MSG<= registers_f[8] ;
-						 		Rs_data_ID<=registers_f[9];end
-			5'b01001 :;
-			5'b01010 :begin Rs_MSG <= registers_f[10];
-						 		Rs_data_ID<=registers_f[11];end
-			5'b01011 :;
-			5'b01100 :begin Rs_MSG <= registers_f[12];
-						 		Rs_data_ID<=registers_f[13];end
-			5'b01101 :;
-			5'b01110 :begin Rs_MSG <= registers_f[14];
-						 		Rs_data_ID<=registers_f[15];end
-			5'b01111 :;
-			5'b10000 :begin Rs_MSG <= registers_f[16];
-						 		Rs_data_ID<=registers_f[17];end
-			5'b10001 :;
-			5'b10010 :begin Rs_MSG <= registers_f[18];
-						 		Rs_data_ID<=registers_f[19];end
-			5'b10011 :;
-			5'b10100 :begin Rs_MSG <= registers_f[20];
-						 		Rs_data_ID<=registers_f[21];end
-			5'b10101 :;
-			5'b10110 :begin Rs_MSG <= registers_f[22];
-						 		Rs_data_ID<=registers_f[23];end
-			5'b10111 :;
-			5'b11000 :begin Rs_MSG <= registers_f[24];
-						 		Rs_data_ID <= registers_f[25];end
-			5'b11001 :;
-			5'b11010 :begin Rs_MSG <= registers_f[26];
-						 		Rs_data_ID <= registers_f[27];end
-			5'b11011 :;
-			5'b11100 :begin Rs_MSG <= registers_f[28];
-						 		Rs_data_ID <= registers_f[29];end
-			5'b11101 :;
-			5'b11110 :begin Rs_MSG <= registers_f[30];
-						 		Rs_data_ID <=registers_f[31];end
-			5'b11111 :;
-			endcase
-			
-		case(Rt_ID)
-			5'b00000:begin Rt_MSG <= registers_f[0] ;
-						 Rt_data_ID<=registers_f[1];end
-			5'b00001: ;//can't read odd numbered registers as every pair create a double.
-			5'b00010:begin Rt_MSG <= registers_f[2] ;
-						 Rt_data_ID<=registers_f[3];end
-			5'b00011: ;
-			5'b00100:begin Rt_MSG<= registers_f[4] ;
-						 Rt_data_ID <=registers_f[5];end
-			5'b00101: ;
-			5'b00110:begin Rt_MSG <= registers_f[6] ;
-						 Rt_data_ID<=registers_f[7];end
-			5'b00111: ;
-			5'b01000:begin Rt_MSG <= registers_f[8] ;
-						 Rt_data_ID<=registers_f[9];end
-			5'b01001: ;
-			5'b01010:begin Rt_MSG <= registers_f[10];
-						 Rt_data_ID<=registers_f[11];end
-			5'b01011: ;
-			5'b01100:begin Rt_MSG <= registers_f[12];
-						 Rt_data_ID<=registers_f[13];end
-			5'b01101: ;
-			5'b01110:begin Rt_MSG <= registers_f[14];
-						 Rt_data_ID<=registers_f[15];end
-			5'b01111: ;
-			5'b10000:begin Rt_MSG <= registers_f[16];
-						 Rt_data_ID<=registers_f[17];end
-			5'b10001: ;
-			5'b10010:begin Rt_MSG <= registers_f[18];
-						 Rt_data_ID<=registers_f[19];end
-			5'b10011: ;
-			5'b10100:begin Rt_MSG <= registers_f[20];
-						 Rt_data_ID<=registers_f[21];end
-			5'b10101: ;
-			5'b10110:begin Rt_MSG <= registers_f[22];
-						 Rt_data_ID<=registers_f[23];end
-			5'b10111: ;
-			5'b11000:begin Rt_MSG <= registers_f[24];
-						 Rt_data_ID<=registers_f[25];end
-			5'b11001: ;
-			5'b11010:begin Rt_MSG <= registers_f[26];
-						 Rt_data_ID<=registers_f[27];end
-			5'b11011: ;
-			5'b11100:begin Rt_MSG <= registers_f[28];
-						 Rt_data_ID <=registers_f[29];end
-			5'b11101: ;
-			5'b11110:begin Rt_MSG <= registers_f[30];
-						 Rt_data_ID<=registers_f[31];end
-			5'b11111: ; 
-		endcase
-end 
-
-//read from normal register file (core instructions)
-	else if(!float_control_read && !Store_FP)begin
-		case(Rt_ID)
-			5'b00000: Rt_data_ID <= registers_i[0] ;//	zero
-			5'b00001: Rt_data_ID <= registers_i[1] ;//	at
-			5'b00010: Rt_data_ID <= registers_i[2] ;//	v0
-			5'b00011: Rt_data_ID <= registers_i[3] ;//	v1
-			5'b00100: Rt_data_ID <= registers_i[4] ;//	a0
-			5'b00101: Rt_data_ID <= registers_i[5] ;//	a1
-			5'b00110: Rt_data_ID <= registers_i[6] ;//	a2
-			5'b00111: Rt_data_ID <= registers_i[7] ;//	a3
-			5'b01000: Rt_data_ID <= registers_i[8] ;//	t0
-			5'b01001: Rt_data_ID <= registers_i[9] ;//	t1
-			5'b01010: Rt_data_ID <= registers_i[10];//	t2
-			5'b01011: Rt_data_ID <= registers_i[11];//	t3
-			5'b01100: Rt_data_ID <= registers_i[12];//	t4
-			5'b01101: Rt_data_ID <= registers_i[13];//	t5
-			5'b01110: Rt_data_ID <= registers_i[14];//	t6
-			5'b01111: Rt_data_ID <= registers_i[15];//	t7
-			5'b10000: Rt_data_ID <= registers_i[16];//	t8
-			5'b10001: Rt_data_ID <= registers_i[17];//	t9
-			5'b10010: Rt_data_ID <= registers_i[18];//	s0
-			5'b10011: Rt_data_ID <= registers_i[19];//	s1
-			5'b10100: Rt_data_ID <= registers_i[20];//	s2
-			5'b10101: Rt_data_ID <= registers_i[21];//	s3
-			5'b10110: Rt_data_ID <= registers_i[22];//	s4
-			5'b10111: Rt_data_ID <= registers_i[23];//	s5
-			5'b11000: Rt_data_ID <= registers_i[24];//	s6
-			5'b11001: Rt_data_ID <= registers_i[25];//	s7
-			5'b11010: Rt_data_ID <= registers_i[26];//	k0
-			5'b11011: Rt_data_ID <= registers_i[27];//	k1
-			5'b11100: Rt_data_ID <= registers_i[28];//	gp
-			5'b11101: Rt_data_ID <= registers_i[29];//	sp
-			5'b11110: Rt_data_ID <= registers_i[30];//	fp
-			5'b11111: Rt_data_ID <= registers_i[31];//	ra
-		endcase
-		case(Rs_ID)
-			5'b00000: Rs_data_ID <= registers_i[0] ;//	zero
-			5'b00001: Rs_data_ID <= registers_i[1] ;//	at
-			5'b00010: Rs_data_ID <= registers_i[2] ;//	v0
-			5'b00011: Rs_data_ID <= registers_i[3] ;//	v1
-			5'b00100: Rs_data_ID <= registers_i[4] ;//	a0
-			5'b00101: Rs_data_ID <= registers_i[5] ;//	a1
-			5'b00110: Rs_data_ID <= registers_i[6] ;//	a2
-			5'b00111: Rs_data_ID <= registers_i[7] ;//	a3
-			5'b01000: Rs_data_ID <= registers_i[8] ;//	t0
-			5'b01001: Rs_data_ID <= registers_i[9] ;//	t1
-			5'b01010: Rs_data_ID <= registers_i[10];//	t2
-			5'b01011: Rs_data_ID <= registers_i[11];//	t3
-			5'b01100: Rs_data_ID <= registers_i[12];//	t4
-			5'b01101: Rs_data_ID <= registers_i[13];//	t5
-			5'b01110: Rs_data_ID <= registers_i[14];//	t6
-			5'b01111: Rs_data_ID <= registers_i[15];//	t7
-			5'b10000: Rs_data_ID <= registers_i[16];//	t8
-			5'b10001: Rs_data_ID <= registers_i[17];//	t9
-			5'b10010: Rs_data_ID <= registers_i[18];//	s0
-			5'b10011: Rs_data_ID <= registers_i[19];//	s1
-			5'b10100: Rs_data_ID <= registers_i[20];//	s2
-			5'b10101: Rs_data_ID <= registers_i[21];//	s3
-			5'b10110: Rs_data_ID <= registers_i[22];//	s4
-			5'b10111: Rs_data_ID <= registers_i[23];//	s5
-			5'b11000: Rs_data_ID <= registers_i[24];//	s6
-			5'b11001: Rs_data_ID <= registers_i[25];//	s7
-			5'b11010: Rs_data_ID <= registers_i[26];//	k0
-			5'b11011: Rs_data_ID <= registers_i[27];//	k1
-			5'b11100: Rs_data_ID <= registers_i[28];//	gp
-			5'b11101: Rs_data_ID <= registers_i[29];//	sp
-			5'b11110: Rs_data_ID <= registers_i[30];//	fp
-			5'b11111: Rs_data_ID <= registers_i[31];//	ra
-		endcase
-		
-		 end
-
-	if(Store_Byte_control)begin
-		case(Rt_ID)
-			5'b00000: Rt_data_ID <= 32'h0;
-			5'b00001: Rt_data_ID <= {24'b0,registers_i[1] [7:0]};
-			5'b00010: Rt_data_ID <= {24'b0,registers_i[2] [7:0]};
-			5'b00011: Rt_data_ID <= {24'b0,registers_i[3] [7:0]};
-			5'b00100: Rt_data_ID <= {24'b0,registers_i[4] [7:0]};
-			5'b00101: Rt_data_ID <= {24'b0,registers_i[5] [7:0]};
-			5'b00110: Rt_data_ID <= {24'b0,registers_i[6] [7:0]};
-			5'b00111: Rt_data_ID <= {24'b0,registers_i[7] [7:0]};
-			5'b01000: Rt_data_ID <= {24'b0,registers_i[8] [7:0]};
-			5'b01001: Rt_data_ID <= {24'b0,registers_i[9] [7:0]};
-			5'b01010: Rt_data_ID <= {24'b0,registers_i[10][7:0]};
-			5'b01011: Rt_data_ID <= {24'b0,registers_i[11][7:0]};
-			5'b01100: Rt_data_ID <= {24'b0,registers_i[12][7:0]};
-			5'b01101: Rt_data_ID <= {24'b0,registers_i[13][7:0]};
-			5'b01110: Rt_data_ID <= {24'b0,registers_i[14][7:0]};
-			5'b01111: Rt_data_ID <= {24'b0,registers_i[15][7:0]};
-			5'b10000: Rt_data_ID <= {24'b0,registers_i[16][7:0]};
-			5'b10001: Rt_data_ID <= {24'b0,registers_i[17][7:0]};
-			5'b10010: Rt_data_ID <= {24'b0,registers_i[18][7:0]};
-			5'b10011: Rt_data_ID <= {24'b0,registers_i[19][7:0]};
-			5'b10100: Rt_data_ID <= {24'b0,registers_i[20][7:0]};
-			5'b10101: Rt_data_ID <= {24'b0,registers_i[21][7:0]};
-			5'b10110: Rt_data_ID <= {24'b0,registers_i[22][7:0]};
-			5'b10111: Rt_data_ID <= {24'b0,registers_i[23][7:0]};
-			5'b11000: Rt_data_ID <= {24'b0,registers_i[24][7:0]};
-			5'b11001: Rt_data_ID <= {24'b0,registers_i[25][7:0]};
-			5'b11010: Rt_data_ID <= {24'b0,registers_i[26][7:0]};
-			5'b11011: Rt_data_ID <= {24'b0,registers_i[27][7:0]};
-			5'b11100: Rt_data_ID <= {24'b0,registers_i[28][7:0]};
-			5'b11101: Rt_data_ID <= {24'b0,registers_i[29][7:0]};
-			5'b11110: Rt_data_ID <= {24'b0,registers_i[30][7:0]};
-			5'b11111: Rt_data_ID <= {24'b0,registers_i[31][7:0]};
-	endcase
-	end else if(!Store_Byte_control)begin		
-			case(Rt_ID)
-				5'b00000: Rt_data_ID<=registers_i[0] ;//	ze
-				5'b00001: Rt_data_ID<=registers_i[1] ;//	at
-				5'b00010: Rt_data_ID<=registers_i[2] ;//	v0
-				5'b00011: Rt_data_ID<=registers_i[3] ;//	v1
-				5'b00100: Rt_data_ID<=registers_i[4] ;//	a0
-				5'b00101: Rt_data_ID<=registers_i[5] ;//	a1
-				5'b00110: Rt_data_ID<=registers_i[6] ;//	a2
-				5'b00111: Rt_data_ID<=registers_i[7] ;//	a3
-				5'b01000: Rt_data_ID<=registers_i[8] ;//	t0
-				5'b01001: Rt_data_ID<=registers_i[9] ;//	t1
-				5'b01010: Rt_data_ID<=registers_i[10];//	t2
-				5'b01011: Rt_data_ID<=registers_i[11];//	t3
-				5'b01100: Rt_data_ID<=registers_i[12];//	t4
-				5'b01101: Rt_data_ID<=registers_i[13];//	t5
-				5'b01110: Rt_data_ID<=registers_i[14];//	t6
-				5'b01111: Rt_data_ID<=registers_i[15];//	t7
-				5'b10000: Rt_data_ID<=registers_i[16];//	t8
-				5'b10001: Rt_data_ID<=registers_i[17];//	t9
-				5'b10010: Rt_data_ID<=registers_i[18];//	s0
-				5'b10011: Rt_data_ID<=registers_i[19];//	s1
-				5'b10100: Rt_data_ID<=registers_i[20];//	s2
-				5'b10101: Rt_data_ID<=registers_i[21];//	s3
-				5'b10110: Rt_data_ID<=registers_i[22];//	s4
-				5'b10111: Rt_data_ID<=registers_i[23];//	s5
-				5'b11000: Rt_data_ID<=registers_i[24];//	s6
-				5'b11001: Rt_data_ID<=registers_i[25];//	s7
-				5'b11010: Rt_data_ID<=registers_i[26];//	k0
-				5'b11011: Rt_data_ID<=registers_i[27];//	k1
-				5'b11100: Rt_data_ID<=registers_i[28];//	gp
-				5'b11101: Rt_data_ID<=registers_i[29];//	sp
-				5'b11110: Rt_data_ID<=registers_i[30];//	fp
-				5'b11111: Rt_data_ID<=registers_i[31];//	ra
-		endcase end
-end
-
-
-always@(posedge Clk)begin //write on positive edge		
 		if(RegWrite)begin
 			if(Write32_64)begin //input value from 64 bit port
 				if(MulDiv_control)begin
@@ -552,7 +175,7 @@ always@(posedge Clk)begin //write on positive edge
 					endcase end      
 						end 
 			else
-			if(!Write32_64 && !Jal_control && !FPwrite_control && !Load_Byte_control)begin //read from normal 32 bit port
+			if(!Write32_64 && !Jal_control && !FPwrite_control && !Load_Byte_control && float_control_write)begin //read from normal 32 bit port
 					case(RegWr_ID)
 						5'b00000:begin registers_f[0] <=32'h0;	//most significant is zero extended
 											registers_f[1] <=Write_data[31:0];end
@@ -686,8 +309,390 @@ always@(posedge Clk)begin //write on positive edge
 				5'b11111: registers_i[31]<=Write_data;//	ra
 			endcase      
 		end
-end		
 end	
+end	
+
+
+always@(*)begin //combinational reading, we always want to read 
+case(Rd_ID)
+			5'b00000: Rd_data_ID <= registers_i[0] ;//	zero
+			5'b00001: Rd_data_ID <= registers_i[1] ;//	at
+			5'b00010: Rd_data_ID <= registers_i[2] ;//	v0
+			5'b00011: Rd_data_ID <= registers_i[3] ;//	v1
+			5'b00100: Rd_data_ID <= registers_i[4] ;//	a0
+			5'b00101: Rd_data_ID <= registers_i[5] ;//	a1
+			5'b00110: Rd_data_ID <= registers_i[6] ;//	a2
+			5'b00111: Rd_data_ID <= registers_i[7] ;//	a3
+			5'b01000: Rd_data_ID <= registers_i[8] ;//	t0
+			5'b01001: Rd_data_ID <= registers_i[9] ;//	t1
+			5'b01010: Rd_data_ID <= registers_i[10];//	t2
+			5'b01011: Rd_data_ID <= registers_i[11];//	t3
+			5'b01100: Rd_data_ID <= registers_i[12];//	t4
+			5'b01101: Rd_data_ID <= registers_i[13];//	t5
+			5'b01110: Rd_data_ID <= registers_i[14];//	t6
+			5'b01111: Rd_data_ID <= registers_i[15];//	t7
+			5'b10000: Rd_data_ID <= registers_i[16];//	t8
+			5'b10001: Rd_data_ID <= registers_i[17];//	t9
+			5'b10010: Rd_data_ID <= registers_i[18];//	s0
+			5'b10011: Rd_data_ID <= registers_i[19];//	s1
+			5'b10100: Rd_data_ID <= registers_i[20];//	s2
+			5'b10101: Rd_data_ID <= registers_i[21];//	s3
+			5'b10110: Rd_data_ID <= registers_i[22];//	s4
+			5'b10111: Rd_data_ID <= registers_i[23];//	s5
+			5'b11000: Rd_data_ID <= registers_i[24];//	s6
+			5'b11001: Rd_data_ID <= registers_i[25];//	s7
+			5'b11010: Rd_data_ID <= registers_i[26];//	k0
+			5'b11011: Rd_data_ID <= registers_i[27];//	k1
+			5'b11100: Rd_data_ID <= registers_i[28];//	gp
+			5'b11101: Rd_data_ID <= registers_i[29];//	sp
+			5'b11110: Rd_data_ID <= registers_i[30];//	fp
+			5'b11111: Rd_data_ID <= registers_i[31];//	ra
+			endcase
+			
+FP=registers_i[30][0];//FP flag
+
+if(Store_FP)begin //SPECIAL CASE: store FP instructions requires reading from both f & i register files at the same cycle
+			case(Rs_ID)
+			5'b00000: Rs_data_ID <= registers_i[0] ;//	zero
+			5'b00001: Rs_data_ID <= registers_i[1] ;//	at
+			5'b00010: Rs_data_ID <= registers_i[2] ;//	v0
+			5'b00011: Rs_data_ID <= registers_i[3] ;//	v1
+			5'b00100: Rs_data_ID <= registers_i[4] ;//	a0
+			5'b00101: Rs_data_ID <= registers_i[5] ;//	a1
+			5'b00110: Rs_data_ID <= registers_i[6] ;//	a2
+			5'b00111: Rs_data_ID <= registers_i[7] ;//	a3
+			5'b01000: Rs_data_ID <= registers_i[8] ;//	t0
+			5'b01001: Rs_data_ID <= registers_i[9] ;//	t1
+			5'b01010: Rs_data_ID <= registers_i[10];//	t2
+			5'b01011: Rs_data_ID <= registers_i[11];//	t3
+			5'b01100: Rs_data_ID <= registers_i[12];//	t4
+			5'b01101: Rs_data_ID <= registers_i[13];//	t5
+			5'b01110: Rs_data_ID <= registers_i[14];//	t6
+			5'b01111: Rs_data_ID <= registers_i[15];//	t7
+			5'b10000: Rs_data_ID <= registers_i[16];//	t8
+			5'b10001: Rs_data_ID <= registers_i[17];//	t9
+			5'b10010: Rs_data_ID <= registers_i[18];//	s0
+			5'b10011: Rs_data_ID <= registers_i[19];//	s1
+			5'b10100: Rs_data_ID <= registers_i[20];//	s2
+			5'b10101: Rs_data_ID <= registers_i[21];//	s3
+			5'b10110: Rs_data_ID <= registers_i[22];//	s4
+			5'b10111: Rs_data_ID <= registers_i[23];//	s5
+			5'b11000: Rs_data_ID <= registers_i[24];//	s6
+			5'b11001: Rs_data_ID <= registers_i[25];//	s7
+			5'b11010: Rs_data_ID <= registers_i[26];//	k0
+			5'b11011: Rs_data_ID <= registers_i[27];//	k1
+			5'b11100: Rs_data_ID <= registers_i[28];//	gp
+			5'b11101: Rs_data_ID <= registers_i[29];//	sp
+			5'b11110: Rs_data_ID <= registers_i[30];//	fp
+			5'b11111: Rs_data_ID <= registers_i[31];//	ra
+			endcase
+			
+			case(Rt_ID)
+			5'b00000:begin Rt_MSG <= registers_f[0] ;
+						 Rt_data_ID	<=registers_f[1];end
+			5'b00001: ;//can't read odd numbered registers as every pair create a double.
+			5'b00010:begin Rt_MSG <= registers_f[2] ;
+						 Rt_data_ID<=registers_f[3];end
+			5'b00011: ;
+			5'b00100:begin Rt_MSG<= registers_f[4] ;
+						 Rt_data_ID <=registers_f[5];end
+			5'b00101: ;
+			5'b00110:begin Rt_MSG <= registers_f[6] ;
+						 Rt_data_ID<=registers_f[7];end
+			5'b00111: ;
+			5'b01000:begin Rt_MSG <= registers_f[8] ;
+						 Rt_data_ID<=registers_f[9];end
+			5'b01001: ;
+			5'b01010:begin Rt_MSG <= registers_f[10];
+						 Rt_data_ID<=registers_f[11];end
+			5'b01011: ;
+			5'b01100:begin Rt_MSG <= registers_f[12];
+						 Rt_data_ID<=registers_f[13];end
+			5'b01101: ;
+			5'b01110:begin Rt_MSG <= registers_f[14];
+						 Rt_data_ID<=registers_f[15];end
+			5'b01111: ;
+			5'b10000:begin Rt_MSG <= registers_f[16];
+						 Rt_data_ID<=registers_f[17];end
+			5'b10001: ;
+			5'b10010:begin Rt_MSG <= registers_f[18];
+						 Rt_data_ID<=registers_f[19];end
+			5'b10011: ;
+			5'b10100:begin Rt_MSG <= registers_f[20];
+						 Rt_data_ID<=registers_f[21];end
+			5'b10101: ;
+			5'b10110:begin Rt_MSG <= registers_f[22];
+						 Rt_data_ID<=registers_f[23];end
+			5'b10111: ;
+			5'b11000:begin Rt_MSG <= registers_f[24];
+						 Rt_data_ID<=registers_f[25];end
+			5'b11001: ;
+			5'b11010:begin Rt_MSG <= registers_f[26];
+						 Rt_data_ID<=registers_f[27];end
+			5'b11011: ;
+			5'b11100:begin Rt_MSG <= registers_f[28];
+						 Rt_data_ID <=registers_f[29];end
+			5'b11101: ;
+			5'b11110:begin Rt_MSG <= registers_f[30];
+						 Rt_data_ID<=registers_f[31];end
+			5'b11111: ; 
+		endcase	
+		end
+
+if(float_control_read && !Store_FP)begin //use float registers //else
+			HI=hi;
+			LO=lo;
+			
+		case(Rs_ID)
+			5'b00000 :begin Rs_MSG <= registers_f[0] ;
+						 		Rs_data_ID <= registers_f[1];end
+			5'b00001 :	;	//can't read odd numbered registers as every pair create a double.
+			5'b00010 :begin Rs_MSG<= registers_f[2] ;
+						 		Rs_data_ID<= registers_f[3];end
+			5'b00011 :;
+			5'b00100 :begin Rs_MSG <= registers_f[4] ;
+						 		Rs_data_ID<=registers_f[5];end
+			5'b00101 :;
+			5'b00110 :begin Rs_MSG <= registers_f[6] ;
+						 		Rs_data_ID<=registers_f[7];end
+			5'b00111 :;
+			5'b01000 :begin Rs_MSG<= registers_f[8] ;
+						 		Rs_data_ID<=registers_f[9];end
+			5'b01001 :;
+			5'b01010 :begin Rs_MSG <= registers_f[10];
+						 		Rs_data_ID<=registers_f[11];end
+			5'b01011 :;
+			5'b01100 :begin Rs_MSG <= registers_f[12];
+						 		Rs_data_ID<=registers_f[13];end
+			5'b01101 :;
+			5'b01110 :begin Rs_MSG <= registers_f[14];
+						 		Rs_data_ID<=registers_f[15];end
+			5'b01111 :;
+			5'b10000 :begin Rs_MSG <= registers_f[16];
+						 		Rs_data_ID<=registers_f[17];end
+			5'b10001 :;
+			5'b10010 :begin Rs_MSG <= registers_f[18];
+						 		Rs_data_ID<=registers_f[19];end
+			5'b10011 :;
+			5'b10100 :begin Rs_MSG <= registers_f[20];
+						 		Rs_data_ID<=registers_f[21];end
+			5'b10101 :;
+			5'b10110 :begin Rs_MSG <= registers_f[22];
+						 		Rs_data_ID<=registers_f[23];end
+			5'b10111 :;
+			5'b11000 :begin Rs_MSG <= registers_f[24];
+						 		Rs_data_ID <= registers_f[25];end
+			5'b11001 :;
+			5'b11010 :begin Rs_MSG <= registers_f[26];
+						 		Rs_data_ID <= registers_f[27];end
+			5'b11011 :;
+			5'b11100 :begin Rs_MSG <= registers_f[28];
+						 		Rs_data_ID <= registers_f[29];end
+			5'b11101 :;
+			5'b11110 :begin Rs_MSG <= registers_f[30];
+						 		Rs_data_ID <=registers_f[31];end
+			5'b11111 :;
+			endcase
+			
+		case(Rt_ID)
+			5'b00000:begin Rt_MSG <= registers_f[0] ;
+						 Rt_data_ID<=registers_f[1];end
+			5'b00001: ;//can't read odd numbered registers as every pair create a double.
+			5'b00010:begin Rt_MSG <= registers_f[2] ;
+						 Rt_data_ID<=registers_f[3];end
+			5'b00011: ;
+			5'b00100:begin Rt_MSG<= registers_f[4] ;
+						 Rt_data_ID <=registers_f[5];end
+			5'b00101: ;
+			5'b00110:begin Rt_MSG <= registers_f[6] ;
+						 Rt_data_ID<=registers_f[7];end
+			5'b00111: ;
+			5'b01000:begin Rt_MSG <= registers_f[8] ;
+						 Rt_data_ID<=registers_f[9];end
+			5'b01001: ;
+			5'b01010:begin Rt_MSG <= registers_f[10];
+						 Rt_data_ID<=registers_f[11];end
+			5'b01011: ;
+			5'b01100:begin Rt_MSG <= registers_f[12];
+						 Rt_data_ID<=registers_f[13];end
+			5'b01101: ;
+			5'b01110:begin Rt_MSG <= registers_f[14];
+						 Rt_data_ID<=registers_f[15];end
+			5'b01111: ;
+			5'b10000:begin Rt_MSG <= registers_f[16];
+						 Rt_data_ID<=registers_f[17];end
+			5'b10001: ;
+			5'b10010:begin Rt_MSG <= registers_f[18];
+						 Rt_data_ID<=registers_f[19];end
+			5'b10011: ;
+			5'b10100:begin Rt_MSG <= registers_f[20];
+						 Rt_data_ID<=registers_f[21];end
+			5'b10101: ;
+			5'b10110:begin Rt_MSG <= registers_f[22];
+						 Rt_data_ID<=registers_f[23];end
+			5'b10111: ;
+			5'b11000:begin Rt_MSG <= registers_f[24];
+						 Rt_data_ID<=registers_f[25];end
+			5'b11001: ;
+			5'b11010:begin Rt_MSG <= registers_f[26];
+						 Rt_data_ID<=registers_f[27];end
+			5'b11011: ;
+			5'b11100:begin Rt_MSG <= registers_f[28];
+						 Rt_data_ID <=registers_f[29];end
+			5'b11101: ;
+			5'b11110:begin Rt_MSG <= registers_f[30];
+						 Rt_data_ID<=registers_f[31];end
+			5'b11111: ; 
+		endcase
+end 
+
+//read from normal register file (core instructions)
+if(!float_control_read && !Store_FP && !Store_Byte_control)begin //else
+		case(Rt_ID)
+			5'b00000: Rt_data_ID <= registers_i[0] ;//	zero
+			5'b00001: Rt_data_ID <= registers_i[1] ;//	at
+			5'b00010: Rt_data_ID <= registers_i[2] ;//	v0
+			5'b00011: Rt_data_ID <= registers_i[3] ;//	v1
+			5'b00100: Rt_data_ID <= registers_i[4] ;//	a0
+			5'b00101: Rt_data_ID <= registers_i[5] ;//	a1
+			5'b00110: Rt_data_ID <= registers_i[6] ;//	a2
+			5'b00111: Rt_data_ID <= registers_i[7] ;//	a3
+			5'b01000: Rt_data_ID <= registers_i[8] ;//	t0
+			5'b01001: Rt_data_ID <= registers_i[9] ;//	t1
+			5'b01010: Rt_data_ID <= registers_i[10];//	t2
+			5'b01011: Rt_data_ID <= registers_i[11];//	t3
+			5'b01100: Rt_data_ID <= registers_i[12];//	t4
+			5'b01101: Rt_data_ID <= registers_i[13];//	t5
+			5'b01110: Rt_data_ID <= registers_i[14];//	t6
+			5'b01111: Rt_data_ID <= registers_i[15];//	t7
+			5'b10000: Rt_data_ID <= registers_i[16];//	t8
+			5'b10001: Rt_data_ID <= registers_i[17];//	t9
+			5'b10010: Rt_data_ID <= registers_i[18];//	s0
+			5'b10011: Rt_data_ID <= registers_i[19];//	s1
+			5'b10100: Rt_data_ID <= registers_i[20];//	s2
+			5'b10101: Rt_data_ID <= registers_i[21];//	s3
+			5'b10110: Rt_data_ID <= registers_i[22];//	s4
+			5'b10111: Rt_data_ID <= registers_i[23];//	s5
+			5'b11000: Rt_data_ID <= registers_i[24];//	s6
+			5'b11001: Rt_data_ID <= registers_i[25];//	s7
+			5'b11010: Rt_data_ID <= registers_i[26];//	k0
+			5'b11011: Rt_data_ID <= registers_i[27];//	k1
+			5'b11100: Rt_data_ID <= registers_i[28];//	gp
+			5'b11101: Rt_data_ID <= registers_i[29];//	sp
+			5'b11110: Rt_data_ID <= registers_i[30];//	fp
+			5'b11111: Rt_data_ID <= registers_i[31];//	ra
+		endcase
+		case(Rs_ID)
+			5'b00000: Rs_data_ID <= registers_i[0] ;//	zero
+			5'b00001: Rs_data_ID <= registers_i[1] ;//	at
+			5'b00010: Rs_data_ID <= registers_i[2] ;//	v0
+			5'b00011: Rs_data_ID <= registers_i[3] ;//	v1
+			5'b00100: Rs_data_ID <= registers_i[4] ;//	a0
+			5'b00101: Rs_data_ID <= registers_i[5] ;//	a1
+			5'b00110: Rs_data_ID <= registers_i[6] ;//	a2
+			5'b00111: Rs_data_ID <= registers_i[7] ;//	a3
+			5'b01000: Rs_data_ID <= registers_i[8] ;//	t0
+			5'b01001: Rs_data_ID <= registers_i[9] ;//	t1
+			5'b01010: Rs_data_ID <= registers_i[10];//	t2
+			5'b01011: Rs_data_ID <= registers_i[11];//	t3
+			5'b01100: Rs_data_ID <= registers_i[12];//	t4
+			5'b01101: Rs_data_ID <= registers_i[13];//	t5
+			5'b01110: Rs_data_ID <= registers_i[14];//	t6
+			5'b01111: Rs_data_ID <= registers_i[15];//	t7
+			5'b10000: Rs_data_ID <= registers_i[16];//	t8
+			5'b10001: Rs_data_ID <= registers_i[17];//	t9
+			5'b10010: Rs_data_ID <= registers_i[18];//	s0
+			5'b10011: Rs_data_ID <= registers_i[19];//	s1
+			5'b10100: Rs_data_ID <= registers_i[20];//	s2
+			5'b10101: Rs_data_ID <= registers_i[21];//	s3
+			5'b10110: Rs_data_ID <= registers_i[22];//	s4
+			5'b10111: Rs_data_ID <= registers_i[23];//	s5
+			5'b11000: Rs_data_ID <= registers_i[24];//	s6
+			5'b11001: Rs_data_ID <= registers_i[25];//	s7
+			5'b11010: Rs_data_ID <= registers_i[26];//	k0
+			5'b11011: Rs_data_ID <= registers_i[27];//	k1
+			5'b11100: Rs_data_ID <= registers_i[28];//	gp
+			5'b11101: Rs_data_ID <= registers_i[29];//	sp
+			5'b11110: Rs_data_ID <= registers_i[30];//	fp
+			5'b11111: Rs_data_ID <= registers_i[31];//	ra
+		endcase
+		end
+
+if(Store_Byte_control && !float_control_read && !Store_FP)begin
+		case(Rt_ID)
+			5'b00000: Rt_data_ID <= 32'h0;
+			5'b00001: Rt_data_ID <= {24'b0,registers_i[1] [7:0]};
+			5'b00010: Rt_data_ID <= {24'b0,registers_i[2] [7:0]};
+			5'b00011: Rt_data_ID <= {24'b0,registers_i[3] [7:0]};
+			5'b00100: Rt_data_ID <= {24'b0,registers_i[4] [7:0]};
+			5'b00101: Rt_data_ID <= {24'b0,registers_i[5] [7:0]};
+			5'b00110: Rt_data_ID <= {24'b0,registers_i[6] [7:0]};
+			5'b00111: Rt_data_ID <= {24'b0,registers_i[7] [7:0]};
+			5'b01000: Rt_data_ID <= {24'b0,registers_i[8] [7:0]};
+			5'b01001: Rt_data_ID <= {24'b0,registers_i[9] [7:0]};
+			5'b01010: Rt_data_ID <= {24'b0,registers_i[10][7:0]};
+			5'b01011: Rt_data_ID <= {24'b0,registers_i[11][7:0]};
+			5'b01100: Rt_data_ID <= {24'b0,registers_i[12][7:0]};
+			5'b01101: Rt_data_ID <= {24'b0,registers_i[13][7:0]};
+			5'b01110: Rt_data_ID <= {24'b0,registers_i[14][7:0]};
+			5'b01111: Rt_data_ID <= {24'b0,registers_i[15][7:0]};
+			5'b10000: Rt_data_ID <= {24'b0,registers_i[16][7:0]};
+			5'b10001: Rt_data_ID <= {24'b0,registers_i[17][7:0]};
+			5'b10010: Rt_data_ID <= {24'b0,registers_i[18][7:0]};
+			5'b10011: Rt_data_ID <= {24'b0,registers_i[19][7:0]};
+			5'b10100: Rt_data_ID <= {24'b0,registers_i[20][7:0]};
+			5'b10101: Rt_data_ID <= {24'b0,registers_i[21][7:0]};
+			5'b10110: Rt_data_ID <= {24'b0,registers_i[22][7:0]};
+			5'b10111: Rt_data_ID <= {24'b0,registers_i[23][7:0]};
+			5'b11000: Rt_data_ID <= {24'b0,registers_i[24][7:0]};
+			5'b11001: Rt_data_ID <= {24'b0,registers_i[25][7:0]};
+			5'b11010: Rt_data_ID <= {24'b0,registers_i[26][7:0]};
+			5'b11011: Rt_data_ID <= {24'b0,registers_i[27][7:0]};
+			5'b11100: Rt_data_ID <= {24'b0,registers_i[28][7:0]};
+			5'b11101: Rt_data_ID <= {24'b0,registers_i[29][7:0]};
+			5'b11110: Rt_data_ID <= {24'b0,registers_i[30][7:0]};
+			5'b11111: Rt_data_ID <= {24'b0,registers_i[31][7:0]};
+	endcase
+	end
+/*if(!Store_Byte_control)begin		//else
+			case(Rt_ID)
+				5'b00000: Rt_data_ID<=registers_i[0] ;//	ze
+				5'b00001: Rt_data_ID<=registers_i[1] ;//	at
+				5'b00010: Rt_data_ID<=registers_i[2] ;//	v0
+				5'b00011: Rt_data_ID<=registers_i[3] ;//	v1
+				5'b00100: Rt_data_ID<=registers_i[4] ;//	a0
+				5'b00101: Rt_data_ID<=registers_i[5] ;//	a1
+				5'b00110: Rt_data_ID<=registers_i[6] ;//	a2
+				5'b00111: Rt_data_ID<=registers_i[7] ;//	a3
+				5'b01000: Rt_data_ID<=registers_i[8] ;//	t0
+				5'b01001: Rt_data_ID<=registers_i[9] ;//	t1
+				5'b01010: Rt_data_ID<=registers_i[10];//	t2
+				5'b01011: Rt_data_ID<=registers_i[11];//	t3
+				5'b01100: Rt_data_ID<=registers_i[12];//	t4
+				5'b01101: Rt_data_ID<=registers_i[13];//	t5
+				5'b01110: Rt_data_ID<=registers_i[14];//	t6
+				5'b01111: Rt_data_ID<=registers_i[15];//	t7
+				5'b10000: Rt_data_ID<=registers_i[16];//	t8
+				5'b10001: Rt_data_ID<=registers_i[17];//	t9
+				5'b10010: Rt_data_ID<=registers_i[18];//	s0
+				5'b10011: Rt_data_ID<=registers_i[19];//	s1
+				5'b10100: Rt_data_ID<=registers_i[20];//	s2
+				5'b10101: Rt_data_ID<=registers_i[21];//	s3
+				5'b10110: Rt_data_ID<=registers_i[22];//	s4
+				5'b10111: Rt_data_ID<=registers_i[23];//	s5
+				5'b11000: Rt_data_ID<=registers_i[24];//	s6
+				5'b11001: Rt_data_ID<=registers_i[25];//	s7
+				5'b11010: Rt_data_ID<=registers_i[26];//	k0
+				5'b11011: Rt_data_ID<=registers_i[27];//	k1
+				5'b11100: Rt_data_ID<=registers_i[28];//	gp
+				5'b11101: Rt_data_ID<=registers_i[29];//	sp
+				5'b11110: Rt_data_ID<=registers_i[30];//	fp
+				5'b11111: Rt_data_ID<=registers_i[31];//	ra
+		endcase end*/
+end
+
+
+
 endmodule
 
 /*---------------------------------------------------------------------------------------*/
@@ -723,14 +728,14 @@ registerFile my_RegisterFile(Rs_data_ID, Rs_MSG, Rt_data_ID, Rt_MSG, Rd_data_ID,
 initial begin
 	Rd_ID=5'd0;
 	Clk <= 0;
-	#1 Clk <= ~Clk;	
+	#50 Clk <= ~Clk;	
 //-----------------------------------------------------------------------------------------//	
-	//case1: Write to $t0 the value 32'h A12//
+/*	//case1: Write to $s2 the value 32'd 10//
 	Rs_ID=5'd0;
 	Rt_ID=5'd0;
 	Write_data64=64'h0;
-	RegWr_ID=5'h8;
-	Write_data=32'h0A12;
+	RegWr_ID=5'd20;
+	Write_data=32'd 10;
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=1;	
@@ -741,16 +746,17 @@ initial begin
 	Write32_64=0;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
-	#1	$display("t0 is %h",my_RegisterFile.registers_i[8]);
+	#50	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
+		$display("s2 is %d",my_RegisterFile.registers_i[20]);*/
 //-----------------------------------------------------------------------------------------//
-	//case2: Write to $s1 the value 32'h 0FF//
-	#1 Clk <= ~Clk;			
+	//case2: Write to $s1 the value 32'h 5//
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd0;
 	Rt_ID=5'd0;
 	Write_data64=64'h0;
 	RegWr_ID=5'd19;
-	Write_data=32'h0FFFF;
+	Write_data=32'h5;
 	Load_Byte_control=0;
 	Store_Byte_control=0;
 	RegWrite=1;	
@@ -761,10 +767,11 @@ initial begin
 	Write32_64=0;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
-	#1	$display("s1 is %h",my_RegisterFile.registers_i[19]);
+	#50	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
+		$display("s1 is %d",my_RegisterFile.registers_i[19]);
 //-----------------------------------------------------------------------------------------//
-	//case3: Read from $t0//
+/*	//case3: Read from $t0//
 	#1 Clk <= ~Clk;			
 	Rs_ID=5'd8;
 	Rt_ID=5'd0;
@@ -782,18 +789,19 @@ initial begin
 	Jal_control=0;
 	Store_FP=0;					
 	#1	Clk <= ~Clk;
-	#1	$display("t0 is %h",Rs_data_ID);
+	#1	$display("t0 is %h",Rs_data_ID);*/
 //-----------------------------------------------------------------------------------------//
-	//case4: Read from $s1 & $t0//
-	#1 Clk <= ~Clk;			
-	Rs_ID=5'd8;
-	Rt_ID=5'd19;
+	//case4: Read from $s1 & $s2//
+	//#1 Clk <= ~Clk;			
+	Rs_ID=5'b10011;
+	Rt_ID=5'b10100;
+	Rd_ID=5'b10111;
 	Write_data64=64'h0;
-	RegWr_ID=5'h8;
-	Write_data=32'h0A12;
+	RegWr_ID=5'b10100;
+	Write_data=32'b1010;
 	Load_Byte_control=0;
 	Store_Byte_control=0;
-	RegWrite=0;	
+	RegWrite=1;	
 	float_control_read=0;
 	float_control_write=0;
 	FPwrite_control=0;
@@ -801,11 +809,12 @@ initial begin
 	Write32_64=0;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
-	#1	$display("S1 is %h\t t0 is %h",Rt_data_ID,Rs_data_ID);
+	#50	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
+		$display("S1 is %d\t S2 is %d",Rt_data_ID,Rs_data_ID);
 //-----------------------------------------------------------------------------------------//
-	//case5: Write to F[6] the value 32'h 0EE//
-	#1 Clk <= ~Clk;			
+/*	//case5: Write to F[6] the value 32'h 0EE//
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd0;
 	Rt_ID=5'd0;
 	Write_data64=64'h0;
@@ -821,11 +830,11 @@ initial begin
 	Write32_64=0;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
-	#1	$display("f[6] is %h%h",my_RegisterFile.registers_f[6],my_RegisterFile.registers_f[7]);
+	#50	Clk <= ~Clk;
+		$display("f[6] is %h%h",my_RegisterFile.registers_f[6],my_RegisterFile.registers_f[7]);
 //-----------------------------------------------------------------------------------------//
 	//case6: Read from F[6]//
-	#1 Clk <= ~Clk;			
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd6;
 	Rt_ID=5'd0;
 	Write_data64=64'h0;
@@ -841,11 +850,11 @@ initial begin
 	Write32_64=0;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
 	#1	$display("f[6] is %h%h",Rs_MSG,Rs_data_ID);
 //-----------------------------------------------------------------------------------------//
 	//case7:  Write to F[0] the value 32'h0FFFFFFFFFF//
-	#1 Clk <= ~Clk;			
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd6;
 	Rt_ID=5'd0;
 	Write_data64=64'h0FFFFFFFFFF;
@@ -861,11 +870,11 @@ initial begin
 	Write32_64=1;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
 	#1	$display("f[0] is %h%h",my_RegisterFile.registers_f[0],my_RegisterFile.registers_f[1]);
 //-----------------------------------------------------------------------------------------//
 	//case8:  Write to HI & LO//
-	#1 Clk <= ~Clk;			
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd6;
 	Rt_ID=5'd0;
 	Write_data64=64'hFFFFFFFF00000000;
@@ -881,11 +890,11 @@ initial begin
 	Write32_64=1;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
 	#1	$display("HILO is %h%h",my_RegisterFile.hi,my_RegisterFile.lo);
 //-----------------------------------------------------------------------------------------//
 	//case9:  Read from HI & LO//
-	#1 Clk <= ~Clk;			
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd6;
 	Rt_ID=5'd0;
 	Write_data64=64'hFFFFFFFF00000000;
@@ -901,11 +910,11 @@ initial begin
 	Write32_64=0;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
 	#1	$display("HILO is %h%h",my_RegisterFile.hi,my_RegisterFile.lo);
 //-----------------------------------------------------------------------------------------//
 	//case10:  write FP//
-	#1 Clk <= ~Clk;			
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd6;
 	Rt_ID=5'd0;
 	Write_data64=64'hFFF0000;
@@ -921,11 +930,11 @@ initial begin
 	Write32_64=0;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
 	#1	$display("R[30] is %h \nFP %b",my_RegisterFile.registers_i[30],FP);
 //-----------------------------------------------------------------------------------------//
 	//case11:  Write ra//
-	#1 Clk <= ~Clk;			
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd6;
 	Rt_ID=5'd0;
 	Write_data64=64'hFFF00;
@@ -941,11 +950,11 @@ initial begin
 	Write32_64=0;
 	Jal_control=1;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
 	#1	$display("R[31] return address is %h",my_RegisterFile.registers_i[31]);
 //-----------------------------------------------------------------------------------------//
 	//case12:  load byte//
-	#1 Clk <= ~Clk;			
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd6;
 	Rt_ID=5'd0;
 	Write_data64=64'hFFFFFFFF00000000;
@@ -961,11 +970,11 @@ initial begin
 	Write32_64=0;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
 	#1	$display("load byte R[17] is %h",my_RegisterFile.registers_i[17]);
 //-----------------------------------------------------------------------------------------//
 	//case13:  store byte from s1. address value from t0//
-	#1 Clk <= ~Clk;			
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd8;
 	Rt_ID=5'd19;
 	Write_data64=64'hFFFFF0000;
@@ -981,11 +990,11 @@ initial begin
 	Write32_64=0;
 	Jal_control=0;
 	Store_FP=0;					
-	#1	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
 	#1	$display("store byte value is %h \naddress value is %h",Rt_data_ID,Rs_data_ID);
 //-----------------------------------------------------------------------------------------//
 	//case14:  store FP single-double//
-	#1 Clk <= ~Clk;			
+	//#1 Clk <= ~Clk;			
 	Rs_ID=5'd8;//address R[rs] rs=t0
 	Rt_ID=5'd0;//value to store F[rt] rt=f0
 	Write_data64=64'hFFFFF0000;
@@ -1001,10 +1010,10 @@ initial begin
 	Write32_64=0;
 	Jal_control=0;
 	Store_FP=1;					
-	#1	Clk <= ~Clk;
+	#50	Clk <= ~Clk;
 	#1	$display("store value is %h%h \nbaseaddress value is %h",Rt_MSG,Rt_data_ID,Rs_data_ID);
 	
-	
+	*/
 	
 end
 endmodule

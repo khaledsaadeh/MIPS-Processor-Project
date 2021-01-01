@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Top
-Sun Dec 27 22:15:47 2020
+Thu Dec 31 13:25:08 2020
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -16,12 +16,13 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
   8. General Register Statistics
   9. Port Connectivity Checks: "mux_2to1:MUX_EXE1"
  10. Port Connectivity Checks: "mux_2to1_35bits:MUX_ID6"
- 11. Port Connectivity Checks: "mux_2to1_5bits:MUX_ID1"
- 12. Port Connectivity Checks: "Adder:PC_Adder"
- 13. Port Connectivity Checks: "mux_2to1:PC_MUX"
- 14. Elapsed Time Per Partition
- 15. Analysis & Synthesis Messages
- 16. Analysis & Synthesis Suppressed Messages
+ 11. Port Connectivity Checks: "registerFile:regFile"
+ 12. Port Connectivity Checks: "mux_2to1_5bits:MUX_ID1"
+ 13. Port Connectivity Checks: "Adder:PC_Adder"
+ 14. Port Connectivity Checks: "mux_2to1:PC_MUX"
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
+ 17. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -47,7 +48,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Dec 27 22:15:47 2020      ;
+; Analysis & Synthesis Status        ; Successful - Thu Dec 31 13:25:08 2020      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; Top                                        ;
 ; Top-level Entity Name              ; Top                                        ;
@@ -257,6 +258,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 
 +----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "registerFile:regFile"                                                               ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; FP   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "mux_2to1_5bits:MUX_ID1"                                                             ;
 +------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port ; Type   ; Severity ; Details                                                                             ;
@@ -300,7 +310,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sun Dec 27 22:15:43 2020
+    Info: Processing started: Thu Dec 31 13:25:04 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Top -c Top
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file top.v
@@ -356,10 +366,8 @@ Warning (10229): Verilog HDL Expression warning at DataMemory.v(137): truncated 
 Info (12021): Found 2 design units, including 2 entities, in source file datamemory.v
     Info (12023): Found entity 1: DataMemory
     Info (12023): Found entity 2: testbench_memory
-Info (12021): Found 1 design units, including 1 entities, in source file testbenches/test1.v
-    Info (12023): Found entity 1: tst_1
-Info (12021): Found 1 design units, including 1 entities, in source file testbenches/test2.v
-    Info (12023): Found entity 1: tst_2
+Warning (12019): Can't analyze file -- file testbenches/test1.v is missing
+Warning (12019): Can't analyze file -- file testbenches/test2.v is missing
 Info (12021): Found 1 design units, including 1 entities, in source file mux_2to1_5bits.v
     Info (12023): Found entity 1: mux_2to1_5bits
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/my_test.v
@@ -369,14 +377,13 @@ Info (12021): Found 2 design units, including 2 entities, in source file clock.v
     Info (12023): Found entity 2: testbench_clock
 Info (12021): Found 1 design units, including 1 entities, in source file instructionmemory.v
     Info (12023): Found entity 1: instructionMemory
-Info (12021): Found 1 design units, including 1 entities, in source file testbenches/test3.v
-    Info (12023): Found entity 1: arethmatic1
-Info (12021): Found 1 design units, including 1 entities, in source file testbenches/test4.v
-    Info (12023): Found entity 1: tst_4
-Info (12021): Found 1 design units, including 1 entities, in source file testbenches/test5.v
-    Info (12023): Found entity 1: tst_5
-Info (12021): Found 1 design units, including 1 entities, in source file testbenches/test6.v
-    Info (12023): Found entity 1: tst_6
+Warning (12019): Can't analyze file -- file testbenches/test3.v is missing
+Warning (12019): Can't analyze file -- file testbenches/test4.v is missing
+Warning (12019): Can't analyze file -- file testbenches/test5.v is missing
+Warning (12019): Can't analyze file -- file testbenches/test6.v is missing
+Info (12021): Found 1 design units, including 1 entities, in source file buffer_n.v
+    Info (12023): Found entity 1: Buffer_n
+Warning (10236): Verilog HDL Implicit Net warning at Top.v(288): created implicit net for "FP_out"
 Info (12127): Elaborating entity "Top" for the top level hierarchy
 Info (12128): Elaborating entity "clock" for hierarchy "clock:TOP_Clock"
 Warning (10755): Verilog HDL warning at clock.v(9): assignments to clk create a combinational loop
@@ -455,6 +462,204 @@ Warning (12125): Using design file registerfile.v, which is not specified as a d
     Info (12023): Found entity 1: registerFile
     Info (12023): Found entity 2: testbench_RegisterFile
 Info (12128): Elaborating entity "registerFile" for hierarchy "registerFile:regFile"
+Warning (10240): Verilog HDL Always Construct warning at registerfile.v(317): inferring latch(es) for variable "Rs_data_ID", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at registerfile.v(317): inferring latch(es) for variable "Rt_MSG", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at registerfile.v(317): inferring latch(es) for variable "Rt_data_ID", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at registerfile.v(317): inferring latch(es) for variable "HI", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at registerfile.v(317): inferring latch(es) for variable "LO", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at registerfile.v(317): inferring latch(es) for variable "Rs_MSG", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "Rs_MSG[0]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[1]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[2]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[3]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[4]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[5]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[6]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[7]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[8]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[9]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[10]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[11]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[12]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[13]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[14]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[15]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[16]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[17]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[18]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[19]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[20]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[21]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[22]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[23]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[24]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[25]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[26]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[27]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[28]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[29]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[30]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_MSG[31]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[0]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[1]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[2]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[3]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[4]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[5]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[6]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[7]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[8]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[9]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[10]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[11]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[12]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[13]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[14]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[15]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[16]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[17]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[18]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[19]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[20]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[21]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[22]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[23]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[24]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[25]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[26]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[27]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[28]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[29]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[30]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_data_ID[31]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[0]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[1]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[2]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[3]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[4]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[5]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[6]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[7]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[8]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[9]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[10]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[11]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[12]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[13]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[14]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[15]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[16]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[17]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[18]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[19]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[20]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[21]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[22]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[23]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[24]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[25]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[26]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[27]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[28]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[29]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[30]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rt_MSG[31]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[0]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[1]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[2]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[3]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[4]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[5]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[6]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[7]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[8]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[9]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[10]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[11]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[12]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[13]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[14]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[15]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[16]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[17]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[18]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[19]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[20]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[21]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[22]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[23]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[24]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[25]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[26]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[27]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[28]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[29]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[30]" at registerfile.v(317)
+Info (10041): Inferred latch for "Rs_data_ID[31]" at registerfile.v(317)
+Info (10041): Inferred latch for "LO[0]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[1]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[2]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[3]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[4]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[5]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[6]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[7]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[8]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[9]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[10]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[11]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[12]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[13]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[14]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[15]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[16]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[17]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[18]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[19]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[20]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[21]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[22]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[23]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[24]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[25]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[26]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[27]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[28]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[29]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[30]" at registerfile.v(442)
+Info (10041): Inferred latch for "LO[31]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[0]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[1]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[2]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[3]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[4]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[5]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[6]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[7]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[8]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[9]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[10]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[11]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[12]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[13]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[14]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[15]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[16]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[17]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[18]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[19]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[20]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[21]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[22]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[23]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[24]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[25]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[26]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[27]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[28]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[29]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[30]" at registerfile.v(442)
+Info (10041): Inferred latch for "HI[31]" at registerfile.v(442)
 Info (12128): Elaborating entity "mux_3to1" for hierarchy "mux_3to1:MUX_ID5"
 Info (12128): Elaborating entity "Hazard_Detection_Unit" for hierarchy "Hazard_Detection_Unit:Top_hazard_Detection_unit"
 Info (12128): Elaborating entity "mux_2to1_35bits" for hierarchy "mux_2to1_35bits:MUX_ID6"
@@ -609,11 +814,11 @@ Warning (21074): Design contains 32 input pin(s) that do not drive logic
 Info (21057): Implemented 32 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 32 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 61 warnings
-    Info: Peak virtual memory: 4815 megabytes
-    Info: Processing ended: Sun Dec 27 22:15:47 2020
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 74 warnings
+    Info: Peak virtual memory: 4800 megabytes
+    Info: Processing ended: Thu Dec 31 13:25:08 2020
     Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:03
+    Info: Total CPU time (on all processors): 00:00:04
 
 
 +------------------------------------------+

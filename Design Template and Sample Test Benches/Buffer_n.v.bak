@@ -1,0 +1,19 @@
+module Buffer_n(input FP,
+					input [31:0]Rs_MSG,
+					input [31:0]Rt_data_ID,
+					input [31:0]Rt_MSG,
+					input [31:0]Rd_data_ID,
+					output FP_out,
+					output [31:0]Rs_MSG_out,
+					output [31:0]Rt_data_ID_out,
+					output [31:0]Rt_MSG_out,
+					output [31:0]Rd_data_ID_out);
+always@(*)begin
+FP_out <= FP;
+Rs_MSG_out <= Rs_MSG;
+Rt_data_ID_out <=Rt_data_ID;
+Rt_MSG_out		<=Rt_MSG;
+Rd_data_ID_out	<=Rd_data_ID;
+
+end
+endmodule
