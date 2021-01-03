@@ -4,11 +4,7 @@ module PC(output reg[31:0]PC_out,
 			 input control,
 			 input clk
 			 );
-/*
-initial begin
-	   #100 	PC_out<=PC_INITIAL;
-end
-*/
+
  always@(posedge clk)begin
 	if(control==0)	//fetch new instruction
 		PC_out<=PC_IN;

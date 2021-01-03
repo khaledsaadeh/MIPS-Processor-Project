@@ -145,9 +145,9 @@ end
 always@(clk)begin
 		#100 c1=0;
 end
-	//buf  PC_buffer(PC_IN,PC_VALUE);
+
 	clock TOP_Clock(clk);
-	mux_2to1 PC_MUX(PC_wire,PC_IN,PC_VALUE,c1);
+	mux_2to1 PC_MUX(PC_wire,PC_IN,PC_VALUE,c1);//determines initial PC value
 	//stage1 : instruction fetch (IF)
 	//PC top_PC(program_counter, PC_VALUE, PC_IN, PC_stall, clk);
 	PC top_PC(program_counter, PC_wire, PC_stall, clk);
