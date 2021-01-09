@@ -274,7 +274,7 @@ end
 						Rs_EXE, 
 						Rd_data_EXE,
 						clk,
-						control_signal,
+						control_signal_ID,//*****///
 						FP_out,
 						PC_ID,
 						read_data_ID,
