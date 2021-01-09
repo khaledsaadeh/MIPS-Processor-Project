@@ -1,0 +1,280 @@
+# Reading C:/altera/13.0/modelsim_ase/tcl/vsim/pref.tcl 
+# ERROR: No extended dataflow license exists
+# do Top_run_msim_rtl_verilog.do 
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Copying C:\altera\13.0\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# ** Warning: Copied C:\altera\13.0\modelsim_ase\win32aloem/../modelsim.ini to modelsim.ini.
+#          Updated modelsim.ini.
+# 
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Top.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module Top
+# 
+# Top level modules:
+# 	Top
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_3to1.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module mux_3to1
+# -- Compiling module testbench_mux_3to1
+# 
+# Top level modules:
+# 	testbench_mux_3to1
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/PC.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module PC
+# -- Compiling module testbench_PC
+# 
+# Top level modules:
+# 	testbench_PC
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/shift_left_32bits.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module shift_left_32bits
+# -- Compiling module testbench_shift_left_32bits
+# 
+# Top level modules:
+# 	testbench_shift_left_32bits
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_4to1.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module mux_4to1
+# -- Compiling module testbench_mux_4to1
+# 
+# Top level modules:
+# 	testbench_mux_4to1
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/sign_extend.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module sign_extend
+# -- Compiling module testbench_sign_extend
+# 
+# Top level modules:
+# 	testbench_sign_extend
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/zero_extend.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module zero_extend
+# -- Compiling module testbench_zero_extend
+# 
+# Top level modules:
+# 	testbench_zero_extend
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/control_unit.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module control_unit
+# -- Compiling module testbench_control_unit
+# 
+# Top level modules:
+# 	testbench_control_unit
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/IF_ID.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module IF_ID
+# -- Compiling module testbench_IF_ID
+# 
+# Top level modules:
+# 	testbench_IF_ID
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ID_EXE.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module ID_EXE
+# 
+# Top level modules:
+# 	ID_EXE
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Forwarding_unit.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module Forwarding_unit
+# -- Compiling module testbench_Forwarding_unit
+# 
+# Top level modules:
+# 	testbench_Forwarding_unit
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1_35bits.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module mux_2to1_35bits
+# 
+# Top level modules:
+# 	mux_2to1_35bits
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/EXE_MEM.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module EXE_MEM
+# 
+# Top level modules:
+# 	EXE_MEM
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/MEM_WB.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module MEM_WB
+# 
+# Top level modules:
+# 	MEM_WB
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/Hazard_detection_unit.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module Hazard_Detection_Unit
+# 
+# Top level modules:
+# 	Hazard_Detection_Unit
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/ALU.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module ALU
+# 
+# Top level modules:
+# 	ALU
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1_64bits.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module mux_2to1_64bits
+# 
+# Top level modules:
+# 	mux_2to1_64bits
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/DataMemory.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module DataMemory
+# -- Compiling module testbench_memory
+# ** Warning: D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/DataMemory.v(137): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+# 
+# 
+# Top level modules:
+# 	testbench_memory
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1_5bits.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module mux_2to1_5bits
+# 
+# Top level modules:
+# 	mux_2to1_5bits
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/clock.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module clock
+# -- Compiling module testbench_clock
+# 
+# Top level modules:
+# 	testbench_clock
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/instructionMemory.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module instructionMemory
+# 
+# Top level modules:
+# 	instructionMemory
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/mux_2to1.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module mux_2to1
+# -- Compiling module testbench_mux_2to1
+# 
+# Top level modules:
+# 	testbench_mux_2to1
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/adder.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module Adder
+# -- Compiling module testbench_Adder
+# 
+# Top level modules:
+# 	testbench_Adder
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/shift_left_26bits.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module shift_left_26bits
+# -- Compiling module testbench_shift_left_26bits
+# 
+# Top level modules:
+# 	testbench_shift_left_26bits
+# vlog -vlog01compat -work work +incdir+D:/University/Computer\ Architicture\ 2/Project/Computer-Org-2-Project/Design\ Template\ and\ Sample\ Test\ Benches {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/registerfile.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module registerFile
+# -- Compiling module testbench_RegisterFile
+# 
+# Top level modules:
+# 	testbench_RegisterFile
+# 
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/my_test.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_7
+# 
+# Top level modules:
+# 	tst_7
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_1.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_1
+# 
+# Top level modules:
+# 	tst_1
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_2.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_2
+# 
+# Top level modules:
+# 	tst_2
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_3 .v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module arethmatic1
+# 
+# Top level modules:
+# 	arethmatic1
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_4.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_4
+# 
+# Top level modules:
+# 	tst_4
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_5.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_5
+# 
+# Top level modules:
+# 	tst_5
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_6.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_6
+# 
+# Top level modules:
+# 	tst_6
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_8.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_8
+# 
+# Top level modules:
+# 	tst_8
+vlog -reportprogress 300 -work work {D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_9.v}
+# Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+# -- Compiling module tst_9
+# 
+# Top level modules:
+# 	tst_9
+vsim work.tst_1
+# vsim work.tst_1 
+# Loading work.tst_1
+# Loading work.Top
+# Loading work.clock
+# Loading work.mux_2to1
+# Loading work.PC
+# Loading work.Adder
+# Loading work.instructionMemory
+# Loading work.IF_ID
+# Loading work.control_unit
+# Loading work.shift_left_26bits
+# Loading work.mux_2to1_5bits
+# Loading work.sign_extend
+# Loading work.zero_extend
+# Loading work.registerFile
+# Loading work.mux_3to1
+# Loading work.Hazard_Detection_Unit
+# Loading work.mux_2to1_35bits
+# Loading work.ID_EXE
+# Loading work.shift_left_32bits
+# Loading work.mux_4to1
+# Loading work.ALU
+# Loading work.Forwarding_unit
+# Loading work.EXE_MEM
+# Loading work.DataMemory
+# Loading work.MEM_WB
+# Loading work.mux_2to1_64bits
+run -all
+# cycle:         14
+# PC:        136
+# $t0:          4 The correct value is 4
+# $t1:          8 The correct value is 8
+# $t2:         12 The correct value is 12
+# $t3:         16 The correct value is 16
+# $t4:         20 The correct value is 20
+# $t5:         24 The correct value is 24
+# $t6:         28 The correct value is 28
+# $t7:         32 The correct value is 32
+# ** Note: $finish    : D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_1.v(24)
+#    Time: 1350 ps  Iteration: 1  Instance: /tst_1
+# 1
+# Break in Module tst_1 at D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/testbenches/tst_1.v line 24
+
+

@@ -229,16 +229,6 @@ end
 							Jal_control,
 							Store_FP);	
 	
-	/*Buffer_n Test_Buffer(clk,FP,
-								Rs_MSG,
-								Rt_data_ID,
-								Rt_MSG,
-								Rd_data_ID,
-								FP_out,
-								Rs_MSG_out,
-								Rt_data_ID_out,
-								Rt_MSG_out,
-								Rd_data_ID_out);*/
 	
 	mux_3to1 MUX_ID5(read_data_ID, Rs_data_ID, HI, LO, HILO_read_control); //determine Rs/HI/LO in case of move from HI/LO
 	

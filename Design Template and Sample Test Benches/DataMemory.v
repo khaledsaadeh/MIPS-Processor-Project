@@ -68,7 +68,7 @@ initial
 	end
 
 //read from memory 
-always@(negedge Clk)begin 							//always output two words, whether reading a word or double. Top module will be able to choose which to use.
+always@(*)begin 				//always output two words, whether reading a word or double. Top module will be able to choose which to use.
 	if(MemRead)begin									//
 		OUT_data_MEM[31:24]=mem[Adrs_MEM];		//read word (most significant word in case of reading 'double')
 		OUT_data_MEM[23:16]=mem[Adrs_MEM+1];
@@ -83,7 +83,7 @@ always@(negedge Clk)begin 							//always output two words, whether reading a wo
 end
 
 //Write to memory
-always@(posedge Clk)begin
+always@(negedge Clk)begin //write on positive edge
 	if(MemWrite)begin //write word
 		mem[Adrs_MEM]	=Rt_data_MEM[31:24]; //MSGB in base address 
 		mem[Adrs_MEM+1]=Rt_data_MEM[23:16];

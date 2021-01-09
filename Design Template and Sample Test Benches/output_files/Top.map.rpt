@@ -1,5 +1,5 @@
 Analysis & Synthesis report for Top
-Thu Dec 31 13:25:08 2020
+Sat Jan 09 17:00:36 2021
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -48,7 +48,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Dec 31 13:25:08 2020      ;
+; Analysis & Synthesis Status        ; Successful - Sat Jan 09 17:00:36 2021      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; Top                                        ;
 ; Top-level Entity Name              ; Top                                        ;
@@ -310,7 +310,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Thu Dec 31 13:25:04 2020
+    Info: Processing started: Sat Jan 09 17:00:33 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Top -c Top
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file top.v
@@ -371,7 +371,7 @@ Warning (12019): Can't analyze file -- file testbenches/test2.v is missing
 Info (12021): Found 1 design units, including 1 entities, in source file mux_2to1_5bits.v
     Info (12023): Found entity 1: mux_2to1_5bits
 Info (12021): Found 1 design units, including 1 entities, in source file testbenches/my_test.v
-    Info (12023): Found entity 1: my_test
+    Info (12023): Found entity 1: tst_7
 Info (12021): Found 2 design units, including 2 entities, in source file clock.v
     Info (12023): Found entity 1: clock
     Info (12023): Found entity 2: testbench_clock
@@ -383,7 +383,11 @@ Warning (12019): Can't analyze file -- file testbenches/test5.v is missing
 Warning (12019): Can't analyze file -- file testbenches/test6.v is missing
 Info (12021): Found 1 design units, including 1 entities, in source file buffer_n.v
     Info (12023): Found entity 1: Buffer_n
-Warning (10236): Verilog HDL Implicit Net warning at Top.v(288): created implicit net for "FP_out"
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/tst_8.v
+    Info (12023): Found entity 1: tst_8
+Info (12021): Found 1 design units, including 1 entities, in source file testbenches/tst_9.v
+    Info (12023): Found entity 1: tst_9
+Warning (10236): Verilog HDL Implicit Net warning at Top.v(278): created implicit net for "FP_out"
 Info (12127): Elaborating entity "Top" for the top level hierarchy
 Info (12128): Elaborating entity "clock" for hierarchy "clock:TOP_Clock"
 Warning (10755): Verilog HDL warning at clock.v(9): assignments to clk create a combinational loop
@@ -392,6 +396,39 @@ Warning (12125): Using design file mux_2to1.v, which is not specified as a desig
     Info (12023): Found entity 2: testbench_mux_2to1
 Info (12128): Elaborating entity "mux_2to1" for hierarchy "mux_2to1:PC_MUX"
 Info (12128): Elaborating entity "PC" for hierarchy "PC:top_PC"
+Warning (10240): Verilog HDL Always Construct warning at PC.v(19): inferring latch(es) for variable "PC_out", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "PC_out[0]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[1]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[2]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[3]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[4]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[5]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[6]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[7]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[8]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[9]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[10]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[11]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[12]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[13]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[14]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[15]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[16]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[17]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[18]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[19]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[20]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[21]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[22]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[23]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[24]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[25]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[26]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[27]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[28]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[29]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[30]" at PC.v(19)
+Info (10041): Inferred latch for "PC_out[31]" at PC.v(19)
 Warning (12125): Using design file adder.v, which is not specified as a design file for the current project, but contains definitions for 2 design units and 2 entities in project
     Info (12023): Found entity 1: Adder
     Info (12023): Found entity 2: testbench_Adder
@@ -773,6 +810,72 @@ Info (12128): Elaborating entity "Forwarding_unit" for hierarchy "Forwarding_uni
 Info (12128): Elaborating entity "EXE_MEM" for hierarchy "EXE_MEM:Top_EXE_MEM"
 Info (12128): Elaborating entity "DataMemory" for hierarchy "DataMemory:TOP_DataMemory"
 Warning (10230): Verilog HDL assignment warning at DataMemory.v(57): truncated value with size 32 to match size of target (8)
+Warning (10240): Verilog HDL Always Construct warning at DataMemory.v(72): inferring latch(es) for variable "OUT_data_MEM", which holds its previous value in one or more paths through the always construct
+Warning (10240): Verilog HDL Always Construct warning at DataMemory.v(72): inferring latch(es) for variable "OUT_nextdata_MEM", which holds its previous value in one or more paths through the always construct
+Info (10041): Inferred latch for "OUT_nextdata_MEM[0]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[1]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[2]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[3]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[4]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[5]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[6]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[7]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[8]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[9]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[10]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[11]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[12]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[13]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[14]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[15]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[16]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[17]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[18]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[19]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[20]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[21]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[22]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[23]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[24]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[25]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[26]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[27]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[28]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[29]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[30]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_nextdata_MEM[31]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[0]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[1]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[2]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[3]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[4]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[5]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[6]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[7]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[8]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[9]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[10]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[11]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[12]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[13]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[14]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[15]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[16]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[17]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[18]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[19]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[20]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[21]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[22]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[23]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[24]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[25]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[26]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[27]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[28]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[29]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[30]" at DataMemory.v(72)
+Info (10041): Inferred latch for "OUT_data_MEM[31]" at DataMemory.v(72)
 Info (12128): Elaborating entity "MEM_WB" for hierarchy "MEM_WB:TOP_MEM_WB"
 Info (12128): Elaborating entity "mux_2to1_64bits" for hierarchy "mux_2to1_64bits:MUX_WB1"
 Info (144001): Generated suppressed messages file D:/University/Computer Architicture 2/Project/Computer-Org-2-Project/Design Template and Sample Test Benches/output_files/Top.map.smsg
@@ -814,10 +917,10 @@ Warning (21074): Design contains 32 input pin(s) that do not drive logic
 Info (21057): Implemented 32 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 32 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 74 warnings
-    Info: Peak virtual memory: 4800 megabytes
-    Info: Processing ended: Thu Dec 31 13:25:08 2020
-    Info: Elapsed time: 00:00:04
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 77 warnings
+    Info: Peak virtual memory: 4815 megabytes
+    Info: Processing ended: Sat Jan 09 17:00:36 2021
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:04
 
 

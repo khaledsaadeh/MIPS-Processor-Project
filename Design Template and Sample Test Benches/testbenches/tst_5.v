@@ -7,7 +7,7 @@ module tst_5;
 		cycle <= 1;
 	end				   
 	always @(posedge top.clk) begin	
-if (cycle== 16)	
+if (cycle== 15)	
 begin
 		$display("cycle: %d" , cycle);
 		$display("PC: %d",top.program_counter);				   

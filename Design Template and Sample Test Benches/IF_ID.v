@@ -61,6 +61,7 @@ end else if(IF_Flush)begin
    Fd<=5'b0;				
    PC_ID<=PC_4;
 end else if(IF_stall)begin
+
 end
 end
 endmodule
